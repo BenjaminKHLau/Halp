@@ -21,3 +21,5 @@ COPY /react-app/build/* app/static/
 # install -r requirements.txt
 RUN pip install -r requirements.txt
 RUN pip install psycopg2
+
+CMD gunicorn app:app
