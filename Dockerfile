@@ -7,7 +7,7 @@ ENV REACT_APP_BASE_URL=https://halpimhungry.herokuapp.com/
 # FLASK_APP -> entry point to your flask app
 ENV FLASK_APP=app
 # FLASK_ENV -> Tell flask to use the production server
-FLASK_ENV=production
+ENV FLASK_ENV=production
 # SQLALCHEMY_ECHO -> Just set it to true
 ENV SQLALCHEMY_ECHO=True
 # Set the directory for upcoming commands to /var/www
