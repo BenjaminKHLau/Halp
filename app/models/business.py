@@ -15,8 +15,9 @@ class Business(db.Model):
 
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey("categories.id"), nullable=False)
+    business_image = db.Column(db.Integer, db.ForeignKey("businessimages.id"), nullable=False) #error with seeding. testing
 
-    business_image = relationship("BusinessImage", back_populates="business")
+    business_image_relationship = relationship("BusinessImage", back_populates="business")
     category = relationship("Category", back_populates="business")
     review = relationship("Review", back_populates="business")
     user = relationship("User", back_populates="business")
@@ -29,7 +30,7 @@ class BusinessImage(db.Model):
     business_id = db.Column(db.Integer, nullable=False)
     image_url = db.Column(db.String, nullable=False)
 
-    business = relationship("Business", back_populates="business_image")
+    business = relationship("Business", back_populates="business_image_relationship")
 
 class Category(db.Model):
     __tablename__ = "categories"
