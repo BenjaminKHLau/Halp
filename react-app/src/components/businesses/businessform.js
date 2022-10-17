@@ -4,7 +4,7 @@ import { useHistory, Redirect } from "react-router-dom"
 
 
 function BusinessFormComponent(){
-    
+
     const dispatch = useDispatch()
     const history = useHistory()
     const [name, setName] = useState("")
@@ -51,12 +51,12 @@ function BusinessFormComponent(){
           {error}
         </div>
         ));
-    
+
     return(
         <form className="business-form" onSubmit={subby}>
         <h2 className="title">Create a Business</h2>
         <ul className="errors">{isSubmitted && showErrors}</ul>
-  
+
         <div className="form-css">
           <div className="form-box">
           <label className="form-stuff">
@@ -70,7 +70,7 @@ function BusinessFormComponent(){
               onChange={(e) => setName(e.target.value)}
             />
           </label>
-  
+
           <label className="form-stuff">
             {/* Address */}
             <input
@@ -82,7 +82,7 @@ function BusinessFormComponent(){
               onChange={(e) => setAddress(e.target.value)}
             />
           </label>
-  
+
           <label className="form-stuff">
             {/* City */}
             <input
@@ -94,7 +94,7 @@ function BusinessFormComponent(){
               onChange={(e) => setCity(e.target.value)}
             />
           </label>
-  
+
           <label className="form-stuff">
             {/* State */}
             <input
@@ -106,18 +106,27 @@ function BusinessFormComponent(){
               onChange={(e) => setState(e.target.value)}
             />
           </label>
-  
           <label className="form-stuff">
             <input
               className="form-input"
               type="text"
-              name="hours"
-              placeholder="Hours"
+              name="openHours"
+              placeholder="openHours"
               value={hours}
               onChange={(e) => setHours(e.target.value)}
             />
           </label>
-  
+          <label className="form-stuff">
+            <input
+              className="form-input"
+              type="text"
+              name="closeHours"
+              placeholder="closeHours"
+              value={hours}
+              onChange={(e) => setHours(e.target.value)}
+            />
+          </label>
+
           <label className="form-stuff">
             <input
               className="form-input"
@@ -128,7 +137,7 @@ function BusinessFormComponent(){
               onChange={(e) => setContact(e.target.value)}
             />
           </label>
-  
+
           <label className="form-stuff">
             <input
               className="form-input"
@@ -139,7 +148,7 @@ function BusinessFormComponent(){
               onChange={(e) => setOwnerId(e.target.value)}
             />
           </label>
-  
+
           <label className="form-stuff">
             {/* Description */}
             <input
@@ -151,9 +160,9 @@ function BusinessFormComponent(){
               onChange={(e) => setDescription(e.target.value)}
             />
           </label>
-  
-          </div> 
-  
+
+          </div>
+
           <div className="submit">
             <button
               type="submit"
@@ -162,7 +171,7 @@ function BusinessFormComponent(){
                 isSubmitted && errors.length > 0 ? "noob" : "submit-button"
               }
             >
-              Create Spot
+              Create Business
             </button>
           </div>
         </div>
