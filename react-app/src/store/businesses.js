@@ -1,13 +1,11 @@
 
-
-
 // Action Types
 const CREATE_NEW_BUSINESS = "business/CREATE"
 const GET_ALL_BUSINESSES = "business/READ"
 const UPDATE_BUSINESS = "business/UPDATE"
-const DELETE_BUSINESS = "business/DELETE"
 const GET_BUSINESS_BY_ID = "businessId/READ"
-s
+const DELETE_BUSINESS = "business/DELETE"
+
 
 // Action Creators
 const createNewBusinessACTION = (payload) => {
@@ -44,13 +42,13 @@ const getBusinessByIdACTION = (payload) => {
     }
  }
 
- // Thunk Action Creator
+ // Thunk Action Creators
 export const getAllBusinessesThunk = () => async dispatch => {
     const response = await fetch(`/api/businesses`, {
         method: "GET"
     })
     const data = await response.json();
-    dispatch(getAllBusinessesACTION(data.allSpots))
+    dispatch(getAllBusinessesACTION(data))
 
     return data
 }
@@ -69,6 +67,40 @@ export const addBusinessThunk = (business) => async dispatch => {
     dispatch(createNewBusinessACTION(newBusiness))
     return newBusiness
   }
+}
+
+export const updateBusinessThunk = (payload, businessId) => async dispatch => {
+    const response = await fetch(`/api/businesses/${businessId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    });
+    if (response.ok) {
+        const updateBis = await response.json();
+        dispatch(updateBusinessACTION(updateBis))
+    }
+    return response
+}
+
+export const getBusinessByIdThunk= (businessId) => async dispatch => {
+    const response = await fetch(`/api/businesses${businessId}`, {
+        method: "GET"
+    })
+    if (response.ok) {
+        const thisBis = await response.json();
+        dispatch(getBusinessByIdACTION(thisBis))
+        return thisBis;
+    }
+}
+
+export const removeBusinessThunk= (businessId) => async dispatch => {
+    const response = await fetch(`/api/businesses/${businessId}`, {
+        method: "DELETE"
+    });
+
+    if (response.ok) {
+        dispatch(deleteBusinessACTION(businessId))
+    }
 }
 
 // REDUCER UPDATES STATE
@@ -90,8 +122,22 @@ const BusinessesReducer = (state = initialState, action) => {
       	case CREATE_NEW_BUSINESS: {
         	newState = {...state}
         	newState[action.payload.id] = action.payload
-
-        	return newState
+            return newState;
+        }
+        case UPDATE_BUSINESS: {
+        	newState = {...state}
+        	newState[action.payload.id] = action.payload
+            return newState;
+        }
+        case GET_BUSINESS_BY_ID: {
+        	newState = {...state}
+        	newState[action.payload.id] = action.payload
+            return newState;
+        }
+        case DELETE_BUSINESS: {
+            const delState = { ...state }
+            delete delState[action.payload]
+            return delState;
       	}
 
     default:
