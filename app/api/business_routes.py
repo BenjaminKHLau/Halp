@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, db, Business, Category
 # from app.forms import LoginForm
 # from app.forms import SignUpForm
 # from app.forms import BusinessHoursForm
@@ -18,7 +18,29 @@ def add_business_root():
     form = BusinessForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print('validated form',form.data['name'])
+        category_id = Category.query.filter_by(type_name=form.data['category']).first().id
+
+        new_business = Business(
+            name = form.data['name'],
+            description = form.data['description'],
+            address = form.data['address'],
+            city = form.data['city'],
+            state = form.data['state'],
+            hours = f"{form.data['openHours']} - {form.data['closeHours']}",
+            contact = form.data['contact'],
+            business_image = form.data['businessImage'],
+            owner_id = request.json['owner_id'],
+            category_id = category_id
+        )
+        # print(request.json['owner_id'])
+        db.session.add(new_business)
+        db.session.commit()
+        # print(current_user.id)
+
+
+
+
+
     # print('form errors', form.errors)
     print('form', form.data['name'])
     print('form errors', form.errors)

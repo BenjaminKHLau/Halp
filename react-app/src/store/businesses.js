@@ -7,7 +7,6 @@ const GET_ALL_BUSINESSES = "business/READ"
 const UPDATE_BUSINESS = "business/UPDATE"
 const DELETE_BUSINESS = "business/DELETE"
 const GET_BUSINESS_BY_ID = "businessId/READ"
-s
 
 // Action Creators
 const createNewBusinessACTION = (payload) => {
