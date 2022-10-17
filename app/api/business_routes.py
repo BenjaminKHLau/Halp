@@ -10,7 +10,15 @@ business_blueprint = Blueprint("business_blueprint", __name__)
 
 @business_blueprint.route("")
 def business_root():
-    return "Form Page"
+    """
+    Get all businesses route
+    """
+    response = []
+    allBusinesses = Business.query.all()
+    for business in allBusinesses:
+        print(business.to_dict())
+        response.append(business.to_dict())
+    return jsonify(response)
 
 @business_blueprint.route("", methods=["POST"])
 def add_business_root():
