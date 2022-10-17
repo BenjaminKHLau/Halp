@@ -7,40 +7,40 @@ const GET_ALL_BUSINESSES = "business/READ"
 const UPDATE_BUSINESS = "business/UPDATE"
 const DELETE_BUSINESS = "business/DELETE"
 const GET_BUSINESS_BY_ID = "businessId/READ"
+s
 
-
-// Action Creator
+// Action Creators
 const createNewBusinessACTION = (payload) => {
-    return { 
+    return {
      type: CREATE_NEW_BUSINESS,
-     payload 
+     payload
     }
  }
 
  const getAllBusinessesACTION = (payload) => {
-     return { 
+     return {
      type: GET_ALL_BUSINESSES,
-     payload 
+     payload
     }
  }
 
 const updateBusinessACTION = (payload) => {
-    return { 
+    return {
      type: UPDATE_BUSINESS,
-     payload 
+     payload
     }
  }
 
 const deleteBusinessACTION = (payload) => {
-    return { 
+    return {
      type: DELETE_BUSINESS,
-     payload 
+     payload
     }
  }
 const getBusinessByIdACTION = (payload) => {
-    return { 
+    return {
      type: GET_BUSINESS_BY_ID,
-     payload 
+     payload
     }
  }
 
@@ -53,6 +53,22 @@ export const getAllBusinessesThunk = () => async dispatch => {
     dispatch(getAllBusinessesACTION(data.allSpots))
 
     return data
+}
+
+export const addBusinessThunk = (business) => async dispatch => {
+  const response = await fetch(`/api/businesses`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(business)
+  })
+
+  if (response.ok) {
+    const newBusiness = await response.json()
+    dispatch(createNewBusinessACTION(newBusiness))
+    return newBusiness
+  }
 }
 
 // REDUCER UPDATES STATE
@@ -71,7 +87,13 @@ const BusinessesReducer = (state = initialState, action) => {
             })
             return newState
         }
-        
+      	case CREATE_NEW_BUSINESS: {
+        	newState = {...state}
+        	newState[action.payload.id] = action.payload
+
+        	return newState
+      	}
+
     default:
     return state;
     }
