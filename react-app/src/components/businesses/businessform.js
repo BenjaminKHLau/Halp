@@ -111,7 +111,7 @@ function BusinessFormComponent(){
               className="form-input"
               type="text"
               name="openHours"
-              placeholder="openHours"
+              placeholder="Open Hours"
               value={hours}
               onChange={(e) => setHours(e.target.value)}
             />
@@ -121,7 +121,7 @@ function BusinessFormComponent(){
               className="form-input"
               type="text"
               name="closeHours"
-              placeholder="closeHours"
+              placeholder="Close Hours"
               value={hours}
               onChange={(e) => setHours(e.target.value)}
             />
@@ -143,7 +143,7 @@ function BusinessFormComponent(){
               className="form-input"
               type="number"
               name="ownerId"
-              placeholder="OwnerId"
+              placeholder="Owner's Id"
               value={ownerId}
               onChange={(e) => setOwnerId(e.target.value)}
             />
