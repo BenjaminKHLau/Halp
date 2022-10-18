@@ -69,7 +69,7 @@ def add_business_root():
         db.session.commit()
         return new_business.to_dict()
 
-@business_blueprint.route("/<int:businessId>")
+@business_blueprint.route("/<int:businessId>", methods=["GET"])
 def business_details(businessId):
     print("business id route", businessId)
     business = Business.query.get(businessId)
@@ -81,13 +81,30 @@ def business_details(businessId):
     print("business route backend: ", jsonify(business.to_dict()))
     return business.to_dict()
 
+
+@business_blueprint.route("/<int:businessId>/delete", methods=["DELETE"])
+@login_required
+def delete_business(businessId):
+    business = Business.query.get(businessId)
+    # if business == None:
+    #     return jsonify({
+    #         "error": "no business found",
+    #         "statusCode": 404,
+    #     }, 404)
+    db.session.delete(business)
+    db.session.commit()
+    return {
+        "statusCode": 200,
+        "message": "successfully deleted"
+    }
+
 #get reviews by business ID
-@business_blueprint.route("/<int:businessId>/reviews", methods = ["GET"])
-def load_review(businessId):
-    response = []
-    readingreviews = Review.query.get(business_id=businessId)
+# @business_blueprint.route("/<int:businessId>/reviews", methods = ["GET"])
+# def load_review(businessId):
+#     response = []
+#     readingreviews = Review.query.get(business_id=businessId)
 
-    for review in readingreviews:
-        response.append(review.to_dict())
+#     for review in readingreviews:
+#         response.append(review.to_dict())
 
-    return response
+#     return response

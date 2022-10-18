@@ -21,7 +21,7 @@ class Business(db.Model):
 
     # business_image_relationship = relationship("BusinessImage", back_populates="business")
     # category_id = relationship("Category", back_populates="business")
-    review = relationship("Review", back_populates="business")
+    review = relationship("Review", back_populates="business", cascade="all, delete-orphan")
     user = relationship("User", back_populates="business")
 
     def to_dict(self):

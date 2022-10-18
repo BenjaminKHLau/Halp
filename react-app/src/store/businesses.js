@@ -44,7 +44,7 @@ const getBusinessByIdACTION = (payload) => {
 
  // Thunk Action Creators
 export const getAllBusinessesThunk = () => async dispatch => {
-    console.log("Get All Businesses Thunk Starting")
+    // console.log("Get All Businesses Thunk Starting")
     const response = await fetch(`/api/businesses/`, {
         method: "GET"
     })
@@ -97,15 +97,16 @@ export const getBusinessByIdThunk = (businessId) => async dispatch => {
     }
 }
 
-// export const removeBusinessThunk= (businessId) => async dispatch => {
-//     const response = await fetch(`/api/businesses/${businessId}`, {
-//         method: "DELETE"
-//     });
+export const deleteBusinessThunk = (businessId) => async dispatch => {
+    console.log("DELETE BUSINESS THUNK RUNNING")
+    const response = await fetch(`/api/businesses/${businessId}/delete`, {
+        method: "DELETE"
+    });
 
-//     if (response.ok) {
-//         dispatch(deleteBusinessACTION(businessId))
-//     }
-// }
+    if (response.ok) {
+        dispatch(deleteBusinessACTION(businessId))
+    }
+}
 
 // REDUCER UPDATES STATE
 const initialState = {};
@@ -115,7 +116,7 @@ const BusinessesReducer = (state = initialState, action) => {
     let newState = {};
     switch(action.type){
         case GET_ALL_BUSINESSES: {
-            console.log("Get all businesses Reducer Action", action)
+            // console.log("Get all businesses Reducer Action", action)
             // normalize data. Turn array into obj
             action.payload.forEach(business => {
                 newState[business.id] = business // assign id of each business to the business obj
@@ -139,9 +140,12 @@ const BusinessesReducer = (state = initialState, action) => {
             return newState;
         }
         case DELETE_BUSINESS: {
-            const delState = { ...state }
-            delete delState[action.payload]
-            return delState;
+            console.log("DELETE BUSINESS REDUCER ACTION: ", action)
+            newState = { ...state }
+            console.log("DELETE BUSINESS REDUCER STATE: ", newState)
+            delete newState[action.payload]
+            console.log("DELETE BUSINESS REDUCER STATE AFTER DELETE: ", newState)
+            return newState;
       	}
 
     default:
