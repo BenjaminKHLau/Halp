@@ -49,7 +49,9 @@ export const getAllBusinessesThunk = () => async dispatch => {
         method: "GET"
     })
     const data = await response.json();
-    dispatch(getAllBusinessesACTION(data))
+    if (response.ok){
+        dispatch(getAllBusinessesACTION(data))
+    }
 
     return data
 }
