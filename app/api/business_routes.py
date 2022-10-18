@@ -1,16 +1,25 @@
-from flask import Blueprint, jsonify, session, request
+from flask import Blueprint, jsonify, session, request, redirect
 from app.models import User, db, Business, Category
 # from app.forms import LoginForm
 # from app.forms import SignUpForm
 # from app.forms import BusinessHoursForm
 from ..forms.businesses import BusinessForm
+from .auth_routes import validation_errors_to_error_messages
 from flask_login import current_user, login_user, logout_user, login_required
 
 business_blueprint = Blueprint("business_blueprint", __name__)
 
 @business_blueprint.route("")
 def business_root():
-    return "Form Page"
+    """
+    Get all businesses route
+    """
+    response = []
+    allBusinesses = Business.query.all()
+    for business in allBusinesses:
+        print(business.to_dict())
+        response.append(business.to_dict())
+    return jsonify(response)
 
 @business_blueprint.route("", methods=["POST"])
 def add_business_root():
@@ -32,18 +41,9 @@ def add_business_root():
             owner_id = request.json['owner_id'],
             category_id = category_id
         )
-        # print(request.json['owner_id'])
+
         db.session.add(new_business)
         db.session.commit()
-        # print(current_user.id)
+        return new_business.to_dict()
 
-
-
-
-
-    # print('form errors', form.errors)
-    print('form', form.data['name'])
-    print('form errors', form.errors)
-
-    # form.name =
-    return form.data
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
