@@ -45,7 +45,7 @@ const getBusinessByIdACTION = (payload) => {
  // Thunk Action Creators
 export const getAllBusinessesThunk = () => async dispatch => {
     console.log("Get All Businesses Thunk Starting")
-    const response = await fetch(`/api/businesses`, {
+    const response = await fetch(`/api/businesses/`, {
         method: "GET"
     })
     const data = await response.json();
