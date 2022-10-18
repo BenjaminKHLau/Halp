@@ -91,4 +91,3 @@ def load_review(businessId):
         response.append(review.to_dict())
 
     return response
-
