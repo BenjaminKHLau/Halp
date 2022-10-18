@@ -5,8 +5,10 @@ from app.models import User, db, Business, Review
 # from app.forms import SignUpForm
 # from app.forms import BusinessHoursForm
 from ..forms.businesses import BusinessForm
+from ..forms.review import ReviewForm
 from .auth_routes import validation_errors_to_error_messages
 from flask_login import current_user, login_user, logout_user, login_required
+
 
 business_blueprint = Blueprint("business_blueprint", __name__)
 
@@ -92,3 +94,24 @@ def load_review(businessId):
 
     return response
 
+
+# randys part
+@business_blueprint.route("/<int:businessId>", methods=['POST'])
+def create_review(businessId):
+    business = Business.query.get(businessId)
+    if business == None:
+        return {"errors": "Business not found"}, 404
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        review = Review(
+            stars = form.data['stars'],
+            review = form.data['review'],
+            businessId = businessId,
+            userId = current_user.id,
+            imageUrl = form.data['imageUrl']
+        )
+        db.session.add(review)
+        db.session.commit()
+        return review.to_dict(), 201
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
