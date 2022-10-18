@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, session, request, redirect
-from app.models import User, db, Business, Category
+from app.models import User, db, Business
+# , Category
 # from app.forms import LoginForm
 # from app.forms import SignUpForm
 # from app.forms import BusinessHoursForm
@@ -38,8 +39,9 @@ def add_business_root():
             state = form.data['state'],
             # hours = f"{form.data['openHours']} - {form.data['closeHours']}",
             contact = form.data['contact'],
-            business_image = form.data['businessImage'],
+            business_image_url = form.data['businessImage'],
             owner_id = current_user.id,
+            category = form.data['category']
             # category_id = category_id
         )
 
