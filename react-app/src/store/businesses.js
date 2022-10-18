@@ -44,6 +44,7 @@ const getBusinessByIdACTION = (payload) => {
 
  // Thunk Action Creators
 export const getAllBusinessesThunk = () => async dispatch => {
+    console.log("Get All Businesses Thunk Starting")
     const response = await fetch(`/api/businesses`, {
         method: "GET"
     })
@@ -104,15 +105,14 @@ export const removeBusinessThunk= (businessId) => async dispatch => {
 }
 
 // REDUCER UPDATES STATE
-const initialState = {
-    businesses: {}
-};
+const initialState = {};
 
 
 const BusinessesReducer = (state = initialState, action) => {
     let newState = {};
     switch(action.type){
         case GET_ALL_BUSINESSES: {
+            console.log("Get all businesses Reducer Action", action)
             // normalize data. Turn array into obj
             action.payload.forEach(business => {
                 newState[business.id] = business // assign id of each business to the business obj
