@@ -67,3 +67,15 @@ def add_business_root():
         db.session.add(new_business)
         db.session.commit()
         return new_business.to_dict()
+
+@business_blueprint.route("/<int:businessId>")
+def business_details(businessId):
+    print("business id route", businessId)
+    business = Business.query.get(businessId)
+    if business == None:
+        return jsonify({
+            "error": "no business found",
+            "statusCode": 404,
+        }, 404)
+    print("business route backend: ", jsonify(business.to_dict()))
+    return business.to_dict()
