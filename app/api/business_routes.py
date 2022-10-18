@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request, redirect
-from app.models import User, db, Business, Review
+from app.models import User, db, Business
 # , Category
 # from app.forms import LoginForm
 # from app.forms import SignUpForm
@@ -91,4 +91,3 @@ def load_review(businessId):
         response.append(review.to_dict())
 
     return response
-

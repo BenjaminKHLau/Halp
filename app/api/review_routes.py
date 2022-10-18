@@ -5,4 +5,4 @@ from app.models import User, db, Business, Review
 review_blueprint = Blueprint('reviews', __name__)
 
 
-@review_blueprint.route('/edit')
+# @review_blueprint.route('/edit')
