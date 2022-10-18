@@ -3,6 +3,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, Redirect } from "react-router-dom"
 import { addBusinessThunk } from "../../store/businesses"
 
+const states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA",
+          "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+          "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+          "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+          "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
+
+const cats = ["Entertainment", "Fitness", "Restaurant", "Night Life", "Shopping", "Bakery"]
+
 function BusinessFormComponent(){
 
     const dispatch = useDispatch()
@@ -11,11 +19,12 @@ function BusinessFormComponent(){
     const [description, setDescription] = useState("")
     const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
-    const [state, setState] = useState("")
-    const [hours, setHours] = useState("")
+    const [state, setState] = useState(states[0])
+    // const [hours, setHours] = useState("")
     const [contact, setContact] = useState("")
-    const [ownerId, setOwnerId] = useState(0)
-    const [category, setCategory] = useState("")
+    // const [ownerId, setOwnerId] = useState(0)
+    const [category, setCategory] = useState(cats[0])
+    const [businessImageUrl, setBusinessImageUrl] = useState("")
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [errors, setErrors] = useState([])
 
@@ -37,10 +46,11 @@ function BusinessFormComponent(){
             address,
             city,
             state,
-            hours,
+            // hours,
             contact,
-            ownerId,
+            // ownerId,
             category,
+            businessImage: businessImageUrl
           })
         );
         history.push(`/businesses/${newBusiness.id}`);
@@ -97,16 +107,32 @@ function BusinessFormComponent(){
 
           <label className="form-stuff">
             {/* State */}
-            <input
+            <select
               className="form-input"
               type="text"
               name="state"
               placeholder="State"
               value={state}
               onChange={(e) => setState(e.target.value)}
-            />
+            >
+              {states.map(state => <option value={state}>{state}</option>
+            )
+            }</select>
           </label>
           <label className="form-stuff">
+            <select
+              className="form-input"
+              type="text"
+              name="category"
+              placeholder="Category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              {cats.map(category => <option value={category}>{category}</option>
+            )
+            }</select>
+          </label>
+          {/* <label className="form-stuff">
             <input
               className="form-input"
               type="text"
@@ -125,20 +151,20 @@ function BusinessFormComponent(){
               value={hours}
               onChange={(e) => setHours(e.target.value)}
             />
-          </label>
+          </label> */}
 
           <label className="form-stuff">
             <input
               className="form-input"
               type="text"
               name="contact"
-              placeholder="Contact"
+              placeholder="Contact Number"
               value={contact}
               onChange={(e) => setContact(e.target.value)}
             />
           </label>
 
-          <label className="form-stuff">
+          {/* <label className="form-stuff">
             <input
               className="form-input"
               type="number"
@@ -147,10 +173,9 @@ function BusinessFormComponent(){
               value={ownerId}
               onChange={(e) => setOwnerId(e.target.value)}
             />
-          </label>
+          </label> */}
 
           <label className="form-stuff">
-            {/* Description */}
             <input
               className="form-input"
               type="text"
@@ -158,6 +183,17 @@ function BusinessFormComponent(){
               placeholder="Description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+            />
+          </label>
+
+          <label className="form-stuff">
+            <input
+              className="form-input"
+              type="text"
+              name="businessImage"
+              placeholder="Business Image URL"
+              value={businessImageUrl}
+              onChange={(e) => setBusinessImageUrl(e.target.value)}
             />
           </label>
 

@@ -10,7 +10,7 @@ class Business(db.Model):
     address = db.Column(db.String(80), nullable=False, unique=True)
     city = db.Column(db.String, nullable=False)
     state = db.Column(db.String, nullable=False)
-    hours = db.Column(db.String, nullable=False)
+    # hours = db.Column(db.String, nullable=False)
     contact = db.Column(db.String, nullable=False, unique=True)
 
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
@@ -30,10 +30,10 @@ class Business(db.Model):
             "address": self.address,
             "city": self.city,
             "state": self.state,
-            "hours": self.hours,
+            # "hours": self.hours,
             "contact": self.contact,
             "owner_id": self.owner_id,
-            "category_id": self.category_id,
+            # "category_id": self.category_id,
             "business_image": self.business_image
         }
 
