@@ -5,6 +5,6 @@ from wtforms import StringField, SelectField, IntegerField
 from wtforms.validators import DataRequired
 
 class ReviewForm(FlaskForm):
-    review = StringField('review', validators=[DataRequired])
-    stars = IntegerField('stars', validators=[DataRequired])
-    reviewImage = StringField('reviewUrl', validators=[DataRequired])
+    review = StringField('review', validators=[DataRequired()])
+    stars = IntegerField('stars', validators=[DataRequired()])
+    reviewImage = StringField('reviewUrl', validators=[DataRequired()])

@@ -36,7 +36,9 @@ const NavBar = () => {
                         <button className='business-modal-button'>
                             <BusinessFormModal />
                         </button>
-
+                        <button className='business-modal-button'>
+                            <LogoutButton />
+                        </button>
                     </div>
                     <div className='nav-item' id='login-button'>
                         <NavLink className='login' to='/login' exact={true} activeClassName='active'>
