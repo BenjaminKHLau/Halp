@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request, redirect
-from app.models import User, db, Business
+from app.models import User, db, Business, Review
 # , Category
 # from app.forms import LoginForm
 # from app.forms import SignUpForm
@@ -46,6 +46,7 @@ def add_business_root():
 
 
     if errors:
+        print('a\n\n\n\n\n\na')
         return {'errors': errors}, 400
 
     if form.validate_on_submit():
@@ -79,3 +80,15 @@ def business_details(businessId):
         }, 404)
     print("business route backend: ", jsonify(business.to_dict()))
     return business.to_dict()
+
+#get reviews by business ID
+@business_blueprint.route("/<int:businessId>/reviews", methods = ["GET"])
+def load_review(businessId):
+    response = []
+    readingreviews = Review.query.get(business_id=businessId)
+
+    for review in readingreviews:
+        response.append(review.to_dict())
+
+    return response
+
