@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, Redirect } from "react-router-dom"
 import { addBusinessThunk } from "../../store/businesses"
+import './businessform.css'
 
 const states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA",
           "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
