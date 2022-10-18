@@ -64,8 +64,8 @@ export const writeReviewThunk = ({ businessId, review, stars }) => async dispatc
   }
 }
 
-export const updateReviewThunk = (payload, businessId) => async dispatch => {
-    const response = await fetch(`/api/businesses/${businessId}/${reviewId}`, {
+export const updateReviewThunk = (payload, reviewId) => async dispatch => {
+    const response = await fetch(`/api/reviews/${reviewId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
