@@ -70,7 +70,7 @@ export const addBusinessThunk = (business) => async dispatch => {
     dispatch(createNewBusinessACTION(newBusiness))
     return newBusiness
   }
-  return response
+  return response.json()
 }
 
 export const updateBusinessThunk = (payload, businessId) => async dispatch => {

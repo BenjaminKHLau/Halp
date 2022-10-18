@@ -46,6 +46,7 @@ def add_business_root():
 
 
     if errors:
+        print('a\n\n\n\n\n\na')
         return {'errors': errors}, 400
 
     if form.validate_on_submit():
