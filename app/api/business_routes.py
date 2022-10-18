@@ -26,10 +26,29 @@ def business_root():
 @login_required
 def add_business_root():
 
+    errors = {}
+
     form = BusinessForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    db_name = Business.query.filter_by(name=form.data['name']).first()
+    db_description = Business.query.filter_by(description=form.data['description']).first()
+    db_address = Business.query.filter_by(address=form.data['address']).first()
+    db_contact = Business.query.filter_by(contact=form.data['contact']).first()
+
+    if(db_name):
+        errors['name'] = "Name already exists"
+    if(db_description):
+        errors['description'] = 'Description already exists'
+    if(db_address):
+        errors['address'] = 'Address already exists'
+    if(db_contact):
+        errors['contact'] = 'Contact already in use'
+
+
+    if errors:
+        return {'errors': errors}, 400
+
     if form.validate_on_submit():
-        # category_id = Category.query.filter_by(type_name=form.data['category']).first().id
 
         new_business = Business(
             name = form.data['name'],
@@ -48,5 +67,15 @@ def add_business_root():
         db.session.add(new_business)
         db.session.commit()
         return new_business.to_dict()
-    print("errors", form.errors)
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+@business_blueprint.route("/<int:businessId>")
+def business_details(businessId):
+    print("business id route", businessId)
+    business = Business.query.get(businessId)
+    if business == None:
+        return jsonify({
+            "error": "no business found",
+            "statusCode": 404,
+        }, 404)
+    print("business route backend: ", jsonify(business.to_dict()))
+    return business.to_dict()

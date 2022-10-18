@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import BusinessFormComponent from "./components/businesses/businessform.js"
 import BusinessCardComponent from './components/businesses/businessCard';
 import GetAllBusinesses from './components/businesses/businessesHome';
+import GetBusinessDetailsComponent from './components/businesses/businessDetails';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -51,7 +52,7 @@ function App() {
           <BusinessFormComponent />
           </Route> */}
         <Route path="/businesses/:businessId" exact={true}>
-          <BusinessFormComponent />
+          <GetBusinessDetailsComponent />
           </Route>
       </Switch>
     </BrowserRouter>

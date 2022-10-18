@@ -70,6 +70,7 @@ export const addBusinessThunk = (business) => async dispatch => {
     dispatch(createNewBusinessACTION(newBusiness))
     return newBusiness
   }
+  return response
 }
 
 export const updateBusinessThunk = (payload, businessId) => async dispatch => {
@@ -86,7 +87,7 @@ export const updateBusinessThunk = (payload, businessId) => async dispatch => {
 }
 
 export const getBusinessByIdThunk = (businessId) => async dispatch => {
-    const response = await fetch(`/api/businesses${businessId}`, {
+    const response = await fetch(`/api/businesses/${businessId}`, {
         method: "GET"
     })
     if (response.ok) {
@@ -134,6 +135,7 @@ const BusinessesReducer = (state = initialState, action) => {
         case GET_BUSINESS_BY_ID: {
         	newState = {...state}
         	newState[action.payload.id] = action.payload
+            console.log("get business by id reducer action: ", action)
             return newState;
         }
         case DELETE_BUSINESS: {
