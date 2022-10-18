@@ -1,1 +1,7 @@
 /* TODO Add site wide styles */
+body {
+    text-decoration: none;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    color: black;
+    font-size: 12pt;
+}
