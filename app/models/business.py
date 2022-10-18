@@ -22,6 +22,23 @@ class Business(db.Model):
     review = relationship("Review", back_populates="business")
     user = relationship("User", back_populates="business")
 
+    def to_dict(self):
+        response = {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "address": self.address,
+            "city": self.city,
+            "state": self.state,
+            "hours": self.hours,
+            "contact": self.contact,
+            "owner_id": self.owner_id,
+            "category_id": self.category_id,
+            "business_image": self.business_image
+        }
+
+        return response
+
 
 class BusinessImage(db.Model):
     __tablename__ = "businessimages"
