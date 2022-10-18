@@ -62,20 +62,15 @@ function BusinessFormComponent() {
                 address,
                 city,
                 state,
-                // hours,
                 contact,
-                // ownerId,
                 category,
                 businessImage: businessImageUrl
             })
         )
-        console.log('newBusiness is ::::::', newBusiness)
-        if (typeof newBusiness !== 'object')
-            newBusiness = await newBusiness.json()
-        history.push(`/businesses/${newBusiness.id}`);
-        if (newBusiness.errors) {
-            setErrors([...Object.values(newBusiness.errors)])
-        }
+
+        if(newBusiness.errors) setErrors([...Object.values(newBusiness.errors)])
+        else history.push(`/businesses/${newBusiness.id}`)
+
     }
 
     const showErrors = errors.map((error) => (
