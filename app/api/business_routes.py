@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request, redirect
-from app.models import User, db, Business
+from app.models import User, db, Business, Review
 # , Category
 # from app.forms import LoginForm
 # from app.forms import SignUpForm
@@ -80,3 +80,8 @@ def business_details(businessId):
         }, 404)
     print("business route backend: ", jsonify(business.to_dict()))
     return business.to_dict()
+
+#get reviews by business ID
+@business_blueprint.route("/<int:businessId>/reviews", methods = ["GET"])
+def load_review(businessId):
+    readingreviews = Review.query.get(business_id==businessId)
