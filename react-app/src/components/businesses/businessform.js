@@ -5,14 +5,14 @@ import { addBusinessThunk } from "../../store/businesses"
 import './businessform.css'
 
 const states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA",
-          "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
-          "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
-          "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
-          "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
+    "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+    "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+    "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+    "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
 
 const cats = ["Entertainment", "Fitness", "Restaurant", "Night Life", "Shopping", "Bakery"]
 
-function BusinessFormComponent(){
+function BusinessFormComponent() {
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -31,109 +31,120 @@ function BusinessFormComponent(){
 
     useEffect(() => {
 
-    },[])
+    }, [])
 
     async function subby(e) {
         e.preventDefault();
         setIsSubmitted(true);
         if (errors.length > 0) {
-          return;
+            return;
         }
 
         const newBusiness = await dispatch(
-          addBusinessThunk({
-            name,
-            description,
-            address,
-            city,
-            state,
-            // hours,
-            contact,
-            // ownerId,
-            category,
-            businessImage: businessImageUrl
-          })
+            addBusinessThunk({
+                name,
+                description,
+                address,
+                city,
+                state,
+                // hours,
+                contact,
+                // ownerId,
+                category,
+                businessImage: businessImageUrl
+            })
         );
         history.push(`/businesses/${newBusiness.id}`);
-      }
+    }
 
-        const showErrors = errors.map((error) => (
+    const showErrors = errors.map((error) => (
         <div className="error-message" key={error}>
-          {error}
+            {error}
         </div>
-        ));
+    ));
 
-    return(
+    return (
         <form className="business-form" onSubmit={subby}>
-        <h2 className="title">Create a Business</h2>
-        <ul className="errors">{isSubmitted && showErrors}</ul>
+            <h2 className="title">ADD YOUR BUSINESS</h2>
+            <ul className="errors">{isSubmitted && showErrors}</ul>
 
-        <div className="form-css">
-          <div className="form-box">
-          <label className="form-stuff">
-            {/* Name */}
-            <input
-              className="form-input"
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
+            <div className="add-info-label">
+                <label>
+                    Add information about your business below. Your business page will
+                    not appear in search results until this information has been verified and
+                    approved by our moderators. Once it is approved, you'll receive an
+                    email with instructions on how to claim your business page.
+                </label>
+            </div>
 
-          <label className="form-stuff">
-            {/* Address */}
-            <input
-              className="form-input"
-              type="text"
-              name="address"
-              placeholder="Address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-            />
-          </label>
+            <div className="form-css">
+                <div className="form-box">
+                    <label className="form-stuff">Business Name
+                        {/* Name */}
+                        <input
+                            className="form-input"
+                            type="text"
+                            name="name"
+                            placeholder="Name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </label>
 
-          <label className="form-stuff">
-            {/* City */}
-            <input
-              className="form-input"
-              type="text"
-              name="city"
-              placeholder="City"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-            />
-          </label>
+                    <label className="form-stuff">Address
+                        {/* Address */}
+                        <input
+                            className="form-input"
+                            type="text"
+                            name="address"
+                            placeholder="Address"
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                        />
+                    </label>
+                    <div className="middle-div">
+                        <label className="form-stuff">City
+                            {/* City */}
+                            <input
+                                className="form-input"
+                                id="city-input"
+                                type="text"
+                                name="city"
+                                placeholder="City"
+                                value={city}
+                                onChange={(e) => setCity(e.target.value)}
+                            />
+                        </label>
 
-          <label className="form-stuff">
-            {/* State */}
-            <select
-              className="form-input"
-              type="text"
-              name="state"
-              placeholder="State"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-            >
-              {states.map(state => <option value={state}>{state}</option>
-            )
-            }</select>
-          </label>
-          <label className="form-stuff">
-            <select
-              className="form-input"
-              type="text"
-              name="category"
-              placeholder="Category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              {cats.map(category => <option value={category}>{category}</option>
-            )
-            }</select>
-          </label>
-          {/* <label className="form-stuff">
+                        <label className="form-stuff">State
+                            {/* State */}
+                            <select
+                                className="form-input"
+                                type="text"
+                                name="state"
+                                placeholder="State"
+                                value={state}
+                                onChange={(e) => setState(e.target.value)}
+                            >
+                                {states.map(state => <option value={state}>{state}</option>
+                                )
+                                }</select>
+                        </label>
+                        <label className="form-stuff">Category
+                            <select
+                                className="form-input"
+                                type="text"
+                                name="category"
+                                placeholder="Category"
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                            >
+                                {cats.map(category => <option value={category}>{category}</option>
+                                )
+                                }</select>
+                        </label>
+                    </div>
+                    {/* <label className="form-stuff">
             <input
               className="form-input"
               type="text"
@@ -154,18 +165,18 @@ function BusinessFormComponent(){
             />
           </label> */}
 
-          <label className="form-stuff">
-            <input
-              className="form-input"
-              type="text"
-              name="contact"
-              placeholder="Contact Number"
-              value={contact}
-              onChange={(e) => setContact(e.target.value)}
-            />
-          </label>
+                    <label className="form-stuff">Phone
+                        <input
+                            className="form-input"
+                            type="text"
+                            name="contact"
+                            placeholder="Contact Number"
+                            value={contact}
+                            onChange={(e) => setContact(e.target.value)}
+                        />
+                    </label>
 
-          {/* <label className="form-stuff">
+                    {/* <label className="form-stuff">
             <input
               className="form-input"
               type="number"
@@ -176,45 +187,45 @@ function BusinessFormComponent(){
             />
           </label> */}
 
-          <label className="form-stuff">
-            <input
-              className="form-input"
-              type="text"
-              name="description"
-              placeholder="Description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </label>
+                    <label className="form-stuff">Image URL
+                        <input
+                            className="form-input"
+                            type="text"
+                            name="businessImage"
+                            placeholder="Business Image URL"
+                            value={businessImageUrl}
+                            onChange={(e) => setBusinessImageUrl(e.target.value)}
+                        />
+                    </label>
 
-          <label className="form-stuff">
-            <input
-              className="form-input"
-              type="text"
-              name="businessImage"
-              placeholder="Business Image URL"
-              value={businessImageUrl}
-              onChange={(e) => setBusinessImageUrl(e.target.value)}
-            />
-          </label>
+                    <label className="form-stuff">Description
+                        <input
+                            className="form-input"
+                            type="text"
+                            name="description"
+                            placeholder="Description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
+                    </label>
 
-          </div>
+                </div>
 
-          <div className="submit">
-            <button
-              type="submit"
-              disabled={isSubmitted && errors.length > 0}
-              className={
-                isSubmitted && errors.length > 0 ? "noob" : "submit-button"
-              }
-            >
-              Create Business
-            </button>
-          </div>
-        </div>
-      </form>
+                <div className="submit">
+                    <button
+                        type="submit"
+                        disabled={isSubmitted && errors.length > 0}
+                        className={
+                            isSubmitted && errors.length > 0 ? "noob" : "submit-button"
+                        }
+                    >
+                        Create Business
+                    </button>
+                </div>
+            </div>
+        </form>
 
-        )
+    )
 
 }
 
