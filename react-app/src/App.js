@@ -47,7 +47,10 @@ function App() {
           {/* <BusinessCardComponent /> */}
           <GetAllBusinesses />
         </ProtectedRoute>
-        <Route path="/businesses/new" exact={true}>
+        {/* <Route path="/businesses/new" exact={true}>
+          <BusinessFormComponent />
+          </Route> */}
+        <Route path="/businesses/:businessId" exact={true}>
           <BusinessFormComponent />
           </Route>
       </Switch>

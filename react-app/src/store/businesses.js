@@ -55,7 +55,7 @@ export const getAllBusinessesThunk = () => async dispatch => {
 }
 
 export const addBusinessThunk = (business) => async dispatch => {
-  const response = await fetch(`/api/businesses`, {
+  const response = await fetch(`/api/businesses/`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -83,7 +83,7 @@ export const updateBusinessThunk = (payload, businessId) => async dispatch => {
     return response
 }
 
-export const getBusinessByIdThunk= (businessId) => async dispatch => {
+export const getBusinessByIdThunk = (businessId) => async dispatch => {
     const response = await fetch(`/api/businesses${businessId}`, {
         method: "GET"
     })
@@ -94,15 +94,15 @@ export const getBusinessByIdThunk= (businessId) => async dispatch => {
     }
 }
 
-export const removeBusinessThunk= (businessId) => async dispatch => {
-    const response = await fetch(`/api/businesses/${businessId}`, {
-        method: "DELETE"
-    });
+// export const removeBusinessThunk= (businessId) => async dispatch => {
+//     const response = await fetch(`/api/businesses/${businessId}`, {
+//         method: "DELETE"
+//     });
 
-    if (response.ok) {
-        dispatch(deleteBusinessACTION(businessId))
-    }
-}
+//     if (response.ok) {
+//         dispatch(deleteBusinessACTION(businessId))
+//     }
+// }
 
 // REDUCER UPDATES STATE
 const initialState = {};

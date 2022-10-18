@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, Redirect } from "react-router-dom"
-
+import { addBusinessThunk } from "../../store/businesses"
 
 function BusinessFormComponent(){
 
@@ -31,17 +31,17 @@ function BusinessFormComponent(){
         }
 
         const newBusiness = await dispatch(
-        //   createNewBusinessThunk({
-        //     name,
-        //     description,
-        //     address,
-        //     city,
-        //     state,
-        //     hours,
-        //     contact,
-        //     ownerId,
-        //     category,
-        //   })
+          addBusinessThunk({
+            name,
+            description,
+            address,
+            city,
+            state,
+            hours,
+            contact,
+            ownerId,
+            category,
+          })
         );
         history.push(`/businesses/${newBusiness.id}`);
       }

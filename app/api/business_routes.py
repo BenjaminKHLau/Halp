@@ -21,7 +21,7 @@ def business_root():
         response.append(business.to_dict())
     return jsonify(response)
 
-@business_blueprint.route("", methods=["POST"])
+@business_blueprint.route("/", methods=["POST"])
 def add_business_root():
 
     form = BusinessForm()
@@ -45,5 +45,5 @@ def add_business_root():
         db.session.add(new_business)
         db.session.commit()
         return new_business.to_dict()
-
+    print("errors", form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
