@@ -2,6 +2,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import BusinessFormModal from './businesses/businessFormMODAL';
 
 const NavBar = () => {
   return (
@@ -27,6 +28,16 @@ const NavBar = () => {
             Users
           </NavLink>
         </li>
+        <div>
+          {/* <NavLink to='/businesses/new' exact={true} activeClassName='active'>
+            New Business
+          </NavLink> */}
+          <button>
+        <BusinessFormModal />
+          </button>
+
+        </div>
+
         <li>
           <LogoutButton />
         </li>
