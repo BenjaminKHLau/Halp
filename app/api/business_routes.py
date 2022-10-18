@@ -84,4 +84,11 @@ def business_details(businessId):
 #get reviews by business ID
 @business_blueprint.route("/<int:businessId>/reviews", methods = ["GET"])
 def load_review(businessId):
-    readingreviews = Review.query.get(business_id==businessId)
+    response = []
+    readingreviews = Review.query.get(business_id=businessId)
+
+    for review in readingreviews:
+        response.append(review.to_dict())
+
+    return response
+
