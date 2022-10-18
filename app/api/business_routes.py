@@ -9,7 +9,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 
 business_blueprint = Blueprint("business_blueprint", __name__)
 
-@business_blueprint.route("")
+@business_blueprint.route("/")
 def business_root():
     """
     Get all businesses route

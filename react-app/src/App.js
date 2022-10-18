@@ -9,7 +9,8 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import BusinessFormComponent from "./components/businesses/businessform.js"
-
+import BusinessCardComponent from './components/businesses/businessCard';
+import GetAllBusinesses from './components/businesses/businessesHome';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -43,6 +44,8 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
+          {/* <BusinessCardComponent /> */}
+          <GetAllBusinesses />
         </ProtectedRoute>
         <Route path="/businesses/new" exact={true}>
           <BusinessFormComponent />
