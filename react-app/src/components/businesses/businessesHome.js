@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect, NavLink } from "react-router-dom";
 import { getAllBusinessesThunk } from "../../store/businesses";
 import BusinessCardComponent from "./businessCard";
-
+import BusinessFormModal from "./businessFormMODAL";
 
 function GetAllBusinesses(){
     const dispatch = useDispatch()
@@ -19,7 +19,6 @@ function GetAllBusinesses(){
 
     return (
         <div>
-
         {allBusinesses && (<div>
             {normalBusinesses.map(business => (
                 <div className="businesses">

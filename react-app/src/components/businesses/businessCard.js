@@ -6,7 +6,7 @@ function BusinessCardComponent({ business }){
         <div className="Business-card">
             <div className="Business-name">
 
-                <div><img src={business.image} className="business-image"/></div>
+                <div><img src={business.business_image_url} className="business-image"/></div>
                 <div>{business.name}</div>
                 <div>{business.description}</div>
                 <div>{business.address}</div>
