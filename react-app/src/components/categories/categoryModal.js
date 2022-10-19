@@ -15,7 +15,7 @@ function CategoryFormModal() {
 
   return (
     <>
-      <div className='create-category-button' onClick={() => setShowModal(true)}>Create A Category</div>
+      <div className='create-category-button' onClick={() => setShowModal(true)}>+</div>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <CategoryFormComponent  />
