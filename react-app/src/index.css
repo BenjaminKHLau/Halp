@@ -12,10 +12,16 @@ a {
 }
 
 .businesses {
+    background-color: rgb(240, 240, 240);
+    margin-top: 15px;
     display: flex;
     position: relative;
     top: 620px;
     flex-direction: column;
+}
+
+.businesses:hover {
+    background-color: lightgrey;
 }
 
 .businesses-outer-container {
