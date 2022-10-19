@@ -12,10 +12,16 @@ a {
 }
 
 .businesses {
+    background-color: rgb(240, 240, 240);
+    margin-top: 15px;
     display: flex;
     position: relative;
-    top: 620px;
+    top: 410px;
     flex-direction: column;
+}
+
+.businesses:hover {
+    background-color: lightgrey;
 }
 
 .businesses-outer-container {
@@ -31,7 +37,8 @@ a {
 }
 
 .business-image {
-    width: 30%;
+    width: 33%;
+    /* height: 20vh; */
 }
 
 .business-image-container {

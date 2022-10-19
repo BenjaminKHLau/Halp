@@ -8,7 +8,9 @@ function BusinessCardComponent({ business }){
 
             <div className="Business-name">
 
-                <div className="business-image-container"><img src={business.business_image_url} className="business-image"/></div>
+                {/* <div className="business-image-container"> */}
+                    <img src={business.business_image_url} className="business-image"/>
+                    {/* </div> */}
                 <div>{business.name}</div>
                 <div>{business.description}</div>
                 <div>{business.address}</div>
