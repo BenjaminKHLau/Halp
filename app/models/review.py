@@ -10,11 +10,8 @@ class Review(db.Model):
     review = db.Column(db.String(255))
     businessId = db.Column(db.Integer, db.ForeignKey("businesses.id"))
     userId = db.Column(db.Integer, db.ForeignKey("users.id"))
-<<<<<<< HEAD
     imageUrl = db.Column(db.String, nullable=False)
-=======
     # imageUrl = db.Column(db.Integer, nullable=False)
->>>>>>> dev
 
     business = relationship("Business", back_populates="review")
     user = relationship("User", back_populates="review")

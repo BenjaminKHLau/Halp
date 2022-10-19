@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request, redirect
-from app.models import User, db, Business
+from app.models import User, db, Business, Review
 # , Category
 # from app.forms import LoginForm
 # from app.forms import SignUpForm
@@ -78,9 +78,9 @@ def edit_business_root(businessId):
 
     form = BusinessForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    
+
     business_to_edit = Business.query.get(businessId)
-    
+
     db_name = Business.query.filter_by(name=form.data['name']).first()
     db_description = Business.query.filter_by(description=form.data['description']).first()
     db_address = Business.query.filter_by(address=form.data['address']).first()
@@ -158,7 +158,6 @@ def delete_business(businessId):
 #     for review in readingreviews:
 #         response.append(review.to_dict())
 
-<<<<<<< HEAD
 
 # post a review to a business:
 @business_blueprint.route("/<int:businessId>", methods=['POST'])
@@ -180,6 +179,4 @@ def create_review(businessId):
         db.session.commit()
         return review.to_dict(), 201
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
-=======
 #     return response
->>>>>>> dev
