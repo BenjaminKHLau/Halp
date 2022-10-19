@@ -74,7 +74,7 @@ export const addBusinessThunk = (business) => async dispatch => {
 }
 
 export const updateBusinessThunk = (payload, businessId) => async dispatch => {
-    const response = await fetch(`/api/businesses/${businessId}`, {
+    const response = await fetch(`/api/businesses/${businessId}/edit`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)

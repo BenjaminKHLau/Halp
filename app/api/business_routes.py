@@ -68,6 +68,56 @@ def add_business_root():
         db.session.add(new_business)
         db.session.commit()
         return new_business.to_dict()
+@business_blueprint.route("/<int:businessId>/edit", methods=["PUT"])
+@login_required
+def edit_business_root(businessId):
+
+    errors = {}
+
+    form = BusinessForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    
+    business_to_edit = Business.query.get(businessId)
+    
+    db_name = Business.query.filter_by(name=form.data['name']).first()
+    db_description = Business.query.filter_by(description=form.data['description']).first()
+    db_address = Business.query.filter_by(address=form.data['address']).first()
+    db_contact = Business.query.filter_by(contact=form.data['contact']).first()
+
+    if(db_name):
+        errors['name'] = "Name already exists"
+    if(db_description):
+        errors['description'] = 'Description already exists'
+    if(db_address):
+        errors['address'] = 'Address already exists'
+    if(db_contact):
+        errors['contact'] = 'Contact already in use'
+
+
+    if errors:
+        print('a\n\n\n\n\n\na')
+        return {'errors': errors}, 400
+
+    if form.validate_on_submit():
+
+        # business_to_edit = Business(
+        business_to_edit.name = form.data['name']
+        business_to_edit.description = form.data['description']
+        business_to_edit.address = form.data['address']
+        business_to_edit.city = form.data['city']
+        business_to_edit.state = form.data['state']
+            # hours = f"{form.data['openHours']} - {form.data['closeHours']}",
+        business_to_edit.contact = form.data['contact']
+        business_to_edit.business_image_url = form.data['businessImage']
+        business_to_edit.owner_id = current_user.id
+        business_to_edit.category = form.data['category']
+            # category_id = category_id
+        # )
+
+        # db.session.add(business_to_edit)
+        print("business to edit", business_to_edit)
+        db.session.commit()
+        return business_to_edit.to_dict()
 
 @business_blueprint.route("/<int:businessId>", methods=["GET"])
 def business_details(businessId):
@@ -78,7 +128,6 @@ def business_details(businessId):
             "error": "no business found",
             "statusCode": 404,
         }, 404)
-    print("business route backend: ", jsonify(business.to_dict()))
     return business.to_dict()
 
 

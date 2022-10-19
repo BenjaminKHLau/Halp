@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams, useHistory } from "react-router-dom";
-import {
-	getBusinessByIdThunk,
-	deleteBusinessThunk,
-} from "../../store/businesses";
+import { getBusinessByIdThunk, deleteBusinessThunk } from "../../store/businesses";
+import EditBusinessFormModal from "./businessEditFormMODAL";
 
 function GetBusinessDetailsComponent() {
 	const { businessId } = useParams();
@@ -47,6 +45,7 @@ function GetBusinessDetailsComponent() {
 						</div>
 						<div className="business-details-info">{businessDetails.city}</div>
 						<div className="business-details-info">{businessDetails.state}</div>
+                        <EditBusinessFormModal businessId={businessId} />
 						<button className="edit-delete" onClick={(e) => deleteButton(e)}>Delete</button>
 					</div>
 				)}
