@@ -1,12 +1,14 @@
 from flask import Blueprint, jsonify, session, request, redirect
-from app.models import User, db, Business
+from app.models import User, db, Business, Review
 # , Category
 # from app.forms import LoginForm
 # from app.forms import SignUpForm
 # from app.forms import BusinessHoursForm
 from ..forms.businesses import BusinessForm
+from ..forms.review import ReviewForm
 from .auth_routes import validation_errors_to_error_messages
 from flask_login import current_user, login_user, logout_user, login_required
+
 
 business_blueprint = Blueprint("business_blueprint", __name__)
 
@@ -76,9 +78,9 @@ def edit_business_root(businessId):
 
     form = BusinessForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    
+
     business_to_edit = Business.query.get(businessId)
-    
+
     db_name = Business.query.filter_by(name=form.data['name']).first()
     db_description = Business.query.filter_by(description=form.data['description']).first()
     db_address = Business.query.filter_by(address=form.data['address']).first()
@@ -148,12 +150,35 @@ def delete_business(businessId):
     }
 
 #get reviews by business ID
-# @business_blueprint.route("/<int:businessId>/reviews", methods = ["GET"])
-# def load_review(businessId):
-#     response = []
-#     readingreviews = Review.query.get(business_id=businessId)
+@business_blueprint.route("/<int:businessId>/reviews", methods = ["GET"])
+def load_review(businessId):
+    response = []
+    readingreviews = Review.query.get(business_id=businessId).all()
 
-#     for review in readingreviews:
-#         response.append(review.to_dict())
+    for review in readingreviews:
+        response.append(review.to_dict())
+    return response
 
+
+# post a review to a business:
+@business_blueprint.route("/<int:businessId>", methods=['POST'])
+@login_required
+def create_review(businessId):
+    business = Business.query.get(businessId)
+    if business == None:
+        return {"errors": "Business not found"}, 404
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        review = Review(
+            stars = form.data['stars'],
+            review = form.data['review'],
+            businessId = businessId,
+            userId = current_user.id,
+            imageUrl = form.data['imageUrl']
+        )
+        db.session.add(review)
+        db.session.commit()
+        return review.to_dict(), 201
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 #     return response

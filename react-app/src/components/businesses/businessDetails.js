@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams, useHistory } from "react-router-dom";
 import { getBusinessByIdThunk, deleteBusinessThunk } from "../../store/businesses";
+import ReviewCard from "../reviews/reviewCard";
 import EditBusinessFormModal from "./businessEditFormMODAL";
 
 function GetBusinessDetailsComponent() {
@@ -49,6 +50,9 @@ function GetBusinessDetailsComponent() {
 						<button className="edit-delete" onClick={(e) => deleteButton(e)}>Delete</button>
 					</div>
 				)}
+				<div className="reviews-of-it">
+					<ReviewCard/>
+				</div>
 			</div>
 		)
 	);
