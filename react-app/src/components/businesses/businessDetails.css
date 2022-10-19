@@ -1,0 +1,12 @@
+.business-details-container {
+    padding-top: 20px;
+    color: white;
+}
+
+.business-detail-image {
+    position: absolute;
+    height: 400px;
+    z-index: -1;
+    width: 100%;
+    object-fit: cover;
+}

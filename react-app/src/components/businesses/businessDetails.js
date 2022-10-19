@@ -5,6 +5,7 @@ import { getBusinessByIdThunk, deleteBusinessThunk } from "../../store/businesse
 import { readTheReviewsThunk } from "../../store/reviews";
 import ReviewCard from "../reviews/reviewCard";
 import EditBusinessFormModal from "./businessEditFormMODAL";
+import './businessDetails.css'
 
 function GetBusinessDetailsComponent() {
 	const { businessId } = useParams();
@@ -42,7 +43,7 @@ function GetBusinessDetailsComponent() {
 			<div className="business-stuff">
 				{businessDetails && (
 					<div className="business-details-container">
-						<img src={businessDetails.business_image_url} className="placeholderforbrennon" />
+						<img src={businessDetails.business_image_url} className="business-detail-image" />
 						<div className="business-details-info">{businessDetails.name}</div>
 						<div className="business-details-info">
 							{businessDetails.description}
