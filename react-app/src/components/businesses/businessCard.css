@@ -1,0 +1,22 @@
+.biz-name {
+    padding: 10px;
+    display: flex;
+    justify-content: left;
+    text-align: center;
+    align-items: left;
+    width: 100%;
+    font-size: 130%;
+    font-weight: 600;
+}
+
+.biz-address {
+    padding-left: 10px;
+}
+
+.biz-city {
+    padding-left: 10px;
+}
+
+.biz-state {
+    padding-left: 10px;
+}

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import './businessCard.css'
 
 
 function BusinessCardComponent({ business }){
@@ -11,12 +12,10 @@ function BusinessCardComponent({ business }){
                 {/* <div className="business-image-container"> */}
                     <img src={business.business_image_url} className="business-image"/>
                     {/* </div> */}
-                <div>{business.name}</div>
-                <div>{business.description}</div>
-                <div>{business.address}</div>
-                <div>{business.city}</div>
-                <div>{business.state}</div>
-                <div>{business.contact}</div>
+                <div className="biz-name">{business.name}</div>
+                <div className="biz-address">{business.address}</div>
+                <div className="biz-city">{business.city}</div>
+                <div className="biz-state">{business.state}</div>
 
 
             </div>
