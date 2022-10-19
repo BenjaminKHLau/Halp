@@ -7,3 +7,16 @@
     height: 675px;
     z-index: -1;
 }
+
+.slogan {
+    color: white;
+    font-size: 36pt;
+    font-weight: 700;
+}
+
+.slogan-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+    margin-top: 80px;
+}

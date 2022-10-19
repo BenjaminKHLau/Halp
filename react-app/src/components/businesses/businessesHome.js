@@ -23,6 +23,11 @@ function GetAllBusinesses() {
         <>
         <div>
             <img className="home-pic" src={homepic}></img>
+            <div className="slogan-container">
+            <span className="slogan">We know you're hangry! </span>
+            <span className="slogan">Let us halp!</span>
+            </div>
+
         </div>
             <div>
                 {allBusinesses && (<div className="businesses-outer-container">

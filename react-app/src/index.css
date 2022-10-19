@@ -16,7 +16,7 @@ a {
     margin-top: 15px;
     display: flex;
     position: relative;
-    top: 620px;
+    top: 410px;
     flex-direction: column;
 }
 
@@ -37,7 +37,8 @@ a {
 }
 
 .business-image {
-    width: 30%;
+    width: 33%;
+    /* height: 20vh; */
 }
 
 .business-image-container {
