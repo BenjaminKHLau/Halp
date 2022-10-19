@@ -10,7 +10,7 @@ const states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA"
     "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
     "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
 
-const cats = ["Entertainment", "Fitness", "Restaurant", "Night Life", "Shopping", "Bakery"]      
+const cats = ["Entertainment", "Fitness", "Restaurant", "Night Life", "Shopping", "Bakery"]       
 
 function BusinessFormComponent() {
 
