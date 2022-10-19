@@ -16,7 +16,6 @@ a {
     margin-top: 15px;
     display: flex;
     position: relative;
-    top: 500px;
     flex-direction: column;
     width: 350px;
     border-radius: 20px;
@@ -30,7 +29,6 @@ a {
 .centering-spot-container {
     display: flex;
     justify-content: center;
-    padding-bottom: 50px;
 }
 
 .businesses-outer-container {
@@ -40,6 +38,7 @@ a {
     grid-gap: 40px 24px;
     /* width: 100%; */
     padding-bottom: 50px;
+    margin-top: 510px;
 }
 
 .Business-card {
