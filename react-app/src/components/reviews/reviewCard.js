@@ -1,42 +1,53 @@
 
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
 import { getBusinessByIdThunk } from "../../store/businesses";
-import { removeReviewThunk } from "../../store/reviews";
+import { readTheReviewsThunk, removeReviewThunk } from "../../store/reviews";
 
 
-export default function ReviewCard({review}) {
+export default function ReviewCard({ review }) {
     const dispatch = useDispatch
     const history = useHistory();
     const { businessId } = useParams();
 
     const selectedReviews = useSelector((state) => state.reviews)
-    // const revDeets = selectedReviews[Id]
+    const placeholderr = selectedReviews[review]
 
-    // console.log("what is my selection", selectedReviews)
-    // console.log("review details here", revDeets)
+    // useEffect(() => {
+    //     dispatch(readTheReviewsThunk(businessId))
+    // })
+    // const readReview = async (businessId) => {
+    //     await dispatch(readTheReviewsThunk(businessId)).then(() => {
+    //         dispatch(getBusinessByIdThunk(businessId));
 
-    const removeReview = async (reviewId) => {
-        await dispatch(removeReviewThunk(reviewId)).then(() => {
-            dispatch(getBusinessByIdThunk(businessId));
+    //         history.push(`/api/businesses/${businessId}`)
 
-            history.push(`/api/businesses/${businessId}`)
-        })
-    }
+    //     })
+
+
+
+    const aReview = async (businessId) => {
+                await dispatch(readTheReviewsThunk(businessId))
+                await  dispatch(getBusinessByIdThunk(businessId));
+
+                    history.push(`/api/businesses/${businessId}`)
+
+        }
 
     return (
-        <div className="review-box">
-            <div className="pic-container">
-                {review.imageUrl}
+            <div className="review-box">
+                <div className="pic-container">
+                {selectedReviews.imageUrl}
             </div>
-            <div className="review-written">
-                {review.review}
+                <div className="review-written">
+                    {selectedReviews.review}
+                </div>
+                <div className="stars-given">
+                Stars: {selectedReviews.stars}
             </div>
-            <div className="stars-given">
-                Stars: {review.stars}
+                <button className="delete-button" onClick={() => aReview(review.id)}>Delete Review</button>
             </div>
-            <button className="delete-button" onClick={()=>removeReview(review.id)}>Delete</button>
-        </div>
 
-    )
-}
+        )
+    }
