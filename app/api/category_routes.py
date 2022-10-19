@@ -34,7 +34,6 @@ def add_category():
     if(db_type):
         errors['type'] = "Type already exists"
 
-    print("A\n\n\n\n\n\n\n\n\n\nA ", errors)
     if errors:
         return {'errors': errors}, 400
 
@@ -44,7 +43,7 @@ def add_category():
             type = form.data['type']
         )
 
-        print("A\n\n\n\n\n\n\n\n\n\nA ", new_cat.to_dict())
+        # print("A\n\n\n\n\n\n\n\n\n\nA ", new_cat.to_dict())
 
         db.session.add(new_cat)
         db.session.commit()

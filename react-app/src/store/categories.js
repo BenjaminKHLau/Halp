@@ -20,10 +20,10 @@ const createCategoryACTION = payload => {
 // Thunk Action Creators
 export const getAllCategoriesThunk = () => async dispatch => {
     const response = await fetch('api/categories')
-    console.log("Get ALL CATEGORIES THUNK RUNNING")
+    // console.log("Get ALL CATEGORIES THUNK RUNNING")
 
     const data = await response.json();
-    console.log("Get ALL CATEGORIES THUNK RUNNING data", data)
+    // console.log("Get ALL CATEGORIES THUNK RUNNING data", data)
     if (response.ok) {
         dispatch(getAllCategoriesACTION(data))
     }

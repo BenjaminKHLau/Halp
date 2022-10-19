@@ -53,6 +53,7 @@ function BusinessFormComponent() {
 
     async function subby(e) {
         e.preventDefault();
+        console.log("Function subby is running>>>>>>>>")
         setIsSubmitted(true);
         if (errors.length > 0) {
             return;

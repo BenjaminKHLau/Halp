@@ -35,7 +35,10 @@ function CategoryFormComponent() {
         )
 
         if(newCategory.errors) setErrors([...Object.values(newCategory.errors)])
-        else history.push(`/`)
+        else {
+            setIsSubmitted(false)
+            history.push(`/`)
+        }
 
     }
 
