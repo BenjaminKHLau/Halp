@@ -47,14 +47,6 @@ const NavBar = () => {
                         {/* <NavLink to='/businesses/new' exact={true} activeClassName='active'>
             New Business
           </NavLink> */}
-<<<<<<< HEAD
-                        <button className='business-modal-button'>
-                            <BusinessFormModal />
-                        </button>
-                        <button className='business-modal-button'>
-                            <LogoutButton />
-                        </button>
-=======
 
                     <div className='logged-in-buttons'>
                         {loggedInUser && (<button className='business-modal-button'>
@@ -63,7 +55,6 @@ const NavBar = () => {
                        {loggedInUser && (<button className='business-modal-button'>
                             <LogoutButton />
                         </button>)}
->>>>>>> dev
                     </div>
                     </div>
 

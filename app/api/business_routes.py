@@ -183,4 +183,3 @@ def create_review(businessId):
         return review.to_dict(), 201
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 #     return response
->>>>>>> dev
