@@ -94,7 +94,7 @@ function ReviewFormComponent() {
                         <input
                             type="text"
                             placeholder="Review URL"
-                            value={reviewImageUrl}
+                            value={imageUrl}
                             onChange={(e) => setImageUrl(e.target.value)}
                             required
                         />
