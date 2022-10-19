@@ -29,7 +29,7 @@ const LoginForm = () => {
 
   const demoLogin = (e) => {
     e.preventDefault()
-    return dispatch(sessionActions.login({ email: "demo@aa.io", password: "password" }))
+    return dispatch(sessionActions.login("demo@aa.io", "password"))
   }
 
   if (user) {
