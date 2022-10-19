@@ -95,7 +95,7 @@ def load_review(businessId):
     return response
 
 
-# randys part
+# post a review to a business:
 @business_blueprint.route("/<int:businessId>", methods=['POST'])
 def create_review(businessId):
     business = Business.query.get(businessId)
