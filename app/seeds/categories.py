@@ -5,7 +5,7 @@ from app.models import db, Category
 def seed_categories():
     entertainment = Category(type='Entertainment')
     fitness = Category(type='Fitness')
-    restaurant = Category(type='Category')
+    restaurant = Category(type='Restaurant')
     nightlife = Category(type='Nightlife')
     shopping = Category(type='Shopping')
     bakery = Category(type='Bakery')
