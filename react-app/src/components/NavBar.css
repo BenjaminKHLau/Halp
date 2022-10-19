@@ -28,10 +28,10 @@
 }
 
 #sign-up-button {
+    color: white;
     border: solid 3px #FF0000;
     background-color: #FF0000;
     width: 60px;
-    border: default;
     border-radius: 5px;
     height: 40px;
     font-weight: 600;
@@ -39,6 +39,8 @@
     justify-content: center;
     text-align: center;
     align-items: center;
+    margin-left: 8px;
+    margin-right: 8px;
 }
 
 .sign-up {
@@ -75,10 +77,11 @@
 
 .search-input {
     height: 40px;
-    width: 800px;
+    width: 40vw;
     border: solid 3px #ff000000;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    text-indent: 10px;
 }
 
 .search-button {
@@ -123,4 +126,19 @@
     align-items: center;
     color: white;
     display: flex;
+}
+
+.sign-login-buttons {
+    display: flex;
+    margin-right: 50px;
+    color: white;
+}
+
+.logged-in-buttons {
+    display: flex;
+}
+
+.halp-logo {
+    width: 150px;
+    margin-right: 15px;
 }

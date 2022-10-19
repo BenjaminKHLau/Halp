@@ -8,6 +8,8 @@ import './NavBar.css';
 import search from './search.png'
 import LoginFormModal from './auth/LoginMODAL';
 import SignupFormModal from './auth/SignUpMODAL';
+import halplogo from "./halplogo.png"
+
 
 const NavBar = () => {
 
@@ -22,7 +24,8 @@ const NavBar = () => {
             <div className='nav-bar'>
                 <div className='nav-item'>
                     <NavLink to='/' exact={true} activeClassName='active'>
-                        halp
+                        {/* halp */}
+                        <img src={halplogo} className="halp-logo"/>
                     </NavLink>
                 </div>
                 <div className='nav-item'>
@@ -44,12 +47,15 @@ const NavBar = () => {
                         {/* <NavLink to='/businesses/new' exact={true} activeClassName='active'>
             New Business
           </NavLink> */}
+
+                    <div className='logged-in-buttons'>
                         {loggedInUser && (<button className='business-modal-button'>
                             <BusinessFormModal />
                         </button>)}
                        {loggedInUser && (<button className='business-modal-button'>
                             <LogoutButton />
                         </button>)}
+                    </div>
                     </div>
 
                     {!loggedInUser && (<div className='sign-login-buttons'>

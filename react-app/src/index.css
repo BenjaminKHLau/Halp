@@ -5,3 +5,35 @@ body {
     color: black;
     font-size: 12pt;
 }
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.businesses {
+    display: flex;
+    position: relative;
+    top: 620px;
+    flex-direction: column;
+}
+
+.businesses-outer-container {
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+}
+
+.Business-card {
+    display: flex;
+    width: 70vw;
+    /* top: 1000px; */
+}
+
+.business-image {
+    width: 30%;
+}
+
+.business-image-container {
+    width: 100%;
+}

@@ -25,7 +25,7 @@ function GetAllBusinesses() {
             <img className="home-pic" src={homepic}></img>
         </div>
             <div>
-                {allBusinesses && (<div>
+                {allBusinesses && (<div className="businesses-outer-container">
                     {normalBusinesses.map(business => (
                         <div className="businesses">
                             <BusinessCardComponent business={business} />
