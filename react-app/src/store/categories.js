@@ -3,9 +3,10 @@ const GET_ALL_CATEGORIES = "category/READ"
 const CREATE_CATEGORY = "category/ADD"
 
 // ACTION Creators
-const getAllCategoriesACTION = () => {
+const getAllCategoriesACTION = payload => {
     return {
-        type: GET_ALL_CATEGORIES
+        type: GET_ALL_CATEGORIES,
+        payload
     }
 }
 
@@ -19,10 +20,12 @@ const createCategoryACTION = payload => {
 // Thunk Action Creators
 export const getAllCategoriesThunk = () => async dispatch => {
     const response = await fetch('api/categories')
+    console.log("Get ALL CATEGORIES THUNK RUNNING")
 
     const data = await response.json();
+    console.log("Get ALL CATEGORIES THUNK RUNNING data", data)
     if (response.ok) {
-        dispatch(getAllCategoriesACTION)
+        dispatch(getAllCategoriesACTION(data))
     }
 
     return data
@@ -39,7 +42,7 @@ export const createCategoryThunk = (type) => async dispatch => {
 
     const data = response.json()
     if (response.ok) {
-        dispatch(createCategoryACTION)
+        dispatch(createCategoryACTION(data))
     }
     return data
 }
@@ -50,7 +53,7 @@ const CategoriesReducer = (state = initialState, action) => {
     let newState = [];
     switch(action.type) {
         case GET_ALL_CATEGORIES: {
-            return action.payload
+            return [...action.payload]
         }
         case CREATE_CATEGORY: {
             newState = [...state]
