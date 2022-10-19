@@ -29,7 +29,9 @@ export const authenticate = () => async (dispatch) => {
   }
 }
 
-export const login = (email, password) => async (dispatch) => {
+export const login = (user) => async (dispatch) => { //email, password taken out of argument
+  const {email, password} = user
+  // console.log("login details: ",email, password)
   const response = await fetch('/api/auth/login', {
     method: 'POST',
     headers: {

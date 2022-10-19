@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 function BusinessCardComponent({ business }){
     return (
         <div className="Business-card">
+            <Link to={`/businesses/${business.id}`}>
+
             <div className="Business-name">
 
                 <div><img src={business.business_image_url} className="business-image"/></div>
@@ -16,6 +18,7 @@ function BusinessCardComponent({ business }){
 
 
             </div>
+            </Link>
         </div>
     )
 }
