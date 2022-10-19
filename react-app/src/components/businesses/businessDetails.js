@@ -13,13 +13,15 @@ function GetBusinessDetailsComponent() {
 	const [isLoaded, setIsLoaded] = useState(false);
 
 	const business = useSelector((state) => state.businesses);
-	// console.log("business details business variable: ", business);
+
 	const businessDetails = business[businessId];
+
+	const reviewsState = useSelector(state => state.reviews)
+	const reviewsArray = Object.values(reviewsState)
+	console.log("REVIEWS in Business Details component", reviewsState)
 	console.log("business details ACTUAL", businessDetails);
+	console.log("NORMALIZED REVIEWS ARRAY: ", reviewsArray);
 
-	const selectedReviews = useSelector((state) => state.reviews)
-
-    const normalizedReviews = Object.values(selectedReviews)
 
 	useEffect(() => {
 		setIsLoaded(true);
@@ -40,6 +42,7 @@ function GetBusinessDetailsComponent() {
 			<div className="business-stuff">
 				{businessDetails && (
 					<div className="business-details-container">
+						<img src={businessDetails.business_image_url} className="placeholderforbrennon" />
 						<div className="business-details-info">{businessDetails.name}</div>
 						<div className="business-details-info">
 							{businessDetails.description}
@@ -56,12 +59,16 @@ function GetBusinessDetailsComponent() {
 						<button className="edit-delete" onClick={(e) => deleteButton(e)}>Delete</button>
 					</div>
 				)}
-				<div className="reviews-of-it">
-					<div className="map">
+				<div className="reviews-information">
+					{reviewsArray.map(review => (
+						<div className="reviews">
+							<ReviewCard review={review} />
+						</div>
+					))}
 					{/* <ReviewCard review={review} /> */}
+
 					</div>
 				</div>
-			</div>
 		)
 	);
 }
