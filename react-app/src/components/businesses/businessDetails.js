@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams, useHistory } from "react-router-dom";
-import { getBusinessByIdThunk } from "../../store/businesses";
+import { getBusinessByIdThunk, deleteBusinessThunk } from "../../store/businesses";
+import ReviewCard from "../reviews/reviewCard";
+import EditBusinessFormModal from "./businessEditFormMODAL";
 
 function GetBusinessDetailsComponent() {
 	const { businessId } = useParams();
@@ -20,19 +22,37 @@ function GetBusinessDetailsComponent() {
 	}, [dispatch, isLoaded]);
 	// console.log("business id details component", businessId)
 
+	const deleteButton = async (e) => {
+		e.preventDefault();
+		await dispatch(deleteBusinessThunk(businessId));
+
+		history.push("/");
+	};
+
 	return (
 		isLoaded && (
 			<div className="business-stuff">
 				{businessDetails && (
 					<div className="business-details-container">
 						<div className="business-details-info">{businessDetails.name}</div>
-						<div className="business-details-info">{businessDetails.description}</div>
-						<div className="business-details-info">{businessDetails.address}</div>
-						<div className="business-details-info">{businessDetails.category}</div>
+						<div className="business-details-info">
+							{businessDetails.description}
+						</div>
+						<div className="business-details-info">
+							{businessDetails.address}
+						</div>
+						<div className="business-details-info">
+							{businessDetails.category}
+						</div>
 						<div className="business-details-info">{businessDetails.city}</div>
 						<div className="business-details-info">{businessDetails.state}</div>
+                        <EditBusinessFormModal businessId={businessId} />
+						<button className="edit-delete" onClick={(e) => deleteButton(e)}>Delete</button>
 					</div>
 				)}
+				<div className="reviews-of-it">
+					<ReviewCard/>
+				</div>
 			</div>
 		)
 	);

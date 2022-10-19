@@ -48,13 +48,13 @@ export const readTheReviewsThunk = (businessId) => async dispatch => {
     return data;
 }
 
-export const writeReviewThunk = ({ businessId, review, stars }) => async dispatch => {
+export const writeReviewThunk = ({ businessId, imageUrl, review, stars }) => async dispatch => {
   const response = await fetch(`/api/businesses/${businessId}/reviews`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({businessId, review, stars})
+    body: JSON.stringify({businessId, imageUrl, review, stars})
   })
 
   if (response.ok) {

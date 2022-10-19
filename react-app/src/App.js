@@ -43,11 +43,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-          {/* <BusinessCardComponent /> */}
+        <Route path='/' exact={true} >
           <GetAllBusinesses />
-        </ProtectedRoute>
+        </Route>
         {/* <Route path="/businesses/new" exact={true}>
           <BusinessFormComponent />
           </Route> */}

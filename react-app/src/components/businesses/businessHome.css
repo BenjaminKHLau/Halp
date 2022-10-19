@@ -7,3 +7,33 @@
     height: 675px;
     z-index: -1;
 }
+
+.slogan {
+    color: white;
+    font-size: 36pt;
+    font-weight: 700;
+}
+
+.slogan-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+    margin-top: 80px;
+}
+
+.main-label-home {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+    font-weight: 700;
+    font-size: 200%;
+    padding-left: 25px;
+    top: 720px;
+    left: 0px;
+    right: 0px;
+    z-index: 5;
+}

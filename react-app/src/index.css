@@ -5,3 +5,56 @@ body {
     color: black;
     font-size: 12pt;
 }
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.businesses {
+    background-color: rgb(240, 240, 240);
+    margin-top: 15px;
+    display: flex;
+    position: relative;
+    top: 500px;
+    flex-direction: column;
+    width: 350px;
+    border-radius: 20px;
+    padding-bottom: 20px;
+}
+
+.businesses:hover {
+    background-color: lightgrey;
+}
+
+.centering-spot-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+.businesses-outer-container {
+    display: grid;
+    grid-template-columns: repeat(3, 350px);
+    grid-template-rows: auto;
+    grid-gap: 40px 24px;
+    /* width: 100%; */
+    padding-bottom: 50px;
+}
+
+.Business-card {
+    display: flex;
+    width: 350px;
+    /* top: 1000px; */
+}
+
+.business-image {
+    width: 350px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    /* height: 20vh; */
+}
+
+.business-image-container {
+    width: 100%;
+}

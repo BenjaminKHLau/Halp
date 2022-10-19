@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, Redirect } from "react-router-dom"
-import { addBusinessThunk } from "../../store/businesses"
-import './businessform.css'
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { updateBusinessThunk, getBusinessByIdThunk } from "../../store/businesses";
 
 const states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA",
     "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
@@ -10,22 +10,25 @@ const states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA"
     "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
     "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
 
-const cats = ["Entertainment", "Fitness", "Restaurant", "Night Life", "Shopping", "Bakery"]        
+const cats = ["Entertainment", "Fitness", "Restaurant", "Night Life", "Shopping", "Bakery"]
 
-function BusinessFormComponent() {
-
+function BusinessEditFormComponent({ businessId }) {
     const dispatch = useDispatch()
     const history = useHistory()
-    const [name, setName] = useState("")
-    const [description, setDescription] = useState("")
-    const [address, setAddress] = useState("")
-    const [city, setCity] = useState("")
-    const [state, setState] = useState(states[0])
+    const businesses = useSelector(state => state.businesses)
+    const business = businesses[businessId]
+    console.log("edit business form: ",business)
+
+    const [name, setName] = useState(business.name)
+    const [description, setDescription] = useState(business.description)
+    const [address, setAddress] = useState(business.address)
+    const [city, setCity] = useState(business.city)
+    const [state, setState] = useState(business.state)
     // const [hours, setHours] = useState("")
-    const [contact, setContact] = useState("")
+    const [contact, setContact] = useState(business.contact)
     // const [ownerId, setOwnerId] = useState(0)
-    const [category, setCategory] = useState(cats[0])
-    const [businessImageUrl, setBusinessImageUrl] = useState("")
+    const [category, setCategory] = useState(business.category)
+    const [businessImageUrl, setBusinessImageUrl] = useState(business.businessImageUrl)
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [errors, setErrors] = useState([])
 
@@ -56,7 +59,7 @@ function BusinessFormComponent() {
         }
 
         let newBusiness = await dispatch(
-            addBusinessThunk({
+            updateBusinessThunk({
                 name,
                 description,
                 address,
@@ -65,11 +68,12 @@ function BusinessFormComponent() {
                 contact,
                 category,
                 businessImage: businessImageUrl
-            })
+            }, businessId)
         )
 
         if(newBusiness.errors) setErrors([...Object.values(newBusiness.errors)])
-        else history.push(`/businesses/${newBusiness.id}`)
+        else await dispatch(getBusinessByIdThunk(businessId))
+        // history.push(`/businesses/${businessId}`)
 
     }
 
@@ -81,7 +85,7 @@ function BusinessFormComponent() {
 
     return (
         <form className="business-form" onSubmit={subby}>
-            <h2 className="title">ADD YOUR BUSINESS</h2>
+            <h2 className="title">EDIT YOUR BUSINESS</h2>
             <ul className="errors">{isSubmitted && showErrors}</ul>
 
             <div className="add-info-label">
@@ -235,7 +239,7 @@ function BusinessFormComponent() {
                             isSubmitted && errors.length > 0 ? "noob" : "submit-button"
                         }
                     >
-                        Create Business
+                        Update Business
                     </button>
                 </div>
             </div>
@@ -245,4 +249,4 @@ function BusinessFormComponent() {
 
 }
 
-export default BusinessFormComponent
+export default BusinessEditFormComponent
