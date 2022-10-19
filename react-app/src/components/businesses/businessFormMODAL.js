@@ -19,7 +19,7 @@ function BusinessFormModal() {
       <div className='create-spot-button' onClick={() => setShowModal(true)}>Create A Business</div>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <BusinessFormComponent  />
+          <BusinessFormComponent />
         </Modal>
       )}
     </>

@@ -153,13 +153,12 @@ def delete_business(businessId):
 @business_blueprint.route("/<int:businessId>/reviews", methods = ["GET"])
 def load_review(businessId):
     response = []
-    readingreviews = Review.query.get(business_id=businessId).all()
-
+    readingreviews = Review.query.filter_by(businessId=businessId).all()
+    print("should be all reviewsn\n\n\n\n\n", readingreviews)
+    print("business id", businessId)
     for review in readingreviews:
         response.append(review.to_dict())
     return response
-<<<<<<< HEAD
-=======
 
 
 # post a review to a business:

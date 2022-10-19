@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams, useHistory } from "react-router-dom";
 import { getBusinessByIdThunk, deleteBusinessThunk } from "../../store/businesses";
+import { readTheReviewsThunk } from "../../store/reviews";
 import ReviewCard from "../reviews/reviewCard";
 import EditBusinessFormModal from "./businessEditFormMODAL";
 
@@ -16,9 +17,14 @@ function GetBusinessDetailsComponent() {
 	const businessDetails = business[businessId];
 	console.log("business details ACTUAL", businessDetails);
 
+	const selectedReviews = useSelector((state) => state.reviews)
+
+    const normalizedReviews = Object.values(selectedReviews)
+
 	useEffect(() => {
 		setIsLoaded(true);
-		dispatch(getBusinessByIdThunk(businessId));
+		dispatch(getBusinessByIdThunk(businessId))
+		dispatch(readTheReviewsThunk(businessId))
 	}, [dispatch, isLoaded]);
 	// console.log("business id details component", businessId)
 
@@ -51,7 +57,9 @@ function GetBusinessDetailsComponent() {
 					</div>
 				)}
 				<div className="reviews-of-it">
-					<ReviewCard/>
+					<div className="map">
+					{/* <ReviewCard review={review} /> */}
+					</div>
 				</div>
 			</div>
 		)

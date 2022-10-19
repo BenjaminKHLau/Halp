@@ -39,10 +39,11 @@ const deleteRevAction = (payload) => {
 
  // Thunk Action Creators
 export const readTheReviewsThunk = (businessId) => async dispatch => {
-    const response = await fetch(`/api/businesses${businessId}/reviews`, {
+    const response = await fetch(`/api/businesses/${businessId}/reviews`, {
         method: "GET"
     })
     const data = await response.json();
+    console.log("what is my review?", data)
     dispatch(readRevsAction(data))
 
     return data;
@@ -91,6 +92,7 @@ export const removeReviewThunk= (reviewId) => async dispatch => {
 
 // REDUCER UPDATES STATE
 const initialState = {};
+
 
 
 const ReviewsReducer = (state = initialState, action) => {
