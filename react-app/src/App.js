@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import BusinessFormComponent from "./components/businesses/businessform.js"
 import BusinessCardComponent from './components/businesses/businessCard';
 import GetAllBusinesses from './components/businesses/businessesHome';
+import GetAllCategories from './components/categories/categoriesHome';
 import GetBusinessDetailsComponent from './components/businesses/businessDetails';
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -45,6 +46,7 @@ function App() {
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <GetAllBusinesses />
+          <GetAllCategories />
         </Route>
         {/* <Route path="/businesses/new" exact={true}>
           <BusinessFormComponent />
