@@ -11,7 +11,7 @@ function ReviewFormComponent() {
 
     const [review, setReview] = useState("");
     const [stars, setStars] = useState("");
-    const [reviewImageUrl, setReviewImageUrl] = useState("")
+    const [imageUrl, setImageUrl] = useState("")
     const [isCreated, setIsCreated]= useState(false)
     const [errors, setErrors] = useState([]);
 
@@ -21,14 +21,14 @@ function ReviewFormComponent() {
 
     useEffect(() => {
         let errorsArray = []
-        if(!reviewImageUrl) errorsArray.push("Please provide valid image.")
+        if(!imageUrl) errorsArray.push("Please provide valid image.")
         if (review.length < 1) errorsArray.push("Please provide a review.")
         else if (stars < 1 || stars > 5) errorsArray.push("Please provide a number between 1 - 5")
 
         setErrors(errors)
 
 
-    }, [review, stars])
+    }, [review, stars, imageUrl])
 
 
     let handleSubmit = async (e) => {
@@ -44,8 +44,7 @@ function ReviewFormComponent() {
             dispatch(writeReviewThunk({
             review,
             stars,
-            reviewImageUrl,
-            businessId
+            imageUrl,
         }))
 
         history.push(`/businesses/${businessId}`)
@@ -96,7 +95,7 @@ function ReviewFormComponent() {
                             type="text"
                             placeholder="Review URL"
                             value={reviewImageUrl}
-                            onChange={(e) => setReviewImageUrl(e.target.value)}
+                            onChange={(e) => setImageUrl(e.target.value)}
                             required
                         />
                     </label>

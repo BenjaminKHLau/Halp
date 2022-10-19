@@ -1,27 +1,33 @@
 
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { getBusinessByIdThunk } from "../../store/businesses";
 import { removeReviewThunk } from "../../store/reviews";
 
 
-export default function ReviewCard({ review }) {
+export default function ReviewCard({review}) {
     const dispatch = useDispatch
-
+    const history = useHistory();
     const { businessId } = useParams();
 
-    const selectedBusiness = useSelector((state) => state.businesses)
+    const selectedReviews = useSelector((state) => state.reviews)
+    // const revDeets = selectedReviews[Id]
+
+    // console.log("what is my selection", selectedReviews)
+    // console.log("review details here", revDeets)
 
     const removeReview = async (reviewId) => {
         await dispatch(removeReviewThunk(reviewId)).then(() => {
             dispatch(getBusinessByIdThunk(businessId));
+
+            history.push(`/api/businesses/${businessId}`)
         })
     }
 
     return (
         <div className="review-box">
             <div className="pic-container">
-                {review.reviewImageUrl}
+                {review.imageUrl}
             </div>
             <div className="review-written">
                 {review.review}
