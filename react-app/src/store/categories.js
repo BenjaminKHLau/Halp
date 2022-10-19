@@ -31,7 +31,8 @@ export const getAllCategoriesThunk = () => async dispatch => {
     return data
 }
 
-export const createCategoryThunk = (type) => async dispatch => {
+export const createCategoryThunk = type => async dispatch => {
+    console.log("Create CATEGORIES THUNK RUNNING data", type)
     const response = await fetch('api/categories', {
         method: 'POST',
         headers: {
@@ -40,7 +41,7 @@ export const createCategoryThunk = (type) => async dispatch => {
         body: JSON.stringify(type)
     })
 
-    const data = response.json()
+    const data = await response.json()
     if (response.ok) {
         dispatch(createCategoryACTION(data))
     }

@@ -5,6 +5,7 @@ import { createCategoryThunk } from "../../store/categories";
 
 function CategoryFormComponent() {
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const [category, setCategory] = useState("")
     const [isSubmitted, setIsSubmitted] = useState(false)
@@ -29,7 +30,7 @@ function CategoryFormComponent() {
 
         let newCategory = await dispatch(
             createCategoryThunk({
-                category
+                type: category
             })
         )
 
@@ -37,6 +38,12 @@ function CategoryFormComponent() {
         else history.push(`/`)
 
     }
+
+    const showErrors = errors.map((error) => (
+        <div className="error-message" key={error}>
+            {error}
+        </div>
+    ));
 
     return (
         <form className="business-form" onSubmit={subby}>

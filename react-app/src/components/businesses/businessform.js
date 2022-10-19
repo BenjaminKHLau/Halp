@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, Redirect } from "react-router-dom"
 import { addBusinessThunk } from "../../store/businesses"
+import CategoryFormModal from "../categories/categoryModal";
 import './businessform.css'
 
 const states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA",
@@ -160,6 +161,7 @@ function BusinessFormComponent() {
                                 {cats.map(category => <option value={category}>{category}</option>
                                 )
                                 }</select>
+                                <CategoryFormModal />
                         </label>
                     </div>
                     {/* <label className="form-stuff">

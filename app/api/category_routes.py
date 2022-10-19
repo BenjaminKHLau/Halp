@@ -30,9 +30,11 @@ def add_category():
 
     db_type = Category.query.filter_by(type=form.data['type']).first()
 
+
     if(db_type):
         errors['type'] = "Type already exists"
 
+    print("A\n\n\n\n\n\n\n\n\n\nA ", errors)
     if errors:
         return {'errors': errors}, 400
 
@@ -42,6 +44,8 @@ def add_category():
             type = form.data['type']
         )
 
+        print("A\n\n\n\n\n\n\n\n\n\nA ", new_cat.to_dict())
+
         db.session.add(new_cat)
         db.session.commit()
-        return new_cat.to_dict()
+        return jsonify(new_cat.to_dict())
