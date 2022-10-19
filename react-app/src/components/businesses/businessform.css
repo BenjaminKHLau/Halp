@@ -67,3 +67,24 @@
     padding-left: 25px;
     padding-right: 25px;
  }
+
+.create-category-button {
+    background-color: red;
+    border-radius: 3px;
+    font-weight: bold;
+    margin-left: 10px;
+    line-height: 20px;
+    padding: 0px 7px;
+}
+
+.create-category-button:hover {
+    cursor: pointer;
+}
+
+.business_form_category_container {
+    display: flex;
+}
+
+.business_form_category_container select {
+    width: 100px;
+}
