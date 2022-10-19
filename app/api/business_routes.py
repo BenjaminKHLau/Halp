@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request, redirect
-from app.models import User, db, Business, Review
+from app.models import User, db, Business, Review, Category
 # , Category
 # from app.forms import LoginForm
 # from app.forms import SignUpForm
@@ -31,6 +31,7 @@ def add_business_root():
     errors = {}
 
     form = BusinessForm()
+    form.category.choices = [cat.type for cat in Category.query.all()]
     form['csrf_token'].data = request.cookies['csrf_token']
     db_name = Business.query.filter_by(name=form.data['name']).first()
     db_description = Business.query.filter_by(description=form.data['description']).first()
@@ -78,6 +79,7 @@ def edit_business_root(businessId):
 
     form = BusinessForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    form.category.choices = [cat.type for cat in Category.query.all()]
 
     business_to_edit = Business.query.get(businessId)
 
@@ -183,3 +185,7 @@ def create_review(businessId):
         return review.to_dict(), 201
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 #     return response
+
+@business_blueprint.route("/query")
+def implement_search():
+    print("\n\n\n\n\n\n\n\n", request.query_string)
