@@ -1,0 +1,144 @@
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    width: 1500px;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 30px;
+    padding-top: 20px;
+}
+
+.nav-item {
+    padding-right: 10px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+}
+
+.halp {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+#sign-up-button {
+    color: white;
+    border: solid 3px #FF0000;
+    background-color: #FF0000;
+    width: 60px;
+    border-radius: 5px;
+    height: 40px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.sign-up {
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+#login-button {
+    border: solid 3px rgb(255, 255, 255, .5);
+    background-color: rgb(0, 0, 0, 0);
+    width: 60px;
+    border: default;
+    border-radius: 5px;
+    height: 40px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.login {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.search-input {
+    height: 40px;
+    width: 40vw;
+    border: solid 3px #ff000000;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    text-indent: 10px;
+}
+
+.search-button {
+    border: solid 3px rgba(255, 255, 255, 0);
+    background-color: #FF0000;
+    width: 48px;
+    border: default;
+    border-top-right-radius: 5px;border-bottom-right-radius: 5px;
+    height: 48px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    color: white;
+}
+
+.search-image {
+    height: 30px;
+    width: 30px;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.create-business-modal {
+    padding-right: 15px;
+}
+
+.business-modal-button {
+    border: solid 0px #ff000000;
+    background-color: transparent;
+    width: 150px;
+    height: 40px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    color: white;
+    display: flex;
+}
+
+.sign-login-buttons {
+    display: flex;
+    margin-right: 50px;
+    color: white;
+}
+
+.logged-in-buttons {
+    display: flex;
+}
+
+.halp-logo {
+    width: 150px;
+    margin-right: 15px;
+}
