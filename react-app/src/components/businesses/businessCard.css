@@ -20,3 +20,12 @@
 .biz-state {
     padding-left: 10px;
 }
+
+.business-image {
+    width: 350px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 300px;
+    object-fit: cover;
+    /* height: 20vh; */
+}

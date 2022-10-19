@@ -6,8 +6,6 @@ import sorrykiwi2 from "./sorrykiwi2.png"
 function BusinessCardComponent({ business }){
     return (
         <div className="Business-card">
-            <Link to={`/businesses/${business.id}`}>
-
             <div className="Business-name">
 
                 {/* <div className="business-image-container"> */}
@@ -20,7 +18,6 @@ function BusinessCardComponent({ business }){
 
 
             </div>
-            </Link>
         </div>
     )
 }

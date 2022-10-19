@@ -27,10 +27,6 @@ a {
     padding-bottom: 20px;
 }
 
-.businesses:hover {
-    background-color: lightgrey;
-}
-
 .centering-spot-container {
     display: flex;
     justify-content: center;
@@ -50,13 +46,6 @@ a {
     display: flex;
     width: 350px;
     /* top: 1000px; */
-}
-
-.business-image {
-    width: 350px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    /* height: 20vh; */
 }
 
 .business-image-container {
