@@ -3,13 +3,13 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
 import { getBusinessByIdThunk } from "../../store/businesses";
-import { readTheReviewsThunk, removeReviewThunk } from "../../store/reviews";
+import { readTheReviewsThunk, removeReviewThunk, updateReviewThunk } from "../../store/reviews";
 import './reviewCard.css'
 import trash from './bin.png'
 import edit from './edit.png'
 
 
-function ReviewCard({ review }) {
+function ReviewCard({ review, setReviewModal, setReviewObj }) {
     const dispatch = useDispatch()
     // const history = useHistory();
     const { businessId } = useParams();
@@ -33,11 +33,22 @@ function ReviewCard({ review }) {
         // history.push(`/businesses/${businessId}`);
     };
 
+    const editButton = async (e) => {
+        e.preventDefault();
+        await dispatch(updateReviewThunk(review))
+        await dispatch(getBusinessByIdThunk(businessId))
+        await(readTheReviewsThunk(businessId))
+
+    }
+
     useEffect(() => {
         dispatch(getBusinessByIdThunk(businessId))
     }, [dispatch])
 
-
+    const handleMyEdit = (e) => {
+        setReviewModal(true)
+        setReviewObj(review)
+    }
 
     return review && (
         <div className="review-box">
@@ -52,7 +63,7 @@ function ReviewCard({ review }) {
                     {review.stars} ★
                 </div>
                 <div className="misc-items">
-                    <button className="edit-button" onClick={(e) => deleteButton(e)}>
+                    <button className="edit-button" onClick={handleMyEdit}>
                         <img className='actual-edit' src={edit}></img>
                     </button>
                     <button className="delete-button" onClick={(e) => deleteButton(e)}>

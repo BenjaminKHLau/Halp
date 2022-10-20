@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, Redirect } from "react-router-dom"
-import { writeReviewThunk } from "../../store/reviews";
-import { useParams } from 'react-router-dom';
-import './reviewForm.css'
+import { useDispatch } from 'react-redux'
+import { useHistory} from "react-router-dom"
+import { updateReviewThunk } from "../../store/reviews";
 
-function ReviewFormComponent() {
+
+function EditReviewFormComponent() {
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -18,9 +17,7 @@ function ReviewFormComponent() {
     const [errors, setErrors] = useState([]);
 
     let { businessId } = useParams();
-    console.log("review form business id: ",businessId)
     businessId = Number(businessId);
-
 
     useEffect(() => {
         let errorsArray = []
@@ -39,11 +36,8 @@ function ReviewFormComponent() {
         if (errors.length > 0) {
             return;
         }
-            dispatch(writeReviewThunk({
-                businessId,
-                review,
-                stars,
-                imageUrl,
+            dispatch(updateReviewThunk({
+                payload
             }))
 
 
@@ -57,16 +51,16 @@ function ReviewFormComponent() {
     ));
 
     return (
-        <div className="create-review-container">
+        <div className="edit-review-container">
             <div className="encompass-form">
                 <form
                     className="review-form" onSubmit={handleSubmit}>
-                    <h1 className="review-title">Submit a Review</h1>
+                    <h1 className="change-title">Edit your Review</h1>
                     <div className="errors">
                         {isCreated && ErrorMsgs}
                     </div>
 
-                    <label className="create-review">
+                    <label className="let-review">
                         <span> Review: </span>
                         <input
                             type="text"
@@ -89,7 +83,7 @@ function ReviewFormComponent() {
                             required
                         />
                     </label>
-                    <label className="create-review">
+                    <label className="let-review">
                         <span> Review Image: </span>
                         <input
                             type="text"
@@ -102,7 +96,7 @@ function ReviewFormComponent() {
                     <div className="to-review">
                         <button className="created"
                             type="submit">
-                            Create Review
+                            Submit Review
                         </button>
                     </div>
                 </form>
@@ -112,4 +106,4 @@ function ReviewFormComponent() {
 
 }
 
-export default ReviewFormComponent;
+export default EditReviewFormComponent;

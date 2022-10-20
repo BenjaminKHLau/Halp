@@ -6,8 +6,10 @@ import { readTheReviewsThunk } from "../../store/reviews";
 import ReviewCard from "../reviews/reviewCard";
 import EditBusinessFormModal from "./businessEditFormMODAL";
 import './businessDetails.css'
+import '../reviews/reviewForm.css'
 import ReviewFormComponent from "../reviews/reviewForm";
-import ReviewFormModal from "../reviews/revModal";
+import CreateReviewFormModal from "../reviews/revModal";
+import UpdateReviewFormModal from "../reviews/updateReviewModal";
 
 function GetBusinessDetailsComponent() {
     const { businessId } = useParams();
@@ -15,6 +17,9 @@ function GetBusinessDetailsComponent() {
     const history = useHistory();
     const [isLoaded, setIsLoaded] = useState(false);
 
+	const [reviewModal, setReviewModal] = useState(false);
+	const [reviewObj, setReviewObj] = useState(null);
+	console.log("Review modal is", reviewModal)
     const business = useSelector((state) => state.businesses);
 
     const businessDetails = business[businessId];
@@ -40,8 +45,9 @@ function GetBusinessDetailsComponent() {
         history.push("/");
     };
 
-    return (
-        isLoaded && (
+	return (
+		<>
+        {/* isLoaded && ( */}
             <div className="business-stuff">
                 {businessDetails && (
                     <div className="business-details-container-image">
@@ -68,18 +74,21 @@ function GetBusinessDetailsComponent() {
                     </div>
                 )}
                 <label className="review-label-for-details">Reviews</label>
-					<ReviewFormModal />
+					<CreateReviewFormModal />
                 <div className="reviews-information">
                     {reviewsArray.map(review => (
-                        <div className="reviews">
-                            <ReviewCard review={review} />
+						<div key={review.id} className="reviews">
+                            <ReviewCard review={review} setReviewModal={setReviewModal} setReviewObj={setReviewObj} />
                         </div>
                     ))}
-                    {/* <ReviewCard review={review} /> */}
 
 				</div>
-            </div>
+			</div>
         )
+					{reviewModal && (
+							<UpdateReviewFormModal review={reviewObj}/>
+						)}
+			</>
     );
 }
 

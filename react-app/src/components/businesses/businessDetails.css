@@ -35,7 +35,7 @@
     position: relative;
     flex-direction: column;
     width: 350px;
-    /* border-radius: 20px; */
+    border-radius: 5px;
     padding-bottom: 20px;
     border: 1px solid rgb(227,227,227);
 }
