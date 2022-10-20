@@ -222,5 +222,7 @@ def implement_search():
     city_results = Business.query.filter(Business.city.ilike(f'%{searchParams}%')).all()
     state_results = Business.query.filter(Business.state.ilike(f'%{searchParams}%')).all()
     all_results = [category_results, name_results, address_results, city_results, state_results]
-    print("\n\n\n\n\n\n\n\nhello", category_results)
-    return jsonify(searchParams)
+    largest_set = max(all_results, key=len)
+    response = [business.to_dict() for business in largest_set]
+    print("\n\n\n\n\n\n\n\nhello", response)
+    return jsonify(response)
