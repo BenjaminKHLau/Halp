@@ -6,8 +6,10 @@ import { readTheReviewsThunk } from "../../store/reviews";
 import ReviewCard from "../reviews/reviewCard";
 import EditBusinessFormModal from "./businessEditFormMODAL";
 import './businessDetails.css'
+import '../reviews/reviewForm.css'
 import ReviewFormComponent from "../reviews/reviewForm";
-import ReviewFormModal from "../reviews/revModal";
+import CreateReviewFormModal from "../reviews/revModal";
+import UpdateReviewFormModal from "../reviews/updateReviewModal";
 
 function GetBusinessDetailsComponent() {
     const { businessId } = useParams();
@@ -15,15 +17,18 @@ function GetBusinessDetailsComponent() {
     const history = useHistory();
     const [isLoaded, setIsLoaded] = useState(false);
 
+    const [reviewModal, setReviewModal] = useState(false);
+    const [reviewObj, setReviewObj] = useState(null);
+    console.log("Review modal is", reviewModal)
     const business = useSelector((state) => state.businesses);
 
     const businessDetails = business[businessId];
 
     const reviewsState = useSelector(state => state.reviews)
     const reviewsArray = Object.values(reviewsState)
-    console.log("REVIEWS in Business Details component", reviewsState)
-    console.log("business details ACTUAL", businessDetails);
-    console.log("NORMALIZED REVIEWS ARRAY: ", reviewsArray);
+    // console.log("REVIEWS in Business Details component", reviewsState)
+    // console.log("business details ACTUAL", businessDetails);
+    // console.log("NORMALIZED REVIEWS ARRAY: ", reviewsArray);
 
 
     useEffect(() => {
@@ -41,7 +46,8 @@ function GetBusinessDetailsComponent() {
     };
 
     return (
-        isLoaded && (
+        <>
+            {/* isLoaded && ( */}
             <div className="business-stuff">
                 {businessDetails && (
                     <div className="business-details-container-image">
@@ -63,22 +69,23 @@ function GetBusinessDetailsComponent() {
                         <div className="business-details-description">
                             {businessDetails.description}
                         </div>
-                        {/* <EditBusinessFormModal businessId={businessId} />
-						<button className="edit-delete" onClick={(e) => deleteButton(e)}>Delete</button> */}
                     </div>
                 )}
                 <label className="review-label-for-details">Reviews</label>
+					<CreateReviewFormModal />
                 <div className="reviews-information">
                     {reviewsArray.map(review => (
-                        <div className="reviews">
-                            <ReviewCard review={review} />
+						<div key={review.id} className="reviews">
+                            <ReviewCard review={review} setReviewModal={setReviewModal} setReviewObj={setReviewObj} />
                         </div>
                     ))}
-                    {/* <ReviewCard review={review} /> */}
 
 				</div>
-            </div>
-        )
+			</div>
+					{reviewModal && (
+                <UpdateReviewFormModal setReviewModal={setReviewModal} review={reviewObj}/>
+						)}
+			</>
     );
 }
 

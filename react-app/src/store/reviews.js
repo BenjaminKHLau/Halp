@@ -43,7 +43,7 @@ export const readTheReviewsThunk = (businessId) => async dispatch => {
         method: "GET"
     })
     const data = await response.json();
-    console.log("what is my review?", data)
+    // console.log("what is my review?", data)
     dispatch(readRevsAction(data))
 
     return data;
@@ -65,17 +65,18 @@ export const writeReviewThunk = ({ businessId, imageUrl, review, stars }) => asy
   }
 }
 
-export const updateReviewThunk = (payload, reviewId) => async dispatch => {
-    const response = await fetch(`/api/reviews/${reviewId}`, {
+export const updateReviewThunk = (payload) => async dispatch => {
+    const response = await fetch(`/api/businesses/${payload.businessId}/reviews/${payload.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
     });
     if (response.ok) {
         const editRev = await response.json();
+        console.log("middle review", editRev)
         dispatch(updateRevAction(editRev))
+        return response
     }
-    return response
 }
 
 
@@ -105,10 +106,11 @@ const ReviewsReducer = (state = initialState, action) => {
                 return reviewsObjState
             };
             case UPDATE_REVIEW: {
-                const newState = {};
-                action.payload.Reviews.forEach(review => {
-                    newState[review.id] = review;
-                })
+                const newState = {...state};
+                // action.payload.Reviews.forEach(review => {
+                //     newState[review.id] = review;
+                // })
+                newState[action.payload.id] = action.payload
                 return newState;
             };
             case WRITE_REVIEW: {

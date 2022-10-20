@@ -3,24 +3,44 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
 import { getBusinessByIdThunk } from "../../store/businesses";
-import { readTheReviewsThunk, removeReviewThunk } from "../../store/reviews";
+import { readTheReviewsThunk, removeReviewThunk, updateReviewThunk } from "../../store/reviews";
 import './reviewCard.css'
 import trash from './bin.png'
+import edit from './edit.png'
 
 
-export default function ReviewCard({ review }) {
-    const dispatch = useDispatch
-    const history = useHistory();
-    // const { businessId } = useParams();
+function ReviewCard({ review, setReviewModal, setReviewObj }) {
+    const dispatch = useDispatch()
+    // const history = useHistory();
+    const { businessId } = useParams();
+    console.log("business id inside review card component: ", businessId)
 
     // const selectedReviews = useSelector((state) => state.reviews)
 
 
-    const aReview = async (businessId) => {
+    const readReview = async (businessId) => { //???
         await dispatch(readTheReviewsThunk(businessId))
         await dispatch(getBusinessByIdThunk(businessId));
 
-        history.push(`/api/businesses/${businessId}`)
+        // history.push(`/api/businesses/${businessId}`)
+    }
+
+    const deleteButton = async (e) => {
+        e.preventDefault();
+        await dispatch(removeReviewThunk(review.id));
+        await dispatch(getBusinessByIdThunk(businessId))
+        await dispatch(readTheReviewsThunk(businessId))
+        // history.push(`/businesses/${businessId}`);
+    };
+
+
+    useEffect(() => {
+        dispatch(getBusinessByIdThunk(businessId))
+    }, [dispatch])
+
+    const handleMyEdit = (e) => {
+        setReviewModal(true)
+        setReviewObj(review)
     }
 
     return review && (
@@ -31,15 +51,24 @@ export default function ReviewCard({ review }) {
             <div className="review-written">
                 {review.review}
             </div>
-            <div className="misc-items">
+            <div className="right-side">
                 <div className="stars-given">
                     {review.stars} ★
                 </div>
-                <button className="delete-button" onClick={() => aReview(review.id)}>
-                    <img className='actual-trash' src={trash}></img>
-                </button>
+                <div className="misc-items">
+                    <button className="edit-button" onClick={handleMyEdit}>
+                        <img className='actual-edit' src={edit}></img>
+                    </button>
+                    <button className="delete-button" onClick={(e) => deleteButton(e)}>
+                        <img className='actual-trash' src={trash}></img>
+                    </button>
+                </div>
             </div>
         </div>
 
     )
 }
+
+
+
+export default ReviewCard

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Modal } from '../MODAL/modal';
 import { useSelector } from 'react-redux';
-//import ReviewCard from './reviewCard';
-import ReviewFormComponent from './reviewForm'
+import ReviewFormComponent from "./reviewForm"
 
-function ReviewFormModal() {
+
+function CreateReviewFormModal() {
   const [showModal, setShowModal] = useState(false);
 
   const allRevs = useSelector(state => state.reviews)
@@ -19,11 +19,11 @@ function ReviewFormModal() {
       <div className='create-review-button' onClick={() => setShowModal(true)}>Write your Review</div>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <ReviewFormComponent  />
+          <ReviewFormComponent formType="CREATE" />
         </Modal>
       )}
     </>
   );
 }
 
-export default ReviewFormModal;
+export default CreateReviewFormModal;

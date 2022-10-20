@@ -98,7 +98,7 @@ export const getBusinessByIdThunk = (businessId) => async dispatch => {
 }
 
 export const deleteBusinessThunk = (businessId) => async dispatch => {
-    console.log("DELETE BUSINESS THUNK RUNNING")
+    // console.log("DELETE BUSINESS THUNK RUNNING")
     const response = await fetch(`/api/businesses/${businessId}/delete`, {
         method: "DELETE"
     });
@@ -136,15 +136,11 @@ const BusinessesReducer = (state = initialState, action) => {
         case GET_BUSINESS_BY_ID: {
         	newState = {...state}
         	newState[action.payload.id] = action.payload
-            console.log("get business by id reducer action: ", action)
             return newState;
         }
         case DELETE_BUSINESS: {
-            console.log("DELETE BUSINESS REDUCER ACTION: ", action)
             newState = { ...state }
-            console.log("DELETE BUSINESS REDUCER STATE: ", newState)
             delete newState[action.payload]
-            console.log("DELETE BUSINESS REDUCER STATE AFTER DELETE: ", newState)
             return newState;
       	}
 

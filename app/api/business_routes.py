@@ -1,3 +1,4 @@
+from unicodedata import name
 from flask import Blueprint, jsonify, session, request, redirect
 from app.models import User, db, Business, Review, Category
 # , Category
@@ -8,7 +9,7 @@ from ..forms.businesses import BusinessForm
 from ..forms.review import ReviewForm
 from .auth_routes import validation_errors_to_error_messages
 from flask_login import current_user, login_user, logout_user, login_required
-
+import json
 
 business_blueprint = Blueprint("business_blueprint", __name__)
 
@@ -71,6 +72,7 @@ def add_business_root():
         db.session.add(new_business)
         db.session.commit()
         return new_business.to_dict()
+
 @business_blueprint.route("/<int:businessId>/edit", methods=["PUT"])
 @login_required
 def edit_business_root(businessId):
@@ -164,7 +166,7 @@ def load_review(businessId):
 
 
 # post a review to a business:
-@business_blueprint.route("/<int:businessId>", methods=['POST'])
+@business_blueprint.route("/<int:businessId>/reviews", methods=['POST'])
 @login_required
 def create_review(businessId):
     business = Business.query.get(businessId)
@@ -184,8 +186,43 @@ def create_review(businessId):
         db.session.commit()
         return review.to_dict(), 201
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
-#     return response
+
+# Update review:
+@business_blueprint.route('/<int:businessId>/reviews/<int:reviewId>', methods = ["PUT"])
+@login_required
+def update_review(businessId, reviewId):
+    business = Business.query.get(businessId)
+    if business == None:
+        return {"errors": "Business not found"}, 404
+    edittedRev = Review.query.get(reviewId)
+    #if query unsuccessful:
+    if edittedRev == None:
+        return{"errors": "Review does not exist"}, 404
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        review_data = json.loads(request.data.decode('utf-8'))
+        print("data: ", review_data)
+        for k,v in review_data.items():
+            setattr(edittedRev, k,v)
+        db.session.commit()
+        return edittedRev.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+
 
 @business_blueprint.route("/query")
 def implement_search():
-    print("\n\n\n\n\n\n\n\n", request.query_string)
+    searchParams = request.args.get('search')
+    print(request.args.get('search'))
+    print("\n\n\n\n\n\n\n\nhello", request.query_string)
+    category_results = Business.query.filter(Business.category.ilike(f'%{searchParams}%')).all()
+    name_results = Business.query.filter(Business.name.ilike(f'%{searchParams}%')).all()
+    address_results = Business.query.filter(Business.address.ilike(f'%{searchParams}%')).all()
+    city_results = Business.query.filter(Business.city.ilike(f'%{searchParams}%')).all()
+    state_results = Business.query.filter(Business.state.ilike(f'%{searchParams}%')).all()
+    all_results = [category_results, name_results, address_results, city_results, state_results]
+    largest_set = max(all_results, key=len)
+    response = [business.to_dict() for business in largest_set]
+    print("\n\n\n\n\n\n\n\nhello", response)
+    return jsonify(response)
