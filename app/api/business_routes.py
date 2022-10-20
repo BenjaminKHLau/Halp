@@ -1,3 +1,4 @@
+from unicodedata import name
 from flask import Blueprint, jsonify, session, request, redirect
 from app.models import User, db, Business, Review, Category
 # , Category
@@ -71,6 +72,7 @@ def add_business_root():
         db.session.add(new_business)
         db.session.commit()
         return new_business.to_dict()
+
 @business_blueprint.route("/<int:businessId>/edit", methods=["PUT"])
 @login_required
 def edit_business_root(businessId):
@@ -211,4 +213,14 @@ def update_review(businessId, reviewId):
 
 @business_blueprint.route("/query")
 def implement_search():
-    print("\n\n\n\n\n\n\n\n", request.query_string)
+    searchParams = request.args.get('search')
+    print(request.args.get('search'))
+    print("\n\n\n\n\n\n\n\nhello", request.query_string)
+    category_results = Business.query.filter(Business.category.ilike(f'%{searchParams}%')).all()
+    name_results = Business.query.filter(Business.name.ilike(f'%{searchParams}%')).all()
+    address_results = Business.query.filter(Business.address.ilike(f'%{searchParams}%')).all()
+    city_results = Business.query.filter(Business.city.ilike(f'%{searchParams}%')).all()
+    state_results = Business.query.filter(Business.state.ilike(f'%{searchParams}%')).all()
+    all_results = [category_results, name_results, address_results, city_results, state_results]
+    print("\n\n\n\n\n\n\n\nhello", category_results)
+    return jsonify(searchParams)

@@ -52,11 +52,11 @@ function App() {
         {/* <Route path="/businesses/new" exact={true}>
           <BusinessFormComponent />
           </Route> */}
-        <Route path="/businesses/:businessId" exact={true}>
-          <GetBusinessDetailsComponent />
-        </Route>
         <Route path="/businesses/search">
           <BusinessSearchComponent />
+        </Route>
+        <Route path="/businesses/:businessId" exact={true}>
+          <GetBusinessDetailsComponent />
         </Route>
       </Switch>
     </BrowserRouter>
