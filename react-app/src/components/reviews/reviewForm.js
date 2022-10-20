@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, Redirect } from "react-router-dom"
 import { writeReviewThunk } from "../../store/reviews";
 import { useParams } from 'react-router-dom';
+import './reviewForm.css'
 
 function ReviewFormComponent() {
 
