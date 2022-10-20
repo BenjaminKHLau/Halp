@@ -21,7 +21,7 @@ function ReviewCard({ review, setReviewModal, setReviewObj }) {
   // const selectedReviews = useSelector((state) => state.reviews)
 
   const session = useSelector((state) => state.session);
-  let reviewOwner = review?.userId === session.user.id;
+  let reviewOwner = review?.userId === session.user?.id;
   // console.log("\n\n\n\n\n\naaaaaaaaaaaaa", reviewOwner)
 
   const readReview = async (businessId) => {
