@@ -1,47 +1,61 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory} from "react-router-dom"
-import { updateReviewThunk } from "../../store/reviews";
+import { updateReviewThunk, readTheReviewsThunk } from "../../store/reviews";
 
+import { getBusinessByIdThunk } from "../../store/businesses";
+import './reviewForm.css'
 
-function EditReviewFormComponent() {
+function EditReviewFormComponent({review, setReviewModal}) {
 
     const dispatch = useDispatch()
     const history = useHistory()
 
+    // const thestate = useSelector(state => state)
 
-    const [review, setReview] = useState("");
+    // console.log("editor", thestate)
+
+
+    const [reviewText, setReviewText] = useState("");
     const [stars, setStars] = useState("");
     const [imageUrl, setImageUrl] = useState("")
-    const [isCreated, setIsCreated]= useState(false)
+    const [isChanged, setIsChanged]= useState(false)
     const [errors, setErrors] = useState([]);
 
-    let { businessId } = useParams();
-    businessId = Number(businessId);
+    // let { businessId } = useParams();
+    // businessId = Number(businessId);
 
     useEffect(() => {
         let errorsArray = []
         if(!imageUrl) errorsArray.push("Please provide valid image.")
-        if (review.length < 1) errorsArray.push("Please provide a review.")
+        if (!review) errorsArray.push("Please provide a review.")
         else if (stars < 1 || stars > 5) errorsArray.push("Please provide a number between 1 - 5")
 
-        setErrors(errors)
-    }, [review, stars, imageUrl])
+        setErrors(errorsArray)
+    }, [reviewText, stars, imageUrl])
 
 
     let handleSubmit = async (e) => {
         e.preventDefault();
 
-        setIsCreated(true)
+        setIsChanged(true)
         if (errors.length > 0) {
             return;
         }
-            dispatch(updateReviewThunk({
-                payload
-            }))
+        dispatch(updateReviewThunk({
+                businessId: review.businessId,
+                id: review.id,
+                imageUrl,
+                review: reviewText,
+                stars,
+        }))
+            .then(setReviewModal(false))
 
+        // dispatch(readTheReviewsThunk(review.businessId))
+        // dispatch(getBusinessByIdThunk(review.businessId))
 
-        history.push(`/businesses/${businessId}`)
+            // .then(setReviewModal(false))
+        // history.push(`/businesses/${businessId}`)
 
 
     };
@@ -51,27 +65,27 @@ function EditReviewFormComponent() {
     ));
 
     return (
-        <div className="edit-review-container">
+        <div className="create-review-container">
             <div className="encompass-form">
                 <form
                     className="review-form" onSubmit={handleSubmit}>
-                    <h1 className="change-title">Edit your Review</h1>
+                    <h1 className="review-title">Edit your Review</h1>
                     <div className="errors">
-                        {isCreated && ErrorMsgs}
+                        {isChanged && ErrorMsgs}
                     </div>
 
-                    <label className="let-review">
+                    <label className="create-review">
                         <span> Review: </span>
                         <input
                             type="text"
                             placeholder="Review Text"
-                            value={review}
-                            onChange={(e) => setReview(e.target.value)}
+                            value={reviewText}
+                            onChange={(e) => setReviewText(e.target.value)}
                             required
                         />
                     </label>
 
-                    <label>
+                    <label className="create-stars">
                         <span> Stars (out of 5): </span>
                         <input
                             type="Number"
@@ -83,7 +97,7 @@ function EditReviewFormComponent() {
                             required
                         />
                     </label>
-                    <label className="let-review">
+                    <label className="create-review">
                         <span> Review Image: </span>
                         <input
                             type="text"
