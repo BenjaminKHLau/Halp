@@ -10,6 +10,7 @@ import {
 import "./reviewCard.css";
 import trash from "./bin.png";
 import edit from "./edit.png";
+import sorrykiwi2 from "../businesses/sorrykiwi2.png"
 
 function ReviewCard({ review, setReviewModal, setReviewObj }) {
   const dispatch = useDispatch();
@@ -52,7 +53,9 @@ function ReviewCard({ review, setReviewModal, setReviewObj }) {
     review && (
       <div className="review-box">
         <div className="pic-container">
-          <img src={review.imageUrl} className="review-image" />
+          <img src={review.imageUrl}  onError={(e) => {
+            e.target.src = sorrykiwi2;
+          }} className="review-image" />
         </div>
         <div className="review-written">{review.review}</div>
         <div className="right-side">
