@@ -18,11 +18,11 @@ function UpdateReviewFormModal({review}) {
   return (
     <>
       <div className='edit-review-button' onClick={() => setShowModal(true)}></div>
-      {/* {showModal && ( */}
+      {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditReviewFormComponent />
         </Modal>
-      {/* )} */}
+      )}
     </>
   );
 }
