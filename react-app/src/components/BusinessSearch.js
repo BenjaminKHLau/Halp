@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect, NavLink, useLocation } from "react-router-dom";
 import BusinessCardComponent from "./businesses/businessCard";
+import './BusinessSearch.css'
 
 function BusinessSearchComponent() {
     const [businesses, setBusinesses] = useState([])
@@ -29,16 +30,18 @@ function BusinessSearchComponent() {
 
     return (
         <>
-            {businesses.length ? <h1>Search Results For: {search}</h1> : <h1>No Results</h1>}
+            {businesses.length ? <h1 className="title-search">Search Results For: {search}</h1> : <h1 className="title-search">No Results</h1>}
             {console.log("------------------------")}
-            {businesses.map((business) => {
-                return <div className="businesses">
-                    <Link to={`/businesses/${business.id}`}>
-                    <BusinessCardComponent business={business} />
-                    {console.log('busineasfdasdfass is :', business)}
-                    </Link>
-                </div>
-            })}
+            <div className="biz-cate">
+                {businesses.map((business) => {
+                    return <div className="businesses">
+                        <Link to={`/businesses/${business.id}`}>
+                            <BusinessCardComponent business={business} />
+                            {console.log('busineasfdasdfass is :', business)}
+                        </Link>
+                    </div>
+                })}
+            </div>
         </>
     )
 }
