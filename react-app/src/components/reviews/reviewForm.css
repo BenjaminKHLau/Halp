@@ -10,11 +10,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 8px;
-    background-color: palevioletred;
-    font-weight: 500;
+    background-color: rgba(255,3,0, 0.5);
+    background-color: rgba(255,3,0, 0.5);
+    font-weight: 600;
     width: 200px;
+    margin-right: 100px;
+}
+
+.create-review-button:hover {
+    cursor: pointer;
+    background-color: red;
 }
 
 .edit-delete {
