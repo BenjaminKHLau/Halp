@@ -18,11 +18,25 @@
     width: 30px;
 }
 
+.actual-edit {
+    height: 30px;
+    width: 30px;
+}
+
 .delete-button {
-    height: 60px;
+    height: 55px;
     width: 100px;
     border-bottom-right-radius: 20px;
     border-top-left-radius: 20px;
+    border: none;
+    background-color: #FF0000;
+}
+
+.edit-button {
+    height: 55px;
+    width: 100px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
     border: none;
     background-color: #FF0000;
 }
@@ -36,7 +50,7 @@
 .stars-given {
     font-weight: 400;
     font-size: 150%;
-    height: 60px;
+    height: 120px;
     display: flex;
     justify-content: center;
     text-align: center;
@@ -46,9 +60,19 @@
 .review-written {
     font-weight: 400;
     font-size: 100%;
-    height: 120px;
+    height: 100px;
     display: flex;
     justify-content: center;
     text-align: center;
     align-items: center;
+    overflow-wrap: normal;
+    overflow: scroll;
+    margin: 10px;
+    max-width: 675px;
+}
+
+.right-side {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
 }
