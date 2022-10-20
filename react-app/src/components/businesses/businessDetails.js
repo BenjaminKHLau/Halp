@@ -32,7 +32,7 @@ function GetBusinessDetailsComponent() {
   // console.log("REVIEWS in Business Details component", reviewsState)
   // console.log("business details ACTUAL", businessDetails);
   // console.log("NORMALIZED REVIEWS ARRAY: ", reviewsArray);
-  let businessOwner = business[businessId]?.owner_id === session.user.id;
+  let businessOwner = business[businessId]?.owner_id === session.user?.id;
 
   const businessDetails = business[businessId];
   const reviewsArray = Object.values(reviewsState);
