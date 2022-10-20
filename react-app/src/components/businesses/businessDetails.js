@@ -18,20 +18,22 @@ function GetBusinessDetailsComponent() {
   const { businessId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const [isLoaded, setIsLoaded] = useState(false);
 
+  const [isLoaded, setIsLoaded] = useState(false);
   const [reviewModal, setReviewModal] = useState(false);
   const [reviewObj, setReviewObj] = useState(null);
-  console.log("Review modal is", reviewModal);
+
   const business = useSelector((state) => state.businesses);
-
-  const businessDetails = business[businessId];
-
   const reviewsState = useSelector((state) => state.reviews);
-  const reviewsArray = Object.values(reviewsState);
+  const session = useSelector((state) => state.session);
+
   // console.log("REVIEWS in Business Details component", reviewsState)
   // console.log("business details ACTUAL", businessDetails);
   // console.log("NORMALIZED REVIEWS ARRAY: ", reviewsArray);
+  let businessOwner = business[businessId]?.owner_id === session.user.id;
+
+  const businessDetails = business[businessId];
+  const reviewsArray = Object.values(reviewsState);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -41,7 +43,7 @@ function GetBusinessDetailsComponent() {
   // console.log("business id details component", businessId)
 
   const deleteButton = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     await dispatch(deleteBusinessThunk(businessId));
 
     history.push("/");
@@ -77,8 +79,20 @@ function GetBusinessDetailsComponent() {
                   {businessDetails.description}
                 </div>
               </div>
-              <EditBusinessFormModal businessId={businessId}/>
-              <CreateReviewFormModal />
+              <div className="business-details-hero-buttons-container">
+                {businessOwner && (
+                  <>
+                    <EditBusinessFormModal businessId={businessId} />
+                    <div
+                      className="business-details-delete-business"
+                      onClick={() => deleteButton()}
+                    >
+                      Delete Business
+                    </div>
+                  </>
+                )}
+                {!businessOwner && <CreateReviewFormModal />}
+              </div>
             </div>
           </div>
         )}

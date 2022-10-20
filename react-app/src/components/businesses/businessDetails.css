@@ -115,3 +115,6 @@
     justify-content: space-between;
 }
 
+.business-details-hero-buttons-container {
+    display: flex;
+}

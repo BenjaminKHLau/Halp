@@ -6,25 +6,36 @@
     padding: 25px;
 }
 
-.create-review-button {
+.create-review-button,  .business-details-delete-business{
     display: flex;
     justify-content: center;
     align-items: center;
     /* border: 2px solid black; */
     border-radius: 8px;
     background-color: rgba(255,3,0, 0.5);
-    background-color: rgba(255,3,0, 0.5);
     font-weight: 600;
     width: 200px;
     margin-right: 100px;
 }
 
-.create-review-button:hover {
+.edit-delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid black; */
+    border-radius: 8px;
+    background-color: rgba(255,3,0, 0.5);
+    font-weight: 600;
+    width: 200px;
+    margin-right: 20px;
+}
+
+.create-review-button:hover, .edit-delete:hover, .business-details-delete-business:hover {
     cursor: pointer;
     background-color: red;
 }
 
-.edit-delete {
+/* .edit-delete {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,7 +45,7 @@
     height: 19px;
     font-weight: 300;
     background-color: palevioletred;
-}
+} */
 
 .review-title {
     display: flex;
