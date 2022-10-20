@@ -106,7 +106,7 @@ const ReviewsReducer = (state = initialState, action) => {
                 return reviewsObjState
             };
             case UPDATE_REVIEW: {
-                const newState = {};
+                const newState = {...state};
                 // action.payload.Reviews.forEach(review => {
                 //     newState[review.id] = review;
                 // })

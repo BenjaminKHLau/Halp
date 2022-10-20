@@ -71,24 +71,21 @@ function GetBusinessDetailsComponent() {
                         </div>
                     </div>
                 )}
-                <div className="business-details-button-div">
-                    <label className="review-label-for-details">Reviews</label>
-                    <EditBusinessFormModal businessId={businessId} />
-                    <button className="edit-delete" onClick={(e) => deleteButton(e)}>Delete</button>
-                    <CreateReviewFormModal />
-                    <div className="reviews-information">
-                        {reviewsArray.map(review => (
-                            <div key={review.id} className="reviews">
-                                <ReviewCard review={review} setReviewModal={setReviewModal} setReviewObj={setReviewObj} />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-            {reviewModal && (
-                <UpdateReviewFormModal review={reviewObj} />
-            )}
-        </>
+                <label className="review-label-for-details">Reviews</label>
+					<CreateReviewFormModal />
+                <div className="reviews-information">
+                    {reviewsArray.map(review => (
+						<div key={review.id} className="reviews">
+                            <ReviewCard review={review} setReviewModal={setReviewModal} setReviewObj={setReviewObj} />
+                        </div>
+                    ))}
+
+				</div>
+			</div>
+					{reviewModal && (
+                <UpdateReviewFormModal setReviewModal={setReviewModal} review={reviewObj}/>
+						)}
+			</>
     );
 }
 
