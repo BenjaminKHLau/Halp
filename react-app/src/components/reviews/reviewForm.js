@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, Redirect } from "react-router-dom"
 import { writeReviewThunk } from "../../store/reviews";
+import { useParams } from 'react-router-dom';
 
 function ReviewFormComponent() {
 
@@ -11,24 +12,23 @@ function ReviewFormComponent() {
 
     const [review, setReview] = useState("");
     const [stars, setStars] = useState("");
-    const [reviewImageUrl, setReviewImageUrl] = useState("")
+    const [imageUrl, setImageUrl] = useState("")
     const [isCreated, setIsCreated]= useState(false)
     const [errors, setErrors] = useState([]);
 
     let { businessId } = useParams();
+    console.log("review form business id: ",businessId)
     businessId = Number(businessId);
 
 
     useEffect(() => {
         let errorsArray = []
-        if(!reviewImageUrl) errorsArray.push("Please provide valid image.")
+        if(!imageUrl) errorsArray.push("Please provide valid image.")
         if (review.length < 1) errorsArray.push("Please provide a review.")
         else if (stars < 1 || stars > 5) errorsArray.push("Please provide a number between 1 - 5")
 
         setErrors(errors)
-
-
-    }, [review, stars])
+    }, [review, stars, imageUrl])
 
 
     let handleSubmit = async (e) => {
@@ -39,13 +39,11 @@ function ReviewFormComponent() {
             return;
         }
 
-        //unnecessary variable for now
-        // const writeReview = await
-            dispatch(writeReviewThunk({
+        dispatch(writeReviewThunk({
+            businessId,
             review,
             stars,
-            reviewImageUrl,
-            businessId
+            imageUrl,
         }))
 
         history.push(`/businesses/${businessId}`)
@@ -95,8 +93,8 @@ function ReviewFormComponent() {
                         <input
                             type="text"
                             placeholder="Review URL"
-                            value={reviewImageUrl}
-                            onChange={(e) => setReviewImageUrl(e.target.value)}
+                            value={imageUrl}
+                            onChange={(e) => setImageUrl(e.target.value)}
                             required
                         />
                     </label>

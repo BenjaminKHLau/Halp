@@ -4,6 +4,11 @@ body {
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     color: black;
     font-size: 12pt;
+    margin: 0px;
+}
+
+body button:hover {
+    cursor: pointer;
 }
 
 a {
@@ -11,36 +16,7 @@ a {
     color: black;
 }
 
-.businesses {
-    background-color: rgb(240, 240, 240);
-    margin-top: 15px;
+.centering-spot-container {
     display: flex;
-    position: relative;
-    top: 410px;
-    flex-direction: column;
-}
-
-.businesses:hover {
-    background-color: lightgrey;
-}
-
-.businesses-outer-container {
-    display: flex;
-    /* flex-direction: column; */
-    flex-wrap: wrap;
-}
-
-.Business-card {
-    display: flex;
-    width: 70vw;
-    /* top: 1000px; */
-}
-
-.business-image {
-    width: 33%;
-    /* height: 20vh; */
-}
-
-.business-image-container {
-    width: 100%;
+    justify-content: center;
 }

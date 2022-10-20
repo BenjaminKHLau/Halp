@@ -1,0 +1,54 @@
+.review-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 120px;
+}
+
+.review-image {
+    height: 120px;
+    width: 150px;
+    object-fit: cover;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.actual-trash {
+    height: 30px;
+    width: 30px;
+}
+
+.delete-button {
+    height: 60px;
+    width: 100px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border: none;
+    background-color: #FF0000;
+}
+
+.misc-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stars-given {
+    font-weight: 400;
+    font-size: 150%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.review-written {
+    font-weight: 400;
+    font-size: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}

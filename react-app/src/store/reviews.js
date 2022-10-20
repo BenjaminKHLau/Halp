@@ -39,22 +39,23 @@ const deleteRevAction = (payload) => {
 
  // Thunk Action Creators
 export const readTheReviewsThunk = (businessId) => async dispatch => {
-    const response = await fetch(`/api/businesses${businessId}/reviews`, {
+    const response = await fetch(`/api/businesses/${businessId}/reviews`, {
         method: "GET"
     })
     const data = await response.json();
+    // console.log("what is my review?", data)
     dispatch(readRevsAction(data))
 
     return data;
 }
 
-export const writeReviewThunk = ({ businessId, review, stars }) => async dispatch => {
+export const writeReviewThunk = ({ businessId, imageUrl, review, stars }) => async dispatch => {
   const response = await fetch(`/api/businesses/${businessId}/reviews`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({businessId, review, stars})
+    body: JSON.stringify({businessId, imageUrl, review, stars})
   })
 
   if (response.ok) {
@@ -91,6 +92,7 @@ export const removeReviewThunk= (reviewId) => async dispatch => {
 
 // REDUCER UPDATES STATE
 const initialState = {};
+
 
 
 const ReviewsReducer = (state = initialState, action) => {

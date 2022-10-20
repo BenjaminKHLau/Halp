@@ -2,56 +2,85 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams, useHistory } from "react-router-dom";
 import { getBusinessByIdThunk, deleteBusinessThunk } from "../../store/businesses";
+import { readTheReviewsThunk } from "../../store/reviews";
+import ReviewCard from "../reviews/reviewCard";
 import EditBusinessFormModal from "./businessEditFormMODAL";
+import './businessDetails.css'
+import ReviewFormComponent from "../reviews/reviewForm";
+import ReviewFormModal from "../reviews/revModal";
 
 function GetBusinessDetailsComponent() {
-	const { businessId } = useParams();
-	const dispatch = useDispatch();
-	const history = useHistory();
-	const [isLoaded, setIsLoaded] = useState(false);
+    const { businessId } = useParams();
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const [isLoaded, setIsLoaded] = useState(false);
 
-	const business = useSelector((state) => state.businesses);
-	// console.log("business details business variable: ", business);
-	const businessDetails = business[businessId];
-	console.log("business details ACTUAL", businessDetails);
+    const business = useSelector((state) => state.businesses);
 
-	useEffect(() => {
-		setIsLoaded(true);
-		dispatch(getBusinessByIdThunk(businessId));
-	}, [dispatch, isLoaded]);
-	// console.log("business id details component", businessId)
+    const businessDetails = business[businessId];
 
-	const deleteButton = async (e) => {
-		e.preventDefault();
-		await dispatch(deleteBusinessThunk(businessId));
+    const reviewsState = useSelector(state => state.reviews)
+    const reviewsArray = Object.values(reviewsState)
+    // console.log("REVIEWS in Business Details component", reviewsState)
+    // console.log("business details ACTUAL", businessDetails);
+    // console.log("NORMALIZED REVIEWS ARRAY: ", reviewsArray);
 
-		history.push("/");
-	};
 
-	return (
-		isLoaded && (
-			<div className="business-stuff">
-				{businessDetails && (
-					<div className="business-details-container">
-						<div className="business-details-info">{businessDetails.name}</div>
-						<div className="business-details-info">
-							{businessDetails.description}
-						</div>
-						<div className="business-details-info">
-							{businessDetails.address}
-						</div>
-						<div className="business-details-info">
-							{businessDetails.category}
-						</div>
-						<div className="business-details-info">{businessDetails.city}</div>
-						<div className="business-details-info">{businessDetails.state}</div>
+    useEffect(() => {
+        setIsLoaded(true);
+        dispatch(getBusinessByIdThunk(businessId))
+        dispatch(readTheReviewsThunk(businessId))
+    }, [dispatch, isLoaded]);
+    // console.log("business id details component", businessId)
+
+    const deleteButton = async (e) => {
+        e.preventDefault();
+        await dispatch(deleteBusinessThunk(businessId));
+
+        history.push("/");
+    };
+
+    return (
+        isLoaded && (
+            <div className="business-stuff">
+                {businessDetails && (
+                    <div className="business-details-container-image">
+                        <img src={businessDetails.business_image_url} className="business-detail-image" />
+                    </div>
+                )}
+                {businessDetails && (
+                    <div className="business-details-container">
+
+                        <div className="business-details-name">{businessDetails.name}</div>
+                        <div className="business-details-address">
+                            {businessDetails.address}
+                        </div>
+                        <div className="business-details-category">
+                            {businessDetails.category}
+                        </div>
+                        <div className="business-details-city">{businessDetails.city}</div>
+                        <div className="business-details-state">{businessDetails.state}</div>
+                        <div className="business-details-description">
+                            {businessDetails.description}
+                        </div>
                         <EditBusinessFormModal businessId={businessId} />
 						<button className="edit-delete" onClick={(e) => deleteButton(e)}>Delete</button>
-					</div>
-				)}
-			</div>
-		)
-	);
+                    </div>
+                )}
+                <label className="review-label-for-details">Reviews</label>
+					<ReviewFormModal />
+                <div className="reviews-information">
+                    {reviewsArray.map(review => (
+                        <div className="reviews">
+                            <ReviewCard review={review} />
+                        </div>
+                    ))}
+                    {/* <ReviewCard review={review} /> */}
+
+				</div>
+            </div>
+        )
+    );
 }
 
 export default GetBusinessDetailsComponent;

@@ -1,28 +1,45 @@
 import { Link } from "react-router-dom";
+import "./businessCard.css";
+import sorrykiwi2 from "./sorrykiwi2.png";
+
+function BusinessCardComponent({ business }) {
+
+    let contact = business.contact.split('')
+    contact.splice(6,0, '-')
+    contact.splice(3,0, '-')
+    contact = contact.join("")
 
 
-function BusinessCardComponent({ business }){
-    return (
-        <div className="Business-card">
-            <Link to={`/businesses/${business.id}`}>
-
-            <div className="Business-name">
-
-                {/* <div className="business-image-container"> */}
-                    <img src={business.business_image_url} className="business-image"/>
-                    {/* </div> */}
-                <div>{business.name}</div>
-                <div>{business.description}</div>
-                <div>{business.address}</div>
-                <div>{business.city}</div>
-                <div>{business.state}</div>
-                <div>{business.contact}</div>
-
-
-            </div>
-            </Link>
+  return (
+    <div className="Business-card">
+      <div className="Business-name">
+        <div className="biz-name">{business.name}</div>
+        {/* <div className="business-image-container"> */}
+        <img
+          src={business.business_image_url}
+          className="business-image"
+          onError={(e) => {
+            e.target.src = sorrykiwi2;
+          }}
+        />
+        {/* </div> */}
+        <div className="biz-address">
+          <span className="business_card_address_bold">Location: </span>
+          {`${business.address}, ${business.city}, ${business.state}`}
         </div>
-    )
+
+        <div className="biz-contact">
+          <p>
+            <span className="business_card_contact_bold">Phone: </span>
+            {` ${contact}`}
+          </p>
+        </div>
+
+        {/* <div className="biz-city">{business.city}</div>
+                <div className="biz-state">{business.state}</div> */}
+      </div>
+    </div>
+  );
 }
 
-export default BusinessCardComponent
+export default BusinessCardComponent;

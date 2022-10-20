@@ -1,0 +1,53 @@
+.biz-name {
+    padding: 20px;
+    display: flex;
+    justify-content: left;
+    text-align: center;
+    align-items: left;
+    width: 100%;
+    font-size: 130%;
+    font-weight: 600;
+}
+
+.biz-address {
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.biz-contact {
+    padding-left: 10px;
+    margin-bottom: -20px;
+}
+
+.biz-city {
+    padding-left: 10px;
+}
+
+.biz-state {
+    padding-left: 10px;
+}
+
+.business-image {
+    width: 350px;
+    /* border-top-left-radius: 20px;
+    border-top-right-radius: 20px; */
+    height: 200px;
+    object-fit: cover;
+
+}
+
+.businesses-outer-container {
+    display: grid;
+    grid-template-columns: repeat(3, 350px);
+    grid-template-rows: auto;
+    grid-gap: 40px 24px;
+    /* width: 100%; */
+    padding-bottom: 50px;
+    margin-top: 510px;
+}
+
+.Business-card {
+    display: flex;
+    width: 350px;
+    /* top: 1000px; */
+}
