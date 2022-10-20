@@ -1,0 +1,12 @@
+.title-search {
+    margin-left: 50px;
+}
+
+.biz-cate {
+    margin: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 350px);
+    grid-template-rows: auto;
+    grid-gap: 40px 24px;
+    gap: 50px;
+}

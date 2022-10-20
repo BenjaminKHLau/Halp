@@ -54,3 +54,9 @@
     height: 40px;
     font-weight: 600;
 }
+
+.error-message {
+    font-size: 12px;
+    font-weight: 300;
+    color: #FF0000;
+}

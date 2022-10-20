@@ -4,7 +4,7 @@ import { useHistory} from "react-router-dom"
 import { updateReviewThunk, readTheReviewsThunk } from "../../store/reviews";
 
 import { getBusinessByIdThunk } from "../../store/businesses";
-
+import './reviewForm.css'
 
 function EditReviewFormComponent({review, setReviewModal}) {
 
@@ -65,16 +65,16 @@ function EditReviewFormComponent({review, setReviewModal}) {
     ));
 
     return (
-        <div className="edit-review-container">
+        <div className="create-review-container">
             <div className="encompass-form">
                 <form
                     className="review-form" onSubmit={handleSubmit}>
-                    <h1 className="change-title">Edit your Review</h1>
+                    <h1 className="review-title">Edit your Review</h1>
                     <div className="errors">
                         {isChanged && ErrorMsgs}
                     </div>
 
-                    <label className="let-review">
+                    <label className="create-review">
                         <span> Review: </span>
                         <input
                             type="text"
@@ -85,7 +85,7 @@ function EditReviewFormComponent({review, setReviewModal}) {
                         />
                     </label>
 
-                    <label>
+                    <label className="create-stars">
                         <span> Stars (out of 5): </span>
                         <input
                             type="Number"
@@ -97,7 +97,7 @@ function EditReviewFormComponent({review, setReviewModal}) {
                             required
                         />
                     </label>
-                    <label className="let-review">
+                    <label className="create-review">
                         <span> Review Image: </span>
                         <input
                             type="text"
