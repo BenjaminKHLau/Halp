@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Modal } from '../MODAL/modal';
 import { useSelector } from 'react-redux';
 import EditReviewFormComponent from "./editForm"
+import './reviewForm.css'
 
 
 function UpdateReviewFormModal({review, setReviewModal}) {
@@ -17,12 +18,11 @@ function UpdateReviewFormModal({review, setReviewModal}) {
 
   return (
     <>
-      <div className='edit-review-button' onClick={() => setShowModal(true)}></div>
+      <div className='create-review-button' onClick={() => setShowModal(true)}></div>
       {/* {showModal && ( */}
         <Modal onClose={() => setReviewModal(false)}>
         <EditReviewFormComponent setReviewModal={setReviewModal} review={review} formType="UPDATE"/>
         </Modal>
-      )
     </>
   );
 }
