@@ -13,7 +13,7 @@ function ReviewCard({ review, setReviewModal, setReviewObj }) {
     const dispatch = useDispatch()
     // const history = useHistory();
     const { businessId } = useParams();
-    console.log("business id inside review card component: ", businessId)
+    // console.log("business id inside review card component: ", businessId)
 
     // const selectedReviews = useSelector((state) => state.reviews)
 

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams, useHistory } from "react-router-dom";
 import {
-  getBusinessByIdThunk,
-  deleteBusinessThunk,
+	getBusinessByIdThunk,
+	deleteBusinessThunk,
 } from "../../store/businesses";
 import { readTheReviewsThunk } from "../../store/reviews";
 import ReviewCard from "../reviews/reviewCard";
@@ -15,94 +15,98 @@ import CreateReviewFormModal from "../reviews/revModal";
 import UpdateReviewFormModal from "../reviews/updateReviewModal";
 
 function GetBusinessDetailsComponent() {
-  const { businessId } = useParams();
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const [isLoaded, setIsLoaded] = useState(false);
+	const { businessId } = useParams();
+	const dispatch = useDispatch();
+	const history = useHistory();
 
-  const [reviewModal, setReviewModal] = useState(false);
-  const [reviewObj, setReviewObj] = useState(null);
-  console.log("Review modal is", reviewModal);
-  const business = useSelector((state) => state.businesses);
+	const [isLoaded, setIsLoaded] = useState(false);
+	const [reviewModal, setReviewModal] = useState(false);
+	const [reviewObj, setReviewObj] = useState(null);
 
-  const businessDetails = business[businessId];
+	const business = useSelector((state) => state.businesses);
+	const reviewsState = useSelector((state) => state.reviews);
+    const session =  useSelector(state => state.session)
 
-  const reviewsState = useSelector((state) => state.reviews);
-  const reviewsArray = Object.values(reviewsState);
-  // console.log("REVIEWS in Business Details component", reviewsState)
-  // console.log("business details ACTUAL", businessDetails);
-  // console.log("NORMALIZED REVIEWS ARRAY: ", reviewsArray);
+    // console.log("session user in business details: ", session)
+    // console.log("review author user in business details: ", reviewsState)
+    // console.log("business owner in business details: ", business)
 
-  useEffect(() => {
-    setIsLoaded(true);
-    dispatch(getBusinessByIdThunk(businessId));
-    dispatch(readTheReviewsThunk(businessId));
-  }, [dispatch, isLoaded]);
-  // console.log("business id details component", businessId)
+	const businessDetails = business[businessId];
+	const reviewsArray = Object.values(reviewsState);
 
-  const deleteButton = async (e) => {
-    e.preventDefault();
-    await dispatch(deleteBusinessThunk(businessId));
+    let businessOwner = business[businessId]?.owner_id === session.user.id
+    console.log("business Owner Status: ",businessOwner)
 
-    history.push("/");
-  };
 
-  return (
-    <>
-      {/* isLoaded && ( */}
-      <div className="business-stuff">
-        {businessDetails && (
-          <>
-            <div className="business-details-category">
-              {businessDetails.category}
-            </div>
-            <div className="business-details-container-image">
-              <img
-                src={businessDetails.business_image_url}
-                className="business-detail-image"
-              />
-            </div>
-          </>
-        )}
-        {businessDetails && (
-          <div className="business-details-container">
-            <div className="business-details-name">{businessDetails.name}</div>
-            <div className="business-details-bottom-hero-container">
-              <div className="business-details-add-desc-container">
-                <div className="business-details-address">
-                  {businessDetails.address}, {businessDetails.city},{" "}
-                  {businessDetails.state}
-                </div>
-                <div className="business-details-description">
-                  {businessDetails.description}
-                </div>
-              </div>
-              <EditBusinessFormModal businessId={businessId}/>
-              <CreateReviewFormModal />
-            </div>
-          </div>
-        )}
-        <label className="review-label-for-details">Reviews</label>
-        <div className="reviews-information">
-          {reviewsArray.map((review) => (
-            <div key={review.id} className="reviews">
-              <ReviewCard
-                review={review}
-                setReviewModal={setReviewModal}
-                setReviewObj={setReviewObj}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-      {reviewModal && (
-        <UpdateReviewFormModal
-          setReviewModal={setReviewModal}
-          review={reviewObj}
-        />
-      )}
-    </>
-  );
+	useEffect(() => {
+		setIsLoaded(true);
+		dispatch(getBusinessByIdThunk(businessId));
+		dispatch(readTheReviewsThunk(businessId));
+	}, [dispatch, isLoaded]);
+	// console.log("business id details component", businessId)
+
+	const deleteButton = async (e) => {
+		e.preventDefault();
+		await dispatch(deleteBusinessThunk(businessId));
+
+		history.push("/");
+	};
+
+	return isLoaded && (
+		<>
+			<div className="business-stuff">
+				{businessDetails && (
+					<>
+						<div className="business-details-category">
+							{businessDetails.category}
+						</div>
+						<div className="business-details-container-image">
+							<img
+								src={businessDetails.business_image_url}
+								className="business-detail-image"
+							/>
+						</div>
+					</>
+				)}
+				{businessDetails && (
+					<div className="business-details-container">
+						<div className="business-details-name">{businessDetails.name}</div>
+						<div className="business-details-bottom-hero-container">
+							<div className="business-details-add-desc-container">
+								<div className="business-details-address">
+									{businessDetails.address}, {businessDetails.city},{" "}
+									{businessDetails.state}
+								</div>
+								<div className="business-details-description">
+									{businessDetails.description}
+								</div>
+							</div>
+							{businessOwner && (<EditBusinessFormModal businessId={businessId} />)}
+							<CreateReviewFormModal />
+						</div>
+					</div>
+				)}
+				<label className="review-label-for-details">Reviews</label>
+				<div className="reviews-information">
+					{reviewsArray.map((review) => (
+						<div key={review.id} className="reviews">
+							<ReviewCard
+								review={review}
+								setReviewModal={setReviewModal}
+								setReviewObj={setReviewObj}
+							/>
+						</div>
+					))}
+				</div>
+			</div>
+			{reviewModal && (
+				<UpdateReviewFormModal
+					setReviewModal={setReviewModal}
+					review={reviewObj}
+				/>
+			)}
+		</>
+	);
 }
 
 export default GetBusinessDetailsComponent;
