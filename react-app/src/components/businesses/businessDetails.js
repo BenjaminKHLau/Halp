@@ -65,6 +65,7 @@ function GetBusinessDetailsComponent() {
 						<button className="edit-delete" onClick={(e) => deleteButton(e)}>Delete</button> */}
                     </div>
                 )}
+                <label className="review-label-for-details">Reviews</label>
                 <div className="reviews-information">
                     {reviewsArray.map(review => (
                         <div className="reviews">
