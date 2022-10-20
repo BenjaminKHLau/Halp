@@ -36,9 +36,9 @@ function ReviewCard({ review, setReviewModal, setReviewObj }) {
     const editButton = async (e) => {
         e.preventDefault();
         await dispatch(updateReviewThunk(review))
-        // await dispatch(getBusinessByIdThunk(businessId))
-        // await(readTheReviewsThunk(businessId))
-        alert("editreviewplease")
+        await dispatch(getBusinessByIdThunk(businessId))
+        await(readTheReviewsThunk(businessId))
+
     }
 
     useEffect(() => {

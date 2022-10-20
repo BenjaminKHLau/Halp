@@ -7,7 +7,7 @@ import ReviewCard from "../reviews/reviewCard";
 import EditBusinessFormModal from "./businessEditFormMODAL";
 import './businessDetails.css'
 import ReviewFormComponent from "../reviews/reviewForm";
-import ReviewFormModal from "../reviews/revModal";
+import CreateReviewFormModal from "../reviews/revModal";
 import UpdateReviewFormModal from "../reviews/updateReviewModal";
 
 function GetBusinessDetailsComponent() {
@@ -46,7 +46,7 @@ function GetBusinessDetailsComponent() {
 
 	return (
 		<>
-        isLoaded && (
+        {/* isLoaded && ( */}
             <div className="business-stuff">
                 {businessDetails && (
                     <div className="business-details-container-image">
@@ -73,7 +73,7 @@ function GetBusinessDetailsComponent() {
                     </div>
                 )}
                 <label className="review-label-for-details">Reviews</label>
-					<ReviewFormModal />
+					<CreateReviewFormModal />
                 <div className="reviews-information">
                     {reviewsArray.map(review => (
 						<div key={review.id} className="reviews">
@@ -85,7 +85,7 @@ function GetBusinessDetailsComponent() {
 			</div>
         )
 					{reviewModal && (
-							<UpdateReviewFormModal review={review} />
+							<UpdateReviewFormModal review={reviewObj}/>
 						)}
 			</>
     );

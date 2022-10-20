@@ -38,13 +38,13 @@ function ReviewFormComponent() {
         if (errors.length > 0) {
             return;
         }
+            dispatch(writeReviewThunk({
+                businessId,
+                review,
+                stars,
+                imageUrl,
+            }))
 
-        dispatch(writeReviewThunk({
-            // businessId,
-            review,
-            stars,
-            imageUrl,
-        }))
 
         history.push(`/businesses/${businessId}`)
 
@@ -60,7 +60,7 @@ function ReviewFormComponent() {
             <div className="encompass-form">
                 <form
                     className="review-form" onSubmit={handleSubmit}>
-                    <h1 className="review-title">Create a Review</h1>
+                    <h1 className="review-title">Submit a Review</h1>
                     <div className="errors">
                         {isCreated && ErrorMsgs}
                     </div>

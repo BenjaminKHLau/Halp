@@ -16,10 +16,10 @@ function UpdateReviewFormModal({review}) {
 
   return (
     <>
-      <div className='create-review-button' onClick={() => setShowModal(true)}>Change your Review</div>
+      <div className='edit-review-button' onClick={() => setShowModal(true)}></div>
       {/* {showModal && ( */}
         <Modal onClose={() => setShowModal(false)}>
-          <ReviewFormComponent  />
+              <ReviewFormComponent review={review} formType="UPDATE"/>
         </Modal>
       {/* )} */}
     </>
