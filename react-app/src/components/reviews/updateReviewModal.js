@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 import ReviewFormComponent from "./reviewForm"
 
 
-function CreateReviewFormModal() {
+function UpdateReviewFormModal({review}) {
   const [showModal, setShowModal] = useState(false);
-
+    console.log('review of update', review)
   const allRevs = useSelector(state => state.reviews)
 
 
@@ -16,14 +16,14 @@ function CreateReviewFormModal() {
 
   return (
     <>
-      <div className='create-review-button' onClick={() => setShowModal(true)}>Write your Review</div>
-      {showModal && (
+      <div className='create-review-button' onClick={() => setShowModal(true)}>Change your Review</div>
+      {/* {showModal && ( */}
         <Modal onClose={() => setShowModal(false)}>
           <ReviewFormComponent  />
         </Modal>
-      )}
+      {/* )} */}
     </>
   );
 }
 
-export default CreateReviewFormModal;
+export default UpdateReviewFormModal;
