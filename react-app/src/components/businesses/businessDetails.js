@@ -84,9 +84,8 @@ function GetBusinessDetailsComponent() {
 
 				</div>
 			</div>
-        )
 					{reviewModal && (
-							<UpdateReviewFormModal review={reviewObj}/>
+                <UpdateReviewFormModal setReviewModal={setReviewModal} review={reviewObj}/>
 						)}
 			</>
     );

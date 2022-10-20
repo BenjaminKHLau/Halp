@@ -33,13 +33,6 @@ function ReviewCard({ review, setReviewModal, setReviewObj }) {
         // history.push(`/businesses/${businessId}`);
     };
 
-    const editButton = async (e) => {
-        e.preventDefault();
-        await dispatch(updateReviewThunk(review))
-        await dispatch(getBusinessByIdThunk(businessId))
-        await(readTheReviewsThunk(businessId))
-
-    }
 
     useEffect(() => {
         dispatch(getBusinessByIdThunk(businessId))
