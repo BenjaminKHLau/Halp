@@ -17,9 +17,9 @@ function GetBusinessDetailsComponent() {
     const history = useHistory();
     const [isLoaded, setIsLoaded] = useState(false);
 
-	const [reviewModal, setReviewModal] = useState(false);
-	const [reviewObj, setReviewObj] = useState(null);
-	console.log("Review modal is", reviewModal)
+    const [reviewModal, setReviewModal] = useState(false);
+    const [reviewObj, setReviewObj] = useState(null);
+    console.log("Review modal is", reviewModal)
     const business = useSelector((state) => state.businesses);
 
     const businessDetails = business[businessId];
@@ -45,9 +45,9 @@ function GetBusinessDetailsComponent() {
         history.push("/");
     };
 
-	return (
-		<>
-        {/* isLoaded && ( */}
+    return (
+        <>
+            {/* isLoaded && ( */}
             <div className="business-stuff">
                 {businessDetails && (
                     <div className="business-details-container-image">
@@ -69,26 +69,26 @@ function GetBusinessDetailsComponent() {
                         <div className="business-details-description">
                             {businessDetails.description}
                         </div>
-                        <EditBusinessFormModal businessId={businessId} />
-						<button className="edit-delete" onClick={(e) => deleteButton(e)}>Delete</button>
                     </div>
                 )}
-                <label className="review-label-for-details">Reviews</label>
-					<CreateReviewFormModal />
-                <div className="reviews-information">
-                    {reviewsArray.map(review => (
-						<div key={review.id} className="reviews">
-                            <ReviewCard review={review} setReviewModal={setReviewModal} setReviewObj={setReviewObj} />
-                        </div>
-                    ))}
-
-				</div>
-			</div>
-        )
-					{reviewModal && (
-							<UpdateReviewFormModal review={reviewObj}/>
-						)}
-			</>
+                <div className="business-details-button-div">
+                    <label className="review-label-for-details">Reviews</label>
+                    <EditBusinessFormModal businessId={businessId} />
+                    <button className="edit-delete" onClick={(e) => deleteButton(e)}>Delete</button>
+                    <CreateReviewFormModal />
+                    <div className="reviews-information">
+                        {reviewsArray.map(review => (
+                            <div key={review.id} className="reviews">
+                                <ReviewCard review={review} setReviewModal={setReviewModal} setReviewObj={setReviewObj} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+            {reviewModal && (
+                <UpdateReviewFormModal review={reviewObj} />
+            )}
+        </>
     );
 }
 

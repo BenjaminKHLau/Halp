@@ -14,17 +14,17 @@ function ReviewFormComponent() {
     const [review, setReview] = useState("");
     const [stars, setStars] = useState("");
     const [imageUrl, setImageUrl] = useState("")
-    const [isCreated, setIsCreated]= useState(false)
+    const [isCreated, setIsCreated] = useState(false)
     const [errors, setErrors] = useState([]);
 
     let { businessId } = useParams();
-    console.log("review form business id: ",businessId)
+    console.log("review form business id: ", businessId)
     businessId = Number(businessId);
 
 
     useEffect(() => {
         let errorsArray = []
-        if(!imageUrl) errorsArray.push("Please provide valid image.")
+        if (!imageUrl) errorsArray.push("Please provide valid image.")
         if (review.length < 1) errorsArray.push("Please provide a review.")
         else if (stars < 1 || stars > 5) errorsArray.push("Please provide a number between 1 - 5")
 
@@ -39,12 +39,12 @@ function ReviewFormComponent() {
         if (errors.length > 0) {
             return;
         }
-            dispatch(writeReviewThunk({
-                businessId,
-                review,
-                stars,
-                imageUrl,
-            }))
+        dispatch(writeReviewThunk({
+            businessId,
+            review,
+            stars,
+            imageUrl,
+        }))
 
 
         history.push(`/businesses/${businessId}`)
@@ -65,40 +65,41 @@ function ReviewFormComponent() {
                     <div className="errors">
                         {isCreated && ErrorMsgs}
                     </div>
+                    <div className="submit-div">
+                        <label className="create-review">
+                            <span> Review: </span>
+                            <input
+                                type="text"
+                                placeholder="Review Text"
+                                value={review}
+                                onChange={(e) => setReview(e.target.value)}
+                                required
+                            />
+                        </label>
 
-                    <label className="create-review">
-                        <span> Review: </span>
-                        <input
-                            type="text"
-                            placeholder="Review Text"
-                            value={review}
-                            onChange={(e) => setReview(e.target.value)}
-                            required
-                        />
-                    </label>
-
-                    <label>
-                        <span> Stars (out of 5): </span>
-                        <input
-                            type="Number"
-                            min={1}
-                            max={5}
-                            placeholder="0"
-                            value={stars}
-                            onChange={(e) => setStars(e.target.value)}
-                            required
-                        />
-                    </label>
-                    <label className="create-review">
-                        <span> Review Image: </span>
-                        <input
-                            type="text"
-                            placeholder="Review URL"
-                            value={imageUrl}
-                            onChange={(e) => setImageUrl(e.target.value)}
-                            required
-                        />
-                    </label>
+                        <label className="create-stars">
+                            <span> Stars (out of 5): </span>
+                            <input
+                                type="Number"
+                                min={1}
+                                max={5}
+                                placeholder="0"
+                                value={stars}
+                                onChange={(e) => setStars(e.target.value)}
+                                required
+                            />
+                        </label>
+                        <label className="create-review">
+                            <span> Review Image: </span>
+                            <input
+                                type="text"
+                                placeholder="Review URL"
+                                value={imageUrl}
+                                onChange={(e) => setImageUrl(e.target.value)}
+                                required
+                            />
+                        </label>
+                    </div>
                     <div className="to-review">
                         <button className="created"
                             type="submit">

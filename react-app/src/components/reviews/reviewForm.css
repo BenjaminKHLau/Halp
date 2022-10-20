@@ -50,4 +50,30 @@
     width: 100%;
     height: 40px;
     font-weight: 600;
+    margin-top: 20px;
+}
+
+.submit-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-review {
+    margin-top: 10px;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.create-stars {
+    margin-top: 10px;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.business-details-button-div {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
 }
