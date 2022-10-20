@@ -37,7 +37,7 @@ def add_business_root():
     db_name = Business.query.filter_by(name=form.data['name']).first()
     db_description = Business.query.filter_by(description=form.data['description']).first()
     db_address = Business.query.filter_by(address=form.data['address']).first()
-    db_contact = Business.query.filter_by(contact=form.data['contact']).first()
+    db_contact = Business.query.filter_by(contact=int(form.data['contact'])).first()
 
     if(db_name):
         errors['name'] = "Name already exists"
@@ -62,7 +62,7 @@ def add_business_root():
             city = form.data['city'],
             state = form.data['state'],
             # hours = f"{form.data['openHours']} - {form.data['closeHours']}",
-            contact = form.data['contact'],
+            contact = int(form.data['contact']),
             business_image_url = form.data['businessImage'],
             owner_id = current_user.id,
             category = form.data['category']
