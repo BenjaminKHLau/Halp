@@ -12,13 +12,13 @@ function GetAllCategories() {
     dispatch(getAllCategoriesThunk());
   }, [dispatch]);
 
-  let categoryUrls = {}
+  // let categoryUrls = {}
 
-  allCategories.forEach(cat => {
-    let currUrl = new URL(`${window.location.href}businesses/search`)
-    currUrl.searchParams.append('category', cat)
-    categoryUrls[`${cat}`] = currUrl
-  })
+  // allCategories.forEach(cat => {
+  //   let currUrl = new URL(`${window.location.href}businesses/search`)
+  //   currUrl.searchParams.append('category', cat)
+  //   categoryUrls[`${cat}`] = currUrl
+  // })
 //   console.log(`all categories are ${allCategories}`)
 //   let cat = "Entertainment"
 //   console.log(`categoryUrls are ${categoryUrls[cat]}`)
@@ -30,7 +30,8 @@ function GetAllCategories() {
     <div className="category_home_outer_outer_container">
       <div className="category_home_outer_container">
         {allCategories.map(cat => (
-            <Link to={categoryUrls[cat]}>
+            // <Link to={categoryUrls[cat]}>
+            <Link to={`/businesses/search?category=${cat}`}>
                 <div className="category_home_card_container">
                     <p className="category_home_card_p">{cat}</p>
                 </div>
