@@ -164,7 +164,7 @@ def load_review(businessId):
 
 
 # post a review to a business:
-@business_blueprint.route("/<int:businessId>", methods=['POST'])
+@business_blueprint.route("/<int:businessId>/reviews", methods=['POST'])
 @login_required
 def create_review(businessId):
     business = Business.query.get(businessId)

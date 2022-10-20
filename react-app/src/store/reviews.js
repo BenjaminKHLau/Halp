@@ -43,7 +43,7 @@ export const readTheReviewsThunk = (businessId) => async dispatch => {
         method: "GET"
     })
     const data = await response.json();
-    console.log("what is my review?", data)
+    // console.log("what is my review?", data)
     dispatch(readRevsAction(data))
 
     return data;

@@ -8,20 +8,35 @@ import './reviewCard.css'
 import trash from './bin.png'
 
 
-export default function ReviewCard({ review }) {
-    const dispatch = useDispatch
-    const history = useHistory();
-    // const { businessId } = useParams();
+function ReviewCard({ review }) {
+    const dispatch = useDispatch()
+    // const history = useHistory();
+    const { businessId } = useParams();
+    console.log("business id inside review card component: ",businessId)
 
     // const selectedReviews = useSelector((state) => state.reviews)
 
 
-    const aReview = async (businessId) => {
-        await dispatch(readTheReviewsThunk(businessId))
-        await dispatch(getBusinessByIdThunk(businessId));
+    const readReview = async (businessId) => { //???
+                await dispatch(readTheReviewsThunk(businessId))
+                await dispatch(getBusinessByIdThunk(businessId));
 
-        history.push(`/api/businesses/${businessId}`)
+                // history.push(`/api/businesses/${businessId}`)
     }
+
+    const deleteButton = async (e) => {
+        e.preventDefault();
+        await dispatch(removeReviewThunk(review.id));
+        await dispatch(getBusinessByIdThunk(businessId))
+        await dispatch(readTheReviewsThunk(businessId))
+        // history.push(`/businesses/${businessId}`);
+    };
+
+    useEffect(() => {
+        dispatch(getBusinessByIdThunk(businessId))
+    },[dispatch])
+
+
 
     return review && (
         <div className="review-box">
@@ -35,11 +50,15 @@ export default function ReviewCard({ review }) {
                 <div className="stars-given">
                     {review.stars} ★
                 </div>
-                <button className="delete-button" onClick={() => aReview(review.id)}>
+                <button className="delete-button" onClick={(e) => deleteButton(e)}>
                     <img className='actual-trash' src={trash}></img>
                 </button>
             </div>
-        </div>
+            </div>
 
     )
 }
+        
+    
+
+    export default ReviewCard

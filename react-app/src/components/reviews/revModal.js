@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Modal } from '../MODAL/modal';
 import { useSelector } from 'react-redux';
-//import ReviewCard from './reviewCard';
-import ReviewFormComponent from './reviewForm'
+import ReviewFormComponent from "./reviewForm"
+
 
 function ReviewFormModal() {
   const [showModal, setShowModal] = useState(false);

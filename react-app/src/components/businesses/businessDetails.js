@@ -21,9 +21,9 @@ function GetBusinessDetailsComponent() {
 
     const reviewsState = useSelector(state => state.reviews)
     const reviewsArray = Object.values(reviewsState)
-    console.log("REVIEWS in Business Details component", reviewsState)
-    console.log("business details ACTUAL", businessDetails);
-    console.log("NORMALIZED REVIEWS ARRAY: ", reviewsArray);
+    // console.log("REVIEWS in Business Details component", reviewsState)
+    // console.log("business details ACTUAL", businessDetails);
+    // console.log("NORMALIZED REVIEWS ARRAY: ", reviewsArray);
 
 
     useEffect(() => {
@@ -63,11 +63,12 @@ function GetBusinessDetailsComponent() {
                         <div className="business-details-description">
                             {businessDetails.description}
                         </div>
-                        {/* <EditBusinessFormModal businessId={businessId} />
-						<button className="edit-delete" onClick={(e) => deleteButton(e)}>Delete</button> */}
+                        <EditBusinessFormModal businessId={businessId} />
+						<button className="edit-delete" onClick={(e) => deleteButton(e)}>Delete</button>
                     </div>
                 )}
                 <label className="review-label-for-details">Reviews</label>
+					<ReviewFormModal />
                 <div className="reviews-information">
                     {reviewsArray.map(review => (
                         <div className="reviews">

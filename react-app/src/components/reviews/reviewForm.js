@@ -17,6 +17,7 @@ function ReviewFormComponent() {
     const [errors, setErrors] = useState([]);
 
     let { businessId } = useParams();
+    console.log("review form business id: ",businessId)
     businessId = Number(businessId);
 
 
@@ -27,8 +28,6 @@ function ReviewFormComponent() {
         else if (stars < 1 || stars > 5) errorsArray.push("Please provide a number between 1 - 5")
 
         setErrors(errors)
-
-
     }, [review, stars, imageUrl])
 
 
