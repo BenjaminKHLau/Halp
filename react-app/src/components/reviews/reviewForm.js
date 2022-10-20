@@ -41,6 +41,7 @@ function ReviewFormComponent() {
         }
 
         dispatch(writeReviewThunk({
+            businessId,
             review,
             stars,
             imageUrl,
