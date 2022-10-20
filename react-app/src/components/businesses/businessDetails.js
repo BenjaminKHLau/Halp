@@ -6,6 +6,8 @@ import { readTheReviewsThunk } from "../../store/reviews";
 import ReviewCard from "../reviews/reviewCard";
 import EditBusinessFormModal from "./businessEditFormMODAL";
 import './businessDetails.css'
+import ReviewFormComponent from "../reviews/reviewForm";
+import ReviewFormModal from "../reviews/revModal";
 
 function GetBusinessDetailsComponent() {
     const { businessId } = useParams();
@@ -74,7 +76,7 @@ function GetBusinessDetailsComponent() {
                     ))}
                     {/* <ReviewCard review={review} /> */}
 
-                </div>
+				</div>
             </div>
         )
     );
