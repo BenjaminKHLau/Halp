@@ -6,6 +6,7 @@ import { readTheReviewsThunk } from "../../store/reviews";
 import ReviewCard from "../reviews/reviewCard";
 import EditBusinessFormModal from "./businessEditFormMODAL";
 import './businessDetails.css'
+import '../reviews/reviewForm.css'
 import ReviewFormComponent from "../reviews/reviewForm";
 import CreateReviewFormModal from "../reviews/revModal";
 import UpdateReviewFormModal from "../reviews/updateReviewModal";

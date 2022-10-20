@@ -1,0 +1,22 @@
+.create-review-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: palevioletred;
+    font-weight: 500;
+    width: 200px;
+}
+
+.edit-delete{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 6px;
+    width: 120px;
+    height: 19px;
+    font-weight: 300;
+    background-color: palevioletred;
+}
