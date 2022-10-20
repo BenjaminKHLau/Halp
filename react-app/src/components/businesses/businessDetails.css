@@ -28,6 +28,22 @@
     font-weight: 600;
 }
 
+.businesses {
+    /* background-color: rgb(240, 240, 240); */
+    margin-top: 15px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 350px;
+    /* border-radius: 20px; */
+    padding-bottom: 20px;
+    border: 1px solid rgb(227,227,227);
+}
+
+.business_card_address_bold, .business_card_contact_bold {
+    font-weight: bold;
+}
+
 .businesses:hover {
-    box-shadow: 0px 0px 10px rgba(110,112,114,1)
+    box-shadow: 0px 0px 4px rgba(110,112,114,1)
 }
