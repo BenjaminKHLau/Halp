@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, Redirect } from "react-router-dom"
 import { writeReviewThunk } from "../../store/reviews";
+import { useParams } from 'react-router-dom';
 
 function ReviewFormComponent() {
 
@@ -39,9 +40,7 @@ function ReviewFormComponent() {
             return;
         }
 
-        //unnecessary variable for now
-        // const writeReview = await
-            dispatch(writeReviewThunk({
+        dispatch(writeReviewThunk({
             review,
             stars,
             imageUrl,
