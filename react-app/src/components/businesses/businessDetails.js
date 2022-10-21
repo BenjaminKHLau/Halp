@@ -13,8 +13,7 @@ import "../reviews/reviewForm.css";
 import ReviewFormComponent from "../reviews/reviewForm";
 import CreateReviewFormModal from "../reviews/revModal";
 import UpdateReviewFormModal from "../reviews/updateReviewModal";
-import sorrykiwi2 from "../businesses/sorrykiwi2.png"
-
+import sorrykiwi2 from "../businesses/sorrykiwi2.png";
 
 function GetBusinessDetailsComponent() {
   const { businessId } = useParams();
@@ -38,6 +37,9 @@ function GetBusinessDetailsComponent() {
 
   const businessDetails = business[businessId];
   const reviewsArray = Object.values(reviewsState);
+  const number = businessDetails?.contact
+  const formatnumber = number ? "("+ number.slice(0,3)+") "+number.slice(3,6)+"-"+number.slice(6) : null;
+  console.log(formatnumber)
 
   useEffect(() => {
     setIsLoaded(true);
@@ -66,8 +68,8 @@ function GetBusinessDetailsComponent() {
               <img
                 src={businessDetails.business_image_url}
                 onError={(e) => {
-                    e.target.src = sorrykiwi2;
-                  }}
+                  e.target.src = sorrykiwi2;
+                }}
                 className="business-detail-image"
               />
             </div>
@@ -103,6 +105,30 @@ function GetBusinessDetailsComponent() {
             </div>
           </div>
         )}
+        <div className="business-details-midsection-container">
+          <div className="business-details-midsection-left">
+            <div className="business-details-midsection-left-wreview"></div>
+            <div className="business-details-midsection-left-amenities">
+              <h2>Amenities and more</h2>
+              <div className="business-details-midsection-left-amenities-p">
+                <p>Friendly Environment</p>
+                <p>Enjoyable Place</p>
+                <p>Supports Inclusion</p>
+                <p>Offers Discounts</p>
+              </div>
+            </div>
+          </div>
+          <div className="business-details-midsection-right">
+            <div className="business-details-midsection-right-close">
+              <h2>Waitlist closed</h2>
+              <p>This business does not support waitlists</p>
+            </div>
+            <div className="business-details-midsection-right-contact">
+              <h2>Contact</h2>
+              <p>{formatnumber}</p>
+            </div>
+          </div>
+        </div>
         <label className="review-label-for-details">Reviews</label>
         <div className="reviews-information">
           {reviewsArray.map((review) => (
