@@ -32,7 +32,7 @@ def add_business_root():
     errors = {}
 
     form = BusinessForm()
-    form.data['contact'] = int(form.data['contact'])
+    # form.data['contact'] = int(form.data['contact'])
     form.category.choices = [cat.type for cat in Category.query.all()]
     form['csrf_token'].data = request.cookies['csrf_token']
     db_name = Business.query.filter_by(name=form.data['name']).first()
@@ -81,9 +81,10 @@ def edit_business_root(businessId):
     errors = {}
 
     form = BusinessForm()
+    # form.data['contact'] = str(form.data['contact'])
     form['csrf_token'].data = request.cookies['csrf_token']
     form.category.choices = [cat.type for cat in Category.query.all()]
-    form.data['contact'] = int(form.data['contact'])
+    # form.data['contact'] = int(form.data['contact'])
 
     business_to_edit = Business.query.get(businessId)
 
