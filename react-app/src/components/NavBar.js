@@ -29,6 +29,11 @@ const NavBar = () => {
     history.push(`/businesses/search?input=${search}`)
     setIsSubmitted(false);
   }
+  console.log('AAAAAAAAAA\n\n\n\n\n\n\nGet all categories running in navbar')
+
+  useEffect(() => {
+    dispatch(getAllCategoriesThunk());
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getAllCategoriesThunk());
