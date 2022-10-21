@@ -56,7 +56,7 @@
 .reviews-information {
     display: flex;
     flex-direction: column;
-    margin-top: 150px;
+    margin-top: 75px;
 }
 
 .reviews {
@@ -79,6 +79,7 @@
     font-weight: 700;
     font-size: 200%;
     padding-left: 25px;
+    margin-top: 50px;
     /* top: 530px; */
     /* left: 0px; */
     /* right: 0px; */
@@ -128,6 +129,14 @@
 .business-details-midsection-left {
     width: 65%;
     padding-left: 100px;
+}
+
+.business-details-midsection-left-wreview {
+    margin-top: 5px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgb(227, 227, 227);
+    margin-right: 40px;
+
 }
 
 .business-details-midsection-left-amenities {
