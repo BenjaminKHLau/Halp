@@ -127,7 +127,6 @@ function BusinessFormComponent() {
     );
 
     if (newBusiness.errors) setErrors([...Object.values(newBusiness.errors)])
-    // else if (errors) setErrors(errors)
     else history.push(`/businesses/${newBusiness.id}`);
   }
 
