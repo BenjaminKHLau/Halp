@@ -239,7 +239,61 @@ def seed_businesses():
         category = "Restaurant",
         business_image_url = "https://cdn.vox-cdn.com/thumbor/CzFGWd6k016iQ7T7KWleuIPQIlQ=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/19304199/gourmet_dumpling_house___rachel_leah_blumenthal.jpg",
     )
-
+    gymming = Business(
+        name = "Fitness 18",
+        description = "Beginner workouts are offered here!",
+        address = "200 Landess Street",
+        city = "Milpitas",
+        state = "CA",
+        contact = "3152132139",
+        owner_id = 6,
+        category = "Fitness",
+        business_image_url = "https://www.fit19.com/hubfs/_Location%20Pages/Gallery%20Images/Redlands/Redlands-Weights-GallerySliderImages.png",
+    )
+    exercise = Business(
+        name = "LAP Fitness",
+        description = "De-stress from your workday at this great gym!",
+        address = "2 Rosemead Street",
+        city = "Pasadena",
+        state = "CA",
+        contact = "6262132139",
+        owner_id = 7,
+        category = "Fitness",
+        business_image_url = "https://www.fitness19.com/wp-content/uploads/2014/10/IMG_8463-815x400.jpg",
+    )
+    karaoke = Business(
+        name = "Karen Karaoke",
+        description = "The best tracks for you to sing along to!!",
+        address = "100 Bellinger Street",
+        city = "Dalton",
+        state = "TX",
+        contact = "8762132134",
+        owner_id = 6,
+        category = "Entertainment",
+        business_image_url = "https://nwamotherlode.com/wp-content/uploads/2019/02/BBK-photos.jpg",
+    )
+    roundone = Business(
+        name = "Round Two",
+        description = "A fun arcade where you can win stuffed animals",
+        address = "14 Creek Street",
+        city = "Burlington",
+        state = "AL",
+        contact = "8762132134",
+        owner_id = 6,
+        category = "Entertainment",
+        business_image_url = "https://images.nintendolife.com/fc97a1ecfb249/home-arcade.900x.jpg",
+    )
+    shire = Business(
+        name = "The Shire",
+        description = "A combination of an arcade and a bowling alley! Pick your fun!",
+        address = "17 Chicken Street",
+        city = "Bailey",
+        state = "SD",
+        contact = "5032132134",
+        owner_id = 6,
+        category = "Entertainment",
+        business_image_url = "https://www.thebluebook.com/inc/img/qp/1817769/barsto-construction-inc-round-1-bowling-amusement.jpg",
+    )
 
     db.session.add(bens_bakery)
     db.session.add(kyles_bowling)
@@ -260,4 +314,9 @@ def seed_businesses():
     db.session.add(zoo)
     db.session.add(lai)
     db.session.add(waiters)
+    db.session.add(gymming)
+    db.session.add(exercise)
+    db.session.add(karaoke)
+    db.session.add(roundone)
+    db.session.add(shire)
     db.session.commit()

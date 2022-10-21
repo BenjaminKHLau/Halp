@@ -154,7 +154,111 @@ def seed_reviews():
         "userId": 7,
         "imageUrl": "https://www.northern-scot.co.uk/_media/img/750x0/Z84PPV5HYSPG0USCLX3W.jpg"
     },
-
+    {
+        "stars": 1,
+        "review": "The selection of footwear here was not sufficient",
+        "businessId": 8,
+        "userId": 3,
+        "imageUrl": "https://assets2.cbsnewsstatic.com/hub/i/r/2018/11/29/12c4f8ec-4031-4691-af78-814bffd8b3c5/thumbnail/1200x630/72c39825a643871b06c08633ac0b736b/sneaker-1.png"
+    },
+    {
+        "stars": 3,
+        "review": "A bit intimidating to go inside. Sensory overload.",
+        "businessId": 8,
+        "userId": 2,
+        "imageUrl": "https://alegiscorp.com/wp-content/uploads/2020/09/ShoePalaceAdiddas.jpg"
+    },
+    {
+        "stars": 5,
+        "review": "This store successfully changed me into caring about shoes!",
+        "businessId": 8,
+        "userId": 1,
+        "imageUrl": "https://www.nicekicks.com/files/2019/09/kristi-toliver-nike-zoom-kobe-4-protro-asg-2-e1569562775217.jpeg"
+    },
+    {
+        "stars": 5,
+        "review": "Never before seen was a more beautiful and luxurious bar!!",
+        "businessId": 9,
+        "userId": 3,
+        "imageUrl": "https://images.squarespace-cdn.com/content/v1/513851e4e4b072b5dece0a39/1405020253914-C4NOKK5VDSACU9UG2AXS/PART_1402642579429_IMG_1965.jpg"
+    },
+    {
+        "stars": 4,
+        "review": "The lighting was great, would visit it again.",
+        "businessId": 9,
+        "userId": 2,
+        "imageUrl": "https://www.ultimatehappyhours.com/wp-content/uploads/2020/04/Nomikai-san-jose-happy-hour.jpg?ezimgfmt=rs:382x278/rscb1/ngcb1/notWebP"
+    },
+    {
+        "stars": 5,
+        "review": "I don't even go out at night, but this was such an enjoyable place to be",
+        "businessId": 9,
+        "userId": 1,
+        "imageUrl": "https://d.newsweek.com/en/full/1506288/nightclub.jpg?w=1600&h=1200&q=88&f=23ceaaebca6d3505c33910c64b4377f1"
+    },
+    {
+        "stars": 1,
+        "review": "Never coming back again. The pianos are weird sounding",
+        "businessId": 10,
+        "userId": 5,
+        "imageUrl": "https://austinkleon.com/wp-content/uploads/2020/12/11176457_339799602895813_1027856341_n-2-600x600.jpg"
+    },
+    {
+        "stars": 4,
+        "review": "The ambience was great, music lightly playing in the background.",
+        "businessId": 10,
+        "userId": 2,
+        "imageUrl": "https://img.etimg.com/photo/msid-92981436,imgsize-35528/best-digital-piano-and-keyboards-for-musicians.jpg"
+    },
+    {
+        "stars": 5,
+        "review": "I used to be a violin player, but after visiting this store, pianos are now my passion",
+        "businessId": 10,
+        "userId": 1,
+        "imageUrl": "https://occ-0-33-444.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABR-1w2KU68SwDkBS6lAOSWiTTcT3b5D16arLFIWC2AR3bTuD_iqsIzoLkSE8awg6P7WxPc3zMz3v7_JKU0OO37MYHUJKop6bmNAhrR-eUKig-yUvPAe8IENi.jpg?r=48d"
+    },
+    {
+        "stars": 1,
+        "review": "All I can say is Ewwwwwww",
+        "businessId": 11,
+        "userId": 1,
+        "imageUrl": "https://www.bakinglab.nl/wp-content/uploads/2019/05/old_bread1_1125_768-550x360.jpg"
+    },
+    {
+        "stars": 4,
+        "review": "Very buttery bread",
+        "businessId": 11,
+        "userId": 5,
+        "imageUrl": "https://www.melskitchencafe.com/wp-content/uploads/2013/04/Bread1-Original-PSD.jpg"
+    },
+    {
+        "stars": 5,
+        "review": "Everyone should come here for some bread!!",
+        "businessId": 11,
+        "userId": 1,
+        "imageUrl": "https://cdn.cdkitchen.com/recipes/images/2019/10/79444-8883-mx.jpg"
+    },
+    {
+        "stars": 1,
+        "review": "The rental of golf clubs are too expensive here...",
+        "businessId": 12,
+        "userId": 1,
+        "imageUrl": "https://i.insider.com/5ca662c26b5265643b4f9813?width=1200&format=jpeg"
+    },
+    {
+        "stars": 4,
+        "review": "The grass was actually quite green! Good sights",
+        "businessId": 12,
+        "userId": 5,
+        "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUmWPFh1e7K71VWZduERynidJknfDYOEitsR4Q-KpBGq_SfQYkPDMvuvwKdv31zfXqRYY&usqp=CAU"
+    },
+    {
+        "stars": 5,
+        "review": "I loved the vibes here!!!!!! Bring your friends!!!",
+        "businessId": 12,
+        "userId": 6,
+        "imageUrl": "https://www.mercurynews.com/wp-content/uploads/2021/03/SJM-L-TOPGOLF-031-1.jpg?w=1024"
+    },
     ]
     for review in reviewsArray:
         newReview = Review(
