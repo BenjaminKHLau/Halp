@@ -43,6 +43,10 @@
     margin-right: 8px;
 }
 
+#sign-up-button:hover {
+    cursor: pointer;
+}
+
 .sign-up {
     text-decoration: none;
     color: #fff;
@@ -139,6 +143,10 @@
 
 .logged-in-buttons {
     display: flex;
+}
+
+.logged-in-buttons:hover {
+    cursor: pointer;
 }
 
 .halp-logo {
