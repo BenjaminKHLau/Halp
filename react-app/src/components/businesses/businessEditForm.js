@@ -29,7 +29,7 @@ function BusinessEditFormComponent({ businessId }) {
     const [contact, setContact] = useState(business.contact)
     // const [ownerId, setOwnerId] = useState(0)
     const [category, setCategory] = useState(business.category)
-    const [businessImageUrl, setBusinessImageUrl] = useState(business.businessImageUrl)
+    const [businessImageUrl, setBusinessImageUrl] = useState(business.business_image_url)
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [errors, setErrors] = useState([])
 
