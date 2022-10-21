@@ -33,6 +33,8 @@ function GetBusinessDetailsComponent() {
   // console.log("business details ACTUAL", businessDetails);
   // console.log("NORMALIZED REVIEWS ARRAY: ", reviewsArray);
   let businessOwner = business[businessId]?.owner_id === session.user?.id;
+  // console.log("session user in business details: ", session?.user)
+  // console.log("session user in business details: ", session?.user == false)
 
   const businessDetails = business[businessId];
   const reviewsArray = Object.values(reviewsState);
@@ -96,7 +98,7 @@ function GetBusinessDetailsComponent() {
                     </div>
                   </>
                 )}
-                {!businessOwner && <CreateReviewFormModal />}
+                {!businessOwner && session?.user && <CreateReviewFormModal />}
               </div>
             </div>
           </div>

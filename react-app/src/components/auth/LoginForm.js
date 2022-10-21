@@ -42,7 +42,7 @@ const LoginForm = () => {
             <h2 className="title">Login</h2>
             <div className='error-message'>
                 {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
+                    <div className='errors' key={ind}>{error}</div>
                 ))}
             </div>
             <div className='email-div'>
