@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useHistory, useDispatch } from "react-router-dom";
 import LogoutButton from "./auth/LogoutButton";
 import BusinessFormModal from "./businesses/businessFormMODAL";
 import "./NavBar.css";
@@ -9,9 +9,11 @@ import searchIcon from "./search.png";
 import LoginFormModal from "./auth/LoginMODAL";
 import SignupFormModal from "./auth/SignUpMODAL";
 import halplogo from "./halplogo.png";
+import { getAllCategoriesThunk } from "../../store/categories";
 
 const NavBar = () => {
   const history = useHistory()
+  const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const [isSubmitted, setIsSubmitted] = useState('');
 
@@ -27,6 +29,11 @@ const NavBar = () => {
     history.push(`/businesses/search?input=${search}`)
     setIsSubmitted(false);
   }
+  console.log('AAAAAAAAAA\n\n\n\n\n\n\nGet all categories running in navbar')
+
+  useEffect(() => {
+    dispatch(getAllCategoriesThunk());
+  }, [dispatch]);
 
   return (
     <nav className="nav">
