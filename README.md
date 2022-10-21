@@ -1,8 +1,8 @@
 ![clonebnb-logo]
 
-[clonebnb-logo]: ./frontend/public/clonebnb.png
+[clonebnb-logo]: ./react-app/src/components/halplogo.png
 
-[Halp](https://halpimhungry.herokuapp.com/) is a web application inspired by Yelp. Clonebnb provides an online marketplace for lodging, primarily homestays for vacation rentals, and tourism activities.
+[Halp](https://halpimhungry.herokuapp.com/) is a web application inspired by Yelp. Halp is an American company which publishes crowd-sourced reviews about businesses. On Halp, you can list businesses, create reviews, and even create your own category! It is headquartered in Texas.
 
 
 # Project Wiki
@@ -47,7 +47,7 @@
 1. Clone this repository (only this branch)
 
    ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
+   git clone https://github.com/BenjaminKHLau/Halp.git
    ```
 
 2. Install dependencies
