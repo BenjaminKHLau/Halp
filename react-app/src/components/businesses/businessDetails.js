@@ -37,9 +37,16 @@ function GetBusinessDetailsComponent() {
 
   const businessDetails = business[businessId];
   const reviewsArray = Object.values(reviewsState);
-  const number = businessDetails?.contact
-  const formatnumber = number ? "("+ number.slice(0,3)+") "+number.slice(3,6)+"-"+number.slice(6) : null;
-  console.log(formatnumber)
+  const number = businessDetails?.contact;
+  const formatnumber = number
+    ? "(" +
+      number.slice(0, 3) +
+      ") " +
+      number.slice(3, 6) +
+      "-" +
+      number.slice(6)
+    : null;
+  console.log(formatnumber);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -100,14 +107,15 @@ function GetBusinessDetailsComponent() {
                     </div>
                   </>
                 )}
-                {!businessOwner && session?.user && <CreateReviewFormModal />}
               </div>
             </div>
           </div>
         )}
         <div className="business-details-midsection-container">
           <div className="business-details-midsection-left">
-            <div className="business-details-midsection-left-wreview"></div>
+            <div className="business-details-midsection-left-wreview">
+              {!businessOwner && session?.user && <CreateReviewFormModal />}
+            </div>
             <div className="business-details-midsection-left-amenities">
               <h2>Amenities and more</h2>
               <div className="business-details-midsection-left-amenities-p">
