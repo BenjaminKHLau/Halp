@@ -81,7 +81,7 @@ function CategoryFormComponent() {
                         type="submit"
                         disabled={isSubmitted && errors.length > 0}
                         className={
-                            isSubmitted && errors.length > 0 ? "noob" : "submit-button"
+                            isSubmitted && errors.length > 0 ? "submit-button" : "submit-button"
                         }
                     >
                         Create Category
