@@ -124,7 +124,7 @@ def edit_business_root(businessId):
         # )
 
         # db.session.add(business_to_edit)
-        print("business to edit", business_to_edit)
+        print("business to edit\n\n\n\n\n\n", business_to_edit.to_dict())
         db.session.commit()
         return business_to_edit.to_dict()
 
