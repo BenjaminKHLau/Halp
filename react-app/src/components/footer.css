@@ -1,0 +1,59 @@
+.Footer-container {
+    border-top: 1px solid lightgrey;
+    justify-content: center;
+    /* flex-direction: column; */
+    display: flex;
+    width: 100vw;
+}
+
+.dev {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+.Footer {
+    padding-top: 20px;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 20px;
+}
+
+.footer-img {
+    display: flex;
+    justify-content: center;
+    width: 80px;
+    border-radius: 30px;
+}
+
+
+.footer-stuff {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.fname {
+    display: flex;
+    justify-content: center;
+}
+
+.Footer-inner {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100vw;
+}
+
+.Meet {
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    font-size: 26pt;
+    font-weight: 300;
+}
+
+.aaa {
+    display: flex;
+    justify-content: center;
+}
