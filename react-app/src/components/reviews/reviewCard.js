@@ -10,6 +10,7 @@ import {
 import "./reviewCard.css";
 import trash from "./bin.png";
 import edit from "./edit.png";
+import sorrykiwi2 from "../businesses/sorrykiwi2.png"
 
 function ReviewCard({ review, setReviewModal, setReviewObj }) {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ function ReviewCard({ review, setReviewModal, setReviewObj }) {
   // const selectedReviews = useSelector((state) => state.reviews)
 
   const session = useSelector((state) => state.session);
-  let reviewOwner = review?.userId === session.user.id;
+  let reviewOwner = review?.userId === session.user?.id;
   // console.log("\n\n\n\n\n\naaaaaaaaaaaaa", reviewOwner)
 
   const readReview = async (businessId) => {
@@ -52,7 +53,9 @@ function ReviewCard({ review, setReviewModal, setReviewObj }) {
     review && (
       <div className="review-box">
         <div className="pic-container">
-          <img src={review.imageUrl} className="review-image" />
+          <img src={review.imageUrl}  onError={(e) => {
+            e.target.src = sorrykiwi2;
+          }} className="review-image" />
         </div>
         <div className="review-written">{review.review}</div>
         <div className="right-side">

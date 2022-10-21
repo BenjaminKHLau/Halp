@@ -13,6 +13,8 @@ import "../reviews/reviewForm.css";
 import ReviewFormComponent from "../reviews/reviewForm";
 import CreateReviewFormModal from "../reviews/revModal";
 import UpdateReviewFormModal from "../reviews/updateReviewModal";
+import sorrykiwi2 from "../businesses/sorrykiwi2.png"
+
 
 function GetBusinessDetailsComponent() {
   const { businessId } = useParams();
@@ -30,7 +32,7 @@ function GetBusinessDetailsComponent() {
   // console.log("REVIEWS in Business Details component", reviewsState)
   // console.log("business details ACTUAL", businessDetails);
   // console.log("NORMALIZED REVIEWS ARRAY: ", reviewsArray);
-  let businessOwner = business[businessId]?.owner_id === session.user.id;
+  let businessOwner = business[businessId]?.owner_id === session.user?.id;
 
   const businessDetails = business[businessId];
   const reviewsArray = Object.values(reviewsState);
@@ -61,6 +63,9 @@ function GetBusinessDetailsComponent() {
             <div className="business-details-container-image">
               <img
                 src={businessDetails.business_image_url}
+                onError={(e) => {
+                    e.target.src = sorrykiwi2;
+                  }}
                 className="business-detail-image"
               />
             </div>

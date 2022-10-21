@@ -32,6 +32,7 @@ def add_business_root():
     errors = {}
 
     form = BusinessForm()
+    # form.data['contact'] = int(form.data['contact'])
     form.category.choices = [cat.type for cat in Category.query.all()]
     form['csrf_token'].data = request.cookies['csrf_token']
     db_name = Business.query.filter_by(name=form.data['name']).first()
@@ -80,24 +81,26 @@ def edit_business_root(businessId):
     errors = {}
 
     form = BusinessForm()
+    # form.data['contact'] = str(form.data['contact'])
     form['csrf_token'].data = request.cookies['csrf_token']
     form.category.choices = [cat.type for cat in Category.query.all()]
+    # form.data['contact'] = int(form.data['contact'])
 
     business_to_edit = Business.query.get(businessId)
 
-    db_name = Business.query.filter_by(name=form.data['name']).first()
-    db_description = Business.query.filter_by(description=form.data['description']).first()
-    db_address = Business.query.filter_by(address=form.data['address']).first()
-    db_contact = Business.query.filter_by(contact=form.data['contact']).first()
+    # db_name = Business.query.filter_by(name=form.data['name']).first()
+    # db_description = Business.query.filter_by(description=form.data['description']).first()
+    # db_address = Business.query.filter_by(address=form.data['address']).first()
+    # db_contact = Business.query.filter_by(contact=form.data['contact']).first()
 
-    if(db_name):
-        errors['name'] = "Name already exists"
-    if(db_description):
-        errors['description'] = 'Description already exists'
-    if(db_address):
-        errors['address'] = 'Address already exists'
-    if(db_contact):
-        errors['contact'] = 'Contact already in use'
+    # if(db_name):
+    #     errors['name'] = "Name already exists"
+    # if(db_description):
+    #     errors['description'] = 'Description already exists'
+    # if(db_address):
+    #     errors['address'] = 'Address already exists'
+    # if(db_contact):
+    #     errors['contact'] = 'Contact already in use'
 
 
     if errors:
@@ -121,7 +124,7 @@ def edit_business_root(businessId):
         # )
 
         # db.session.add(business_to_edit)
-        print("business to edit", business_to_edit)
+        print("business to edit\n\n\n\n\n\n", business_to_edit.to_dict())
         db.session.commit()
         return business_to_edit.to_dict()
 
