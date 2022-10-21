@@ -18,6 +18,21 @@
     margin-right: 100px;
 }
 
+.create-review-button {
+    font-size: 22px;
+    color: white;
+    background-color: rgb(226,9,9);
+    line-height: 40px;
+}
+.create-review-button:hover {
+    cursor: pointer;
+    background-color: rgb(244,13,21);
+    box-shadow: 0 1px 4px 0 rgb(0 0 0 / 30%);
+    transition-property: background-color,box-shadow,opacity;
+    transition: all 0.8s;
+
+}
+
 .edit-delete {
     display: flex;
     justify-content: center;
@@ -30,7 +45,7 @@
     margin-right: 20px;
 }
 
-.create-review-button:hover, .edit-delete:hover, .business-details-delete-business:hover {
+.edit-delete:hover, .business-details-delete-business:hover {
     cursor: pointer;
     background-color: red;
 }
