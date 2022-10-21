@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { NavLink, useHistory, useDispatch } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import LogoutButton from "./auth/LogoutButton";
 import BusinessFormModal from "./businesses/businessFormMODAL";
 import "./NavBar.css";
