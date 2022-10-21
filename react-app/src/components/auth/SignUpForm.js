@@ -19,7 +19,9 @@ const SignUpForm = () => {
         const errors = [];
 
         if(username.length < 1) errors.push("Please provide a username")
-        if(email.length < 1) errors.push("Please provide a valid email")
+        if(username.length > 20) errors.push("Username must be 1-20 characters long")
+        if(email.length < 5) errors.push("Please provide a valid email")
+        if(email.length > 35) errors.push("Email must be 5-35 characters long")
         if(password.length < 1) errors.push("Enter a password")
         if(password !== repeatPassword) errors.push("Passwords must match")
 
@@ -31,9 +33,12 @@ const SignUpForm = () => {
     const onSignUp = async (e) => {
         e.preventDefault();
         setIsSubmitted(true)
-        if (password === repeatPassword) {
+        if (password === repeatPassword && username.length < 21 && email.length < 36) {
             const data = await dispatch(signUp(username, email, password));
             if (data) {
+                setErrors(data)
+            }
+            else if (errors){
                 setErrors(errors)
             }
         }
@@ -73,17 +78,17 @@ const SignUpForm = () => {
                     type='text'
                     name='username'
                     onChange={updateUsername}
-                    placeholder='Username'
+                    placeholder='Please provide a username 1-20 characters long'
                     value={username}
                 ></input>
             </div>
             <div className='email'>
                 <label>Email</label>
                 <input
-                    type='text'
+                    type='email'
                     name='email'
                     onChange={updateEmail}
-                    placeholder='Email'
+                    placeholder='Please provide an email 5-35 characters long'
                     value={email}
                 ></input>
             </div>
@@ -93,7 +98,7 @@ const SignUpForm = () => {
                     type='password'
                     name='password'
                     onChange={updatePassword}
-                    placeholder='Password'
+                    placeholder='Enter a secure Password'
                     value={password}
                 ></input>
             </div>
