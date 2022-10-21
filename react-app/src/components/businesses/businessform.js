@@ -126,7 +126,8 @@ function BusinessFormComponent() {
       })
     );
 
-    if (newBusiness.errors) setErrors([...Object.values(newBusiness.errors)]);
+    if (newBusiness.errors) setErrors([...Object.values(newBusiness.errors)])
+    // else if (errors) setErrors(errors)
     else history.push(`/businesses/${newBusiness.id}`);
   }
 
@@ -254,7 +255,7 @@ function BusinessFormComponent() {
               className="form-input"
               type="text"
               name="contact"
-              placeholder="Contact Number"
+              placeholder="Contact Number (10 Digits)"
               value={contact}
               onChange={(e) => setContact(e.target.value)}
             />

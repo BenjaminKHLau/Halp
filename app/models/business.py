@@ -5,13 +5,13 @@ class Business(db.Model):
     __tablename__ = "businesses"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(40), nullable=False, unique=True)
-    description = db.Column(db.String(255), nullable=False, unique=True)
-    address = db.Column(db.String(80), nullable=False, unique=True)
+    name = db.Column(db.String(40), nullable=False)
+    description = db.Column(db.String(255), nullable=False)
+    address = db.Column(db.String(80), nullable=False)
     city = db.Column(db.String, nullable=False)
     state = db.Column(db.String, nullable=False)
     # hours = db.Column(db.String, nullable=False)
-    contact = db.Column(db.String, nullable=False, unique=True)
+    contact = db.Column(db.String, nullable=False)
     category = db.Column(db.String, nullable=False)
 
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
