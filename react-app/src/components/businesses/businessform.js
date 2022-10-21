@@ -81,20 +81,19 @@ function BusinessFormComponent() {
 
   useEffect(() => {
     const currErrors = [];
-    setErrors([]);
 
     if (!name) currErrors.push("Name is required.");
     if (!description) currErrors.push("Description is required.");
     if (!address) currErrors.push("Address is required.");
     if (!city) currErrors.push("City is required.");
     if (!state) currErrors.push("State is required.");
-    if (!contact) currErrors.push("Contact is required.");
+    if (contact.length !== 10) currErrors.push("A Valid Phone number (10 digits) is required ");
     if (isNaN(contact)) currErrors.push("Contact should be a number.");
     if (!category) currErrors.push("Category is required.");
     if (!businessImageUrl) currErrors.push("Image Url is required.");
     setErrors(currErrors);
 
-    if (errors.length) setIsSubmitted(false);
+    // if (errors.length) setIsSubmitted(false);
   }, [
     name,
     description,
@@ -108,7 +107,7 @@ function BusinessFormComponent() {
 
   async function subby(e) {
     e.preventDefault();
-    console.log("Function subby is running>>>>>>>>");
+    // console.log("Function subby is running>>>>>>>>");
     setIsSubmitted(true);
     if (errors.length > 0) {
       return;
@@ -132,7 +131,7 @@ function BusinessFormComponent() {
   }
 
   const showErrors = errors.map((error) => (
-    <div className="error-message" key={error}>
+    <div className="error-messages" key={error}>
       {error}
     </div>
   ));

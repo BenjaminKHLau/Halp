@@ -35,19 +35,19 @@ def add_business_root():
     # form.data['contact'] = int(form.data['contact'])
     form.category.choices = [cat.type for cat in Category.query.all()]
     form['csrf_token'].data = request.cookies['csrf_token']
-    db_name = Business.query.filter_by(name=form.data['name']).first()
-    db_description = Business.query.filter_by(description=form.data['description']).first()
-    db_address = Business.query.filter_by(address=form.data['address']).first()
-    db_contact = Business.query.filter_by(contact=form.data['contact']).first()
+    # db_name = Business.query.filter_by(name=form.data['name']).first()
+    # db_description = Business.query.filter_by(description=form.data['description']).first()
+    # db_address = Business.query.filter_by(address=form.data['address']).first()
+    # db_contact = Business.query.filter_by(contact=form.data['contact']).first()
 
-    if(db_name):
-        errors['name'] = "Name already exists"
-    if(db_description):
-        errors['description'] = 'Description already exists'
-    if(db_address):
-        errors['address'] = 'Address already exists'
-    if(db_contact):
-        errors['contact'] = 'Contact already in use'
+    # if(db_name):
+    #     errors['name'] = "Name already exists"
+    # if(db_description):
+    #     errors['description'] = 'Description already exists'
+    # if(db_address):
+    #     errors['address'] = 'Address already exists'
+    # if(db_contact):
+    #     errors['contact'] = 'Contact already in use'
 
 
     if errors:
