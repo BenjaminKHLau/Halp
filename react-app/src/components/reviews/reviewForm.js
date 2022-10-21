@@ -13,7 +13,7 @@ function ReviewFormComponent() {
     
     
     const [review, setReview] = useState("");
-    const [stars, setStars] = useState("");
+    const [stars, setStars] = useState(5);
     const [imageUrl, setImageUrl] = useState("")
     const [isCreated, setIsCreated] = useState(false)
     const [errors, setErrors] = useState([]);
@@ -87,7 +87,7 @@ console.log("testing", testing)
                                 placeholder="Review Text"
                                 value={review}
                                 onChange={(e) => setReview(e.target.value)}
-                                required
+                                // required
                             />
                         </label>
 
@@ -100,7 +100,7 @@ console.log("testing", testing)
                                 placeholder="0"
                                 value={stars}
                                 onChange={(e) => setStars(e.target.value)}
-                                required
+                                // required
                             />
                         </label>
                         <label className="create-review">
@@ -110,7 +110,7 @@ console.log("testing", testing)
                                 placeholder="Review URL"
                                 value={imageUrl}
                                 onChange={(e) => setImageUrl(e.target.value)}
-                                required
+                                // required
                             />
                         </label>
                     </div>
