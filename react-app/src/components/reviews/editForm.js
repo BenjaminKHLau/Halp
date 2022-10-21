@@ -31,7 +31,7 @@ function EditReviewFormComponent({review, setReviewModal}) {
         if (!review) errorsArray.push("Please provide a review.")
         else if (stars < 1 || stars > 5) errorsArray.push("Please provide a number between 1 - 5")
 
-        setErrors(errors)
+        setErrors(errorsArray)
     }, [reviewText, stars, imageUrl])
 
 

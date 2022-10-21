@@ -56,7 +56,7 @@
 .reviews-information {
     display: flex;
     flex-direction: column;
-    margin-top: 350px;
+    margin-top: 150px;
 }
 
 .reviews {
@@ -69,19 +69,19 @@
 }
 
 .review-label-for-details {
-    position: absolute;
+    /* position: absolute; */
     display: flex;
     justify-content: center;
     text-align: center;
     align-items: center;
-    width: 100%;
+    width: 100%-25px;
     height: 30px;
     font-weight: 700;
     font-size: 200%;
     padding-left: 25px;
-    top: 530px;
-    left: 0px;
-    right: 0px;
+    /* top: 530px; */
+    /* left: 0px; */
+    /* right: 0px; */
 }
 
 .business-details-name {
@@ -92,15 +92,15 @@
 
 .business-details-category {
     background-color: rgba(0, 0, 0, 0.8);
-    width: 100%;
+    width: 100%-30px;
     color: white;
     line-height: 50px;
     font-size: 35px;
     margin-bottom: -70px;
     margin-top: 5px;
-    padding-left: 30px;
     font-weight: 600;
     letter-spacing: 0.1em;
+    padding-left: 30px;
 }
 
 .business-details-address {
@@ -113,4 +113,60 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+}
+
+.business-details-hero-buttons-container {
+    display: flex;
+}
+
+.business-details-midsection-container {
+    margin-top: 120px;
+    display: flex;
+    width: 100%;
+}
+
+.business-details-midsection-left {
+    width: 65%;
+    padding-left: 100px;
+}
+
+.business-details-midsection-left-amenities {
+    border-bottom: 1px solid rgb(227, 227, 227);
+    margin-right: 40px;
+}
+
+.business-details-midsection-left-amenities p {
+    padding-left: 10px;
+    font-weight: 600;
+}
+
+.business-details-midsection-left-amenities-p {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.business-details-midsection-left-amenities-p p {
+    width: 45%;
+}
+
+.business-details-midsection-right {
+    width: 35%;
+}
+
+.business-details-midsection-right-close, .business-details-midsection-right-contact {
+    border: 1px solid rgb(227, 227, 227);
+    border-radius: 3px;
+    margin-right: 100px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-bottom: 20px;
+}
+
+.business-details-midsection-right-close h2 {
+    margin-top: 12px;
+}
+
+.business-details-midsection-right-close p {
+    font-weight: bold;
 }

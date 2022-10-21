@@ -23,6 +23,6 @@ class BusinessForm(FlaskForm):
     # country = StringField('country', validators=[DataRequired()])
     # openHours = SelectField('openHours', choices=hours, validators=[DataRequired()])
     # closeHours = SelectField('closeHours', choices=hours, validators=[DataRequired()])
-    contact = IntegerField('contact', validators=[DataRequired()])
+    contact = StringField('contact', validators=[DataRequired()])
     category = SelectField('category', choices=cats, validators=[DataRequired()])
     businessImage = StringField('businessUrl', validators=[DataRequired()])

@@ -15,7 +15,7 @@ function EditBusinessFormModal({ businessId }) {
 
   return (
     <>
-      <div className="edit-delete" onClick={() => setShowModal(true)}>Edit Spot</div>
+      <div className="edit-delete" onClick={() => setShowModal(true)}>Edit Business</div>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <BusinessEditFormComponent businessId={businessId}/>

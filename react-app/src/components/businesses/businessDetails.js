@@ -13,25 +13,33 @@ import "../reviews/reviewForm.css";
 import ReviewFormComponent from "../reviews/reviewForm";
 import CreateReviewFormModal from "../reviews/revModal";
 import UpdateReviewFormModal from "../reviews/updateReviewModal";
+import sorrykiwi2 from "../businesses/sorrykiwi2.png";
 
 function GetBusinessDetailsComponent() {
   const { businessId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const [isLoaded, setIsLoaded] = useState(false);
 
+  const [isLoaded, setIsLoaded] = useState(false);
   const [reviewModal, setReviewModal] = useState(false);
   const [reviewObj, setReviewObj] = useState(null);
-  console.log("Review modal is", reviewModal);
+
   const business = useSelector((state) => state.businesses);
-
-  const businessDetails = business[businessId];
-
   const reviewsState = useSelector((state) => state.reviews);
-  const reviewsArray = Object.values(reviewsState);
+  const session = useSelector((state) => state.session);
+
   // console.log("REVIEWS in Business Details component", reviewsState)
   // console.log("business details ACTUAL", businessDetails);
   // console.log("NORMALIZED REVIEWS ARRAY: ", reviewsArray);
+  let businessOwner = business[businessId]?.owner_id === session.user?.id;
+  // console.log("session user in business details: ", session?.user)
+  // console.log("session user in business details: ", session?.user == false)
+
+  const businessDetails = business[businessId];
+  const reviewsArray = Object.values(reviewsState);
+  const number = businessDetails?.contact
+  const formatnumber = number ? "("+ number.slice(0,3)+") "+number.slice(3,6)+"-"+number.slice(6) : null;
+  console.log(formatnumber)
 
   useEffect(() => {
     setIsLoaded(true);
@@ -41,7 +49,7 @@ function GetBusinessDetailsComponent() {
   // console.log("business id details component", businessId)
 
   const deleteButton = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     await dispatch(deleteBusinessThunk(businessId));
 
     history.push("/");
@@ -59,6 +67,9 @@ function GetBusinessDetailsComponent() {
             <div className="business-details-container-image">
               <img
                 src={businessDetails.business_image_url}
+                onError={(e) => {
+                  e.target.src = sorrykiwi2;
+                }}
                 className="business-detail-image"
               />
             </div>
@@ -77,11 +88,47 @@ function GetBusinessDetailsComponent() {
                   {businessDetails.description}
                 </div>
               </div>
-              <EditBusinessFormModal businessId={businessId}/>
-              <CreateReviewFormModal />
+              <div className="business-details-hero-buttons-container">
+                {businessOwner && (
+                  <>
+                    <EditBusinessFormModal businessId={businessId} />
+                    <div
+                      className="business-details-delete-business"
+                      onClick={() => deleteButton()}
+                    >
+                      Delete Business
+                    </div>
+                  </>
+                )}
+                {!businessOwner && session?.user && <CreateReviewFormModal />}
+              </div>
             </div>
           </div>
         )}
+        <div className="business-details-midsection-container">
+          <div className="business-details-midsection-left">
+            <div className="business-details-midsection-left-wreview"></div>
+            <div className="business-details-midsection-left-amenities">
+              <h2>Amenities and more</h2>
+              <div className="business-details-midsection-left-amenities-p">
+                <p>Friendly Environment</p>
+                <p>Enjoyable Place</p>
+                <p>Supports Inclusion</p>
+                <p>Offers Discounts</p>
+              </div>
+            </div>
+          </div>
+          <div className="business-details-midsection-right">
+            <div className="business-details-midsection-right-close">
+              <h2>Waitlist closed</h2>
+              <p>This business does not support waitlists</p>
+            </div>
+            <div className="business-details-midsection-right-contact">
+              <h2>Contact</h2>
+              <p>{formatnumber}</p>
+            </div>
+          </div>
+        </div>
         <label className="review-label-for-details">Reviews</label>
         <div className="reviews-information">
           {reviewsArray.map((review) => (
