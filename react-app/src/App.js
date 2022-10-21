@@ -14,6 +14,7 @@ import GetAllBusinesses from "./components/businesses/businessesHome";
 import GetAllCategories from "./components/categories/categoriesHome";
 import GetBusinessDetailsComponent from "./components/businesses/businessDetails";
 import BusinessSearchComponent from "./components/BusinessSearch"
+import Footer from "./components/footer";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -59,6 +60,7 @@ function App() {
           <GetBusinessDetailsComponent />
         </Route>
       </Switch>
+          <Footer />
     </BrowserRouter>
   );
 }

@@ -16,9 +16,9 @@ function EditReviewFormComponent({review, setReviewModal}) {
     // console.log("editor", thestate)
 
 
-    const [reviewText, setReviewText] = useState("");
-    const [stars, setStars] = useState("");
-    const [imageUrl, setImageUrl] = useState("")
+    const [reviewText, setReviewText] = useState(review.review);
+    const [stars, setStars] = useState(review.stars);
+    const [imageUrl, setImageUrl] = useState(review.imageUrl)
     const [isChanged, setIsChanged]= useState(false)
     const [errors, setErrors] = useState([]);
 
@@ -98,13 +98,13 @@ function EditReviewFormComponent({review, setReviewModal}) {
                         />
                     </label>
                     <label className="create-review">
-                        <span> Review Image: </span>
+                        <span> Review Image: (optional)</span>
                         <input
                             type="text"
                             placeholder="Review URL"
                             value={imageUrl}
                             onChange={(e) => setImageUrl(e.target.value)}
-                            required
+                            // required
                         />
                     </label>
                     <div className="to-review">

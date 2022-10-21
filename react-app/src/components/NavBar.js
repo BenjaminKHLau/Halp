@@ -54,7 +54,7 @@ const NavBar = () => {
               className="search-input"
               type="text"
               name="search"
-              placeholder="Search by name..."
+              placeholder="Search by name, category, address..."
               onChange={(e) => setSearch(e.target.value)}
             />
             <button className="search-button" type="submit" disabled={isSubmitted} >
