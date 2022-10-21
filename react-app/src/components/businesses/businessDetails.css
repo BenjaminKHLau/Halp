@@ -56,7 +56,7 @@
 .reviews-information {
     display: flex;
     flex-direction: column;
-    margin-top: 350px;
+    margin-top: 150px;
 }
 
 .reviews {
@@ -79,7 +79,7 @@
     font-weight: 700;
     font-size: 200%;
     padding-left: 25px;
-    top: 530px;
+    top: 510px;
     left: 0px;
     right: 0px;
 }
