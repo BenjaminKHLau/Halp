@@ -34,7 +34,7 @@
 
 ## Landing Page
 
-<img width="1430" alt="landingpage" src="https://user-images.githubusercontent.com/103297104/197286081-8923269b-816a-404b-8a45-1f30d31c75db.png">
+<img width="1920" alt="image" src="https://user-images.githubusercontent.com/20654267/197364425-ccb78aa3-e6d5-4c5c-b38f-cc360536d06e.png">
 
 ## Sign Up Form (Modal)
 
