@@ -6,6 +6,8 @@ import "./footer.css";
 
 function Footer() {
 	return (
+        <footer>
+
 		<div className="Footer-container">
 
             <div className="devs">
@@ -70,6 +72,7 @@ function Footer() {
             </div>
 
 		</div>
+        </footer>
 	);
 }
 
