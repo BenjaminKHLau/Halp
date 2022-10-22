@@ -21,7 +21,7 @@
     width: 100%;
     display: flex;
     justify-content: space-evenly;
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
 }
 
 .footer-img {
@@ -63,7 +63,7 @@
 }
 
 body{ 
-    min-height:85vh; 
+    min-height:100vh; 
     margin:0; 
     position:relative; 
 }
