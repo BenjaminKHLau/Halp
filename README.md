@@ -32,9 +32,43 @@
 ![heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=Heroku&logoColor=white)
 
 
-# Landing Page
+## Landing Page
 
 <img width="1430" alt="landingpage" src="https://user-images.githubusercontent.com/103297104/197286081-8923269b-816a-404b-8a45-1f30d31c75db.png">
+
+## Sign Up Form (Modal)
+
+<img width="1920" alt="image" src="https://user-images.githubusercontent.com/20654267/197363776-cc95e00d-866e-45df-8de8-0989690b059d.png">
+
+## Login Form (Modal)
+
+<img width="1920" alt="image" src="https://user-images.githubusercontent.com/20654267/197363799-d8f036f8-fa17-4a93-852f-bfd1a8ccffc9.png">
+
+## Business Details Page 
+
+<img width="1920" alt="image" src="https://user-images.githubusercontent.com/20654267/197363821-6352773d-4892-4878-ab66-6286ac01b344.png">
+
+## Create a Business Form (Modal)
+
+<img width="1920" alt="image" src="https://user-images.githubusercontent.com/20654267/197363881-a1fa9716-0d43-4d6b-a8eb-97580ae46c15.png">
+
+## Create a Category Form (Click the Plus "+" Button next to the Category portion of the Create a Business Form)
+
+<img width="1920" alt="image" src="https://user-images.githubusercontent.com/20654267/197363916-8cbced6b-0173-4819-9aeb-f638a11c18e0.png">
+
+## Create a Review (Can only create on a Business you don't own and must be logged in. (Modal))
+
+<img width="1920" alt="image" src="https://user-images.githubusercontent.com/20654267/197363987-b97f7727-2f32-4ee1-ba5b-0855ee447dd7.png">
+
+## View All Created Categories (Bottom of Home Page. Can click to filter out all Businesses based on the Category clicked on)
+
+<img width="1920" alt="image" src="https://user-images.githubusercontent.com/20654267/197364034-7d27ba31-e52c-4205-af23-eb8847f56a96.png">
+
+## Reviews (Bottom of Business Details Page)
+
+<img width="1920" alt="image" src="https://user-images.githubusercontent.com/20654267/197363854-ef735c94-481d-4729-bebd-53a4c22a5b0c.png">
+
+
 
 
 # Future Features
