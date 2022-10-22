@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
@@ -9,14 +9,27 @@ const LoginForm = () => {
     const [errors, setErrors] = useState([]);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isSubmitted, setIsSubmitted] = useState(false)
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        const errors = []
+        if(email.length < 1) errors.push("Please enter your email")
+        if(password.length < 1) errors.push("Please enter your password")
+        setErrors(errors)
+    },[email, password])
+
+
     const onLogin = async (e) => {
         e.preventDefault();
+        setIsSubmitted(true)
         const data = await dispatch(login(email, password));
         if (data) {
             setErrors(data);
+        }
+        else if (errors){
+            setErrors(errors)
         }
     };
 
@@ -40,11 +53,11 @@ const LoginForm = () => {
     return (
         <form onSubmit={onLogin} className='login-form'>
             <h2 className="title">Login</h2>
-            <div className='error-message'>
+            {isSubmitted && (<div className='error-message'>
                 {errors.map((error, ind) => (
                     <div className='errors' key={ind}>{error}</div>
                 ))}
-            </div>
+            </div>)}
             <div className='email-div'>
                 <label className='email-label' htmlFor='email'>Email</label>
                 <input
@@ -66,7 +79,9 @@ const LoginForm = () => {
                     onChange={updatePassword}
                 />
                 <div></div><div></div><div></div>
-                <button className='login-button' type='submit'>Login</button>
+                <button className={
+                            isSubmitted && errors.length > 0 ? "noob2" : "submit-button-login"
+                        } type='submit'>Login</button>
                 <div></div>
                 <button className='demo-button' onClick={demoLogin}>Demo User</button>
             </div>

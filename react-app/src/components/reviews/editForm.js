@@ -19,7 +19,7 @@ function EditReviewFormComponent({review, setReviewModal}) {
     const [reviewText, setReviewText] = useState(review.review);
     const [stars, setStars] = useState(review.stars);
     const [imageUrl, setImageUrl] = useState(review.imageUrl)
-    const [isChanged, setIsChanged]= useState(false)
+    const [isSubmitted, setIsSubmitted]= useState(false)
     const [errors, setErrors] = useState([]);
 
     // let { businessId } = useParams();
@@ -29,7 +29,7 @@ function EditReviewFormComponent({review, setReviewModal}) {
         let errorsArray = []
         if(!imageUrl) errorsArray.push("Please provide valid image.")
         if (!review) errorsArray.push("Please provide a review.")
-        else if (stars < 1 || stars > 5) errorsArray.push("Please provide a number between 1 - 5")
+        if (stars < 1 || stars > 5) errorsArray.push("Please provide a number between 1 - 5")
 
         setErrors(errorsArray)
     }, [reviewText, stars, imageUrl])
@@ -38,7 +38,7 @@ function EditReviewFormComponent({review, setReviewModal}) {
     let handleSubmit = async (e) => {
         e.preventDefault();
 
-        setIsChanged(true)
+        setIsSubmitted(true)
         if (errors.length > 0) {
             return;
         }
@@ -71,7 +71,7 @@ function EditReviewFormComponent({review, setReviewModal}) {
                     className="review-form" onSubmit={handleSubmit}>
                     <h1 className="review-title">Edit your Review</h1>
                     <div className="errors">
-                        {isChanged && ErrorMsgs}
+                        {isSubmitted && ErrorMsgs}
                     </div>
 
                     <label className="create-review">
@@ -98,7 +98,7 @@ function EditReviewFormComponent({review, setReviewModal}) {
                         />
                     </label>
                     <label className="create-review">
-                        <span> Review Image: (optional)</span>
+                        <span> Review Image: </span>
                         <input
                             type="text"
                             placeholder="Review URL"
@@ -108,7 +108,7 @@ function EditReviewFormComponent({review, setReviewModal}) {
                         />
                     </label>
                     <div className="to-review">
-                        <button className="created"
+                        <button className={isSubmitted && errors.length > 0 ? "noob" : "submit-button"}
                             type="submit">
                             Submit Review
                         </button>

@@ -15,23 +15,23 @@ function ReviewFormComponent() {
     const [review, setReview] = useState("");
     const [stars, setStars] = useState(5);
     const [imageUrl, setImageUrl] = useState("")
-    const [isCreated, setIsCreated] = useState(false)
+    const [isSubmitted, setIsSubmitted] = useState(false)
     const [errors, setErrors] = useState([]);
     
     const reviews = useSelector((state) => state.reviews);
     const session =  useSelector(state => state.session)
     const reviewsArr = Object.values(reviews)
-    console.log("review form state: ", reviewsArr)
-    console.log("session state: ", session)
+    // console.log("review form state: ", reviewsArr)
+    // console.log("session state: ", session)
 
     let haveReview = false;
 
         let testing = reviewsArr.filter(review => {
             return haveReview = session?.user.id === review?.userId
             // if(haveReview === true)
-            console.log("does this user have a review?: ", haveReview)
+            // console.log("does this user have a review?: ", haveReview)
         })
-console.log("testing", testing)
+// console.log("testing", testing)
 
 
     useEffect(() => {
@@ -49,7 +49,7 @@ console.log("testing", testing)
     let handleSubmit = async (e) => {
         e.preventDefault();
         console.log("handle submit errors", errors)
-        setIsCreated(true)
+        setIsSubmitted(true)
         if (errors.length > 0) {
             return;
         }
@@ -77,7 +77,7 @@ console.log("testing", testing)
                     className="review-form" onSubmit={handleSubmit}>
                     <h1 className="review-title">Submit a Review</h1>
                     <div className="errors">
-                        {isCreated && ErrorMsgs}
+                        {isSubmitted && ErrorMsgs}
                     </div>
                     <div className="submit-div">
                         <label className="create-review">
@@ -115,7 +115,7 @@ console.log("testing", testing)
                         </label>
                     </div>
                     <div className="to-review">
-                        <button className="created"
+                        <button className={isSubmitted && errors.length > 0 ? "noob3" : "submit-button3"}
                             type="submit">
                             Create Review
                         </button>
