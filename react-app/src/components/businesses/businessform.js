@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Redirect } from "react-router-dom";
 import { addBusinessThunk } from "../../store/businesses";
+import { readTheReviewsThunk } from "../../store/reviews";
 import CategoryFormModal from "../categories/categoryModal";
 import "./businessform.css";
 
@@ -80,6 +81,7 @@ function BusinessFormComponent() {
 
     if (newBusiness.errors) setErrors([...Object.values(newBusiness.errors)])
     else history.push(`/businesses/${newBusiness.id}`);
+    dispatch(readTheReviewsThunk(newBusiness.id))
   }
 
   const showErrors = errors.map((error) => (
