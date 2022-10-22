@@ -9,7 +9,7 @@
 * [API Documentation](https://github.com/BenjaminKHLau/Halp/wiki/API-Documentation)
 * [Database Schema](https://github.com/BenjaminKHLau/Halp/wiki/Database-Schema)
 * [Features]()
-* [Redux State Shape]()
+* [Redux State Shape](https://github.com/BenjaminKHLau/Halp/wiki/Redux-Store-Shape)
 * [Contact Us](https://github.com/BenjaminKHLau/Halp/wiki/Contact-Us)
 
 
