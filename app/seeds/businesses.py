@@ -294,6 +294,72 @@ def seed_businesses():
         category = "Entertainment",
         business_image_url = "https://www.thebluebook.com/inc/img/qp/1817769/barsto-construction-inc-round-1-bowling-amusement.jpg",
     )
+    morebread = Business(
+        name = "Tim's Bakery",
+        description = "The sandwiches here will melt in your mouth!!",
+        address = "999 Hilly Street",
+        city = "Timmons",
+        state = "VA",
+        contact = "3032132134",
+        owner_id = 4,
+        category = "Bakery",
+        business_image_url = "https://img.cdn4dd.com/cdn-cgi/image/fit=cover,width=600,height=400,format=auto,quality=80/https://doordash-static.s3.amazonaws.com/media/store/header/29698d7c-bf6c-40c9-84ed-ac8b7022041e.59",
+    )
+    anotherbread = Business(
+        name = "Grab and Go",
+        description = "The dough here will get you excited for the endless possibilities",
+        address = "22 Bobby Street",
+        city = "Yellowstone",
+        state = "NM",
+        contact = "2222132134",
+        owner_id = 7,
+        category = "Bakery",
+        business_image_url = "https://readelysian.com/wp-content/uploads/2021/12/Newsletter-Jan4-Newsletter-FryBread-1024x576.jpg",
+    )
+    temple = Business(
+        name = "The Mountain Bar",
+        description = "The highest tier of nightclubs",
+        address = "44 Reggie Way",
+        city = "Tino",
+        state = "WV",
+        contact = "6542132134",
+        owner_id = 5,
+        category = "Nightlife",
+        business_image_url = "https://images.cvent.com/ws/images/venues/14499/Temple-SF-San-Francisco-CA-ff99dd4c-62f8-4b6f-b170-d7b2bdb9de2c.jpg?unique=true&d=900x450&f=jpeg",
+    )
+    arena = Business(
+        name = "Rome's Bar",
+        description = "Gladiator themed night life for anyone",
+        address = "55 Why Way",
+        city = "Houston",
+        state = "TX",
+        contact = "2172132134",
+        owner_id = 6,
+        category = "Nightlife",
+        business_image_url = "https://assets3.thrillist.com/v1/image/3087046/750x500/flatten;crop;webp=auto;jpeg_quality=50.jpg",
+    )
+    chipz = Business(
+        name = "Chip's Burritos",
+        description = "This taco truck will be the best you ever experienced",
+        address = "305 Main Avenue",
+        city = "Los Angeles",
+        state = "CA",
+        contact = "6262132134",
+        owner_id = 7,
+        category = "Restaurant",
+        business_image_url = "https://d3hbe0kmbam4a5.cloudfront.net/photos/cd4ed204-f49a-4c4e-b83f-9b707c78e5fd.jpg",
+    )
+    foodie = Business(
+        name = "Peter's Fountain",
+        description = "Fill your appetite with any of our delicious seafood items",
+        address = "333 Milly Avenue",
+        city = "Raleigh",
+        state = "NC",
+        contact = "6552132155",
+        owner_id = 6,
+        category = "Restaurant",
+        business_image_url = "https://media-cdn.tripadvisor.com/media/photo-s/0b/ee/3b/de/lobster.jpg",
+    )
 
     db.session.add(bens_bakery)
     db.session.add(kyles_bowling)
@@ -319,4 +385,10 @@ def seed_businesses():
     db.session.add(karaoke)
     db.session.add(roundone)
     db.session.add(shire)
+    db.session.add(morebread)
+    db.session.add(anotherbread)
+    db.session.add(temple)
+    db.session.add(arena)
+    db.session.add(chipz)
+    db.session.add(foodie)
     db.session.commit()
