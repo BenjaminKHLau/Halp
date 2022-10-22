@@ -43,7 +43,7 @@ function CategoryFormComponent() {
     }
 
     const showErrors = errors.map((error) => (
-        <div className="error-message" key={error}>
+        <div className="error-messages" key={error}>
             {error}
         </div>
     ));
@@ -81,7 +81,7 @@ function CategoryFormComponent() {
                         type="submit"
                         disabled={isSubmitted && errors.length > 0}
                         className={
-                            isSubmitted && errors.length > 0 ? "submit-button" : "submit-button"
+                            isSubmitted && errors.length > 0 ? "noob" : "submit-button"
                         }
                     >
                         Create Category

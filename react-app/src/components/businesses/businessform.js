@@ -300,7 +300,9 @@ function BusinessFormComponent() {
           <button
             type="submit"
             disabled={isSubmitted && errors.length > 0}
-            className="submit-button"
+            className={
+              isSubmitted && errors.length > 0 ? "noob" : "submit-button"
+          }
           >
             Create Business
           </button>
