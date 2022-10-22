@@ -21,7 +21,7 @@
     width: 100%;
     display: flex;
     justify-content: space-evenly;
-    /* padding-bottom: 20px; */
+    padding-bottom: 30px;
 }
 
 .footer-img {
