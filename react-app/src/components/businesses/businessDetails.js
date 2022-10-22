@@ -49,9 +49,9 @@ function GetBusinessDetailsComponent() {
   console.log(formatnumber);
 
   useEffect(() => {
-    setIsLoaded(true);
-    dispatch(getBusinessByIdThunk(businessId));
-    dispatch(readTheReviewsThunk(businessId));
+    dispatch(getBusinessByIdThunk(businessId))
+    .then(() => dispatch(readTheReviewsThunk(businessId)))
+    .then(() => setIsLoaded(true))
   }, [dispatch, isLoaded]);
   // console.log("business id details component", businessId)
 
@@ -62,9 +62,8 @@ function GetBusinessDetailsComponent() {
     history.push("/");
   };
 
-  return (
+  return isLoaded && (
     <>
-      {/* isLoaded && ( */}
       <div className="business-stuff">
         {businessDetails && (
           <>
