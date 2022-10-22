@@ -35,7 +35,6 @@ function BusinessEditFormComponent({ businessId }) {
 
     useEffect(() => {
         const currErrors = []
-        setErrors([])
 
         if (!name) currErrors.push("Name is required.");
         if (!description) currErrors.push("Description is required.");
@@ -48,7 +47,7 @@ function BusinessEditFormComponent({ businessId }) {
         if (!businessImageUrl) currErrors.push("Image Url is required.");
         setErrors(currErrors);
 
-        if (errors.length) setIsSubmitted(false)
+        // if (errors.length) setIsSubmitted(false)
 
     }, [name, description, address, city, state, contact, category, businessImageUrl])
 
@@ -191,7 +190,7 @@ function BusinessEditFormComponent({ businessId }) {
                             className="form-input"
                             type="text"
                             name="contact"
-                            placeholder="Contact Number"
+                            placeholder="Contact Number (10 Digits)"
                             value={contact}
                             onChange={(e) => setContact(e.target.value)}
                         />
