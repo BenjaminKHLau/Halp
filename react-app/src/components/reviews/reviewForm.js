@@ -39,8 +39,9 @@ function ReviewFormComponent() {
         let errorsArray = []
         if (testing.length > 0) errorsArray.push("You already have a review")
         if (!imageUrl) errorsArray.push("Please provide valid image.")
-        if (review.length < 1) errorsArray.push("Please provide a review.")
-        else if (stars < 1 || stars > 5) errorsArray.push("Please provide a number between 1 - 5")
+        if (review.length < 1) errorsArray.push("Please provide a review between 1-255 characters.")
+        if (review.length > 255) errorsArray.push("Please provide a review between 1-255 characters.")
+        if (stars < 1 || stars > 5) errorsArray.push("Please provide a number between 1 - 5")
 
         setErrors(errorsArray)
     }, [review, stars, imageUrl])
@@ -84,7 +85,7 @@ function ReviewFormComponent() {
                             <span> Review: </span>
                             <input
                                 type="text"
-                                placeholder="Review Text"
+                                placeholder="Review Text between 1-255 characters"
                                 value={review}
                                 onChange={(e) => setReview(e.target.value)}
                                 // required
