@@ -27,8 +27,9 @@ function EditReviewFormComponent({review, setReviewModal}) {
 
     useEffect(() => {
         let errorsArray = []
-        if(!imageUrl) errorsArray.push("Please provide valid image.")
-        if (!review) errorsArray.push("Please provide a review.")
+        if (!imageUrl) errorsArray.push("Please provide valid image.")
+        if (review.length < 1) errorsArray.push("Please provide a review between 1-255 characters.")
+        if (review.length > 255) errorsArray.push("Please provide a review between 1-255 characters.")
         if (stars < 1 || stars > 5) errorsArray.push("Please provide a number between 1 - 5")
 
         setErrors(errorsArray)
@@ -78,7 +79,7 @@ function EditReviewFormComponent({review, setReviewModal}) {
                         <span> Review: </span>
                         <input
                             type="text"
-                            placeholder="Review Text"
+                            placeholder="Review Text between 1-255 characters"
                             value={reviewText}
                             onChange={(e) => setReviewText(e.target.value)}
                             required

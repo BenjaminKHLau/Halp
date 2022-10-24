@@ -41,7 +41,7 @@ function ReviewFormComponent() {
         if (!imageUrl) errorsArray.push("Please provide valid image.")
         if (review.length < 1) errorsArray.push("Please provide a review between 1-255 characters.")
         if (review.length > 255) errorsArray.push("Please provide a review between 1-255 characters.")
-        else if (stars < 1 || stars > 5) errorsArray.push("Please provide a number between 1 - 5")
+        if (stars < 1 || stars > 5) errorsArray.push("Please provide a number between 1 - 5")
 
         setErrors(errorsArray)
     }, [review, stars, imageUrl])
