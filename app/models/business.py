@@ -1,8 +1,10 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.orm import relationship
 
 class Business(db.Model):
     __tablename__ = "businesses"
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(40), nullable=False)
@@ -14,7 +16,7 @@ class Business(db.Model):
     contact = db.Column(db.String, nullable=False)
     category = db.Column(db.String, nullable=False)
 
-    owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     # category_id = db.Column(db.Integer, db.ForeignKey("categories.id"), nullable=False)
     # business_image = db.Column(db.Integer, db.ForeignKey("businessimages.id"), nullable=False) #error with seeding. testing
     business_image_url = db.Column(db.String, nullable=False)
