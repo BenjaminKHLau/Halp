@@ -1,15 +1,17 @@
 # from app.api.business_routes import business_details
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.orm import relationship
 
 class Review(db.Model):
     __tablename__ = "reviews"
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     stars = db.Column(db.Integer, nullable=False)
     review = db.Column(db.String(255))
-    businessId = db.Column(db.Integer, db.ForeignKey("businesses.id"))
-    userId = db.Column(db.Integer, db.ForeignKey("users.id"))
+    businessId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("businesses.id")))
+    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     imageUrl = db.Column(db.String, nullable=False)
     # imageUrl = db.Column(db.Integer, nullable=False)
 

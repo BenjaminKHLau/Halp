@@ -113,9 +113,7 @@ const SignUpForm = () => {
                     // required={true}
                 ></input>
             </div>
-            <button className={
-                            isSubmitted && errors.length > 0 ? "noob" : "submit-button"
-                        } type='submit'>Sign Up</button>
+            <button className={isSubmitted && errors.length > 0 ? "noob" : "submit-button"} type='submit'>Sign Up</button>
         </form>
     );
 };
